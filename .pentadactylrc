@@ -1,0 +1,7 @@
+"hg6933
+
+loadplugins '\.(js|penta)$'
+group user
+set defsearch=startpage-https
+
+" vim: set ft=pentadactyl:
