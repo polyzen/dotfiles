@@ -3,5 +3,6 @@
 loadplugins '\.(js|penta)$'
 group user
 set defsearch=startpage-https
+colors solarized-light
 
 " vim: set ft=pentadactyl:
