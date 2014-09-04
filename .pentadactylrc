@@ -1,9 +1,8 @@
-"hg6933
-
 loadplugins '\.(js|penta)$'
 group user
 
 set defsearch=startpage-https
+set editor='termite -e "vim +<line> <file>"'
 colors solarized-light
 
 " vim: set ft=pentadactyl:
