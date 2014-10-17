@@ -20,7 +20,7 @@ order += "volume master"
 #order += "disk /"
 #order += "disk /home"
 #order += "disk /mnt/hdd"
-order += "run_watch DHCP"
+#order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "wireless wlp8s0"
 #order += "ethernet eth0"
@@ -29,7 +29,7 @@ order += "cpu_temperature 0"
 order += "tztime local"
 
 wireless wlp8s0 {
-        format_up = "W: (%quality at %essid) %ip"
+        format_up = "W: (%quality at %essid)"
         format_down = "W: down"
 }
 
