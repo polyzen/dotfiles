@@ -157,4 +157,4 @@ bindsym KP_0 exec "amixer sset 'Master',0 toggle"
 # autostart
 exec --no-startup-id xset -b
 exec --no-startup-id xset s off
-exec --no-startup-id xrandr --output DVI-0 --auto --left-of HDMI-0
+#exec --no-startup-id xrandr --output DVI-0 --auto --left-of HDMI-0
