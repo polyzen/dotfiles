@@ -3,6 +3,7 @@ group user
 
 set defsearch=duckduckgo
 set editor='termite -e "vim +<line> <file>"'
+set findcase=smart
 colors solarized-light
 
 " vim: set ft=pentadactyl:
