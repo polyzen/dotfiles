@@ -1,7 +1,7 @@
 loadplugins '\.(js|penta)$'
 group user
 
-set defsearch=startpage-https
+set defsearch=duckduckgo
 set editor='termite -e "vim +<line> <file>"'
 colors solarized-light
 
