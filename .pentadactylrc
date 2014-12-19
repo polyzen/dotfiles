@@ -2,8 +2,21 @@ set runtimepath=~/.config/pentadactyl
 group user
 
 set defsearch=duckduckgo
-set editor='termite -e "vim +<line> <file>"'
 set findcase=smart
-colors solarized-light
+set editor='termite -e "vim +<line> <file>"'
 
-" vim: set ft=pentadactyl:
+" mappings
+nmap -b <leader>a :addons<cr>
+nmap -b <leader>d :downloads<cr>
+nmap -b <leader>m :messages<cr>
+nmap -b <leader>p :private winopen<cr>
+nmap -b h 6h
+nmap -b j 6j
+nmap -b k 6k
+nmap -b l 6l
+
+" launch videos
+nmap -builtin x ;l
+nmap <A-x> :launchv<cr>
+
+colorscheme solarized-light
