@@ -1,4 +1,4 @@
-loadplugins '\.(js|penta)$'
+set runtimepath=~/.config/pentadactyl
 group user
 
 set defsearch=duckduckgo
