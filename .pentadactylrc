@@ -20,3 +20,4 @@ nmap -builtin x ;l
 nmap <A-x> :launchv<cr>
 
 colorscheme solarized-light
+colorscheme hints
