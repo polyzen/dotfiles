@@ -149,12 +149,7 @@ client.focused          #859900 #859900 #fdf6e3 #2e9ef4
 client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
-# volume control
-bindsym KP_Add exec "amixer sset 'Master',0 2.5%+ unmute"
-bindsym KP_Subtract exec "amixer sset 'Master',0 2.5%- unmute"
-bindsym KP_0 exec "amixer sset 'Master',0 toggle"
-
 # autostart
 exec --no-startup-id xset -b
 exec --no-startup-id xset s off
-#exec --no-startup-id xrandr --output DVI-0 --auto --left-of HDMI-0
+exec --no-startup-id sxhkd
