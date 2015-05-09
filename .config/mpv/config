@@ -1,4 +1,4 @@
 fs
 no-osc
-hwdec=vdpau
-vo=vdpau
+hwdec=auto
+vo=opengl-hq
