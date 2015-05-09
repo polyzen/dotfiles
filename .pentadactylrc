@@ -26,5 +26,8 @@ set! noscript.notify=false
 " require websites preform safe ssl negotiation
 set! security.ssl.require_safe_negotiation=true
 
+" workaround uBlock issue #720
+style -name ublick * #nav-bar * { visibility: visible; }
+
 colorscheme solarized-light
 colorscheme hints
