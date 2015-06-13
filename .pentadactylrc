@@ -22,12 +22,10 @@ nmap <A-x> :launchv<cr>
 " firefox prefs
 set! cookieaccept=none
 set! noscript.notify=false
+set! extensions.ublock.forceLegacyToolbarButton=true
 
 " require websites preform safe ssl negotiation
 set! security.ssl.require_safe_negotiation=true
-
-" workaround uBlock issue #720
-style -name ublick * #nav-bar * { visibility: visible; }
 
 colorscheme solarized-light
 colorscheme hints
