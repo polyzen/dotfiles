@@ -21,6 +21,7 @@ nmap <A-x> :launchv<cr>
 
 " firefox prefs
 set! cookieaccept=none
+set! browser.newtab.url=about:blank
 set! noscript.notify=false
 set! extensions.ublock.forceLegacyToolbarButton=true
 
