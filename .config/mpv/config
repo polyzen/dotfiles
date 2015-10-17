@@ -1,4 +1,3 @@
 fs
-no-osc
 hwdec=auto
 vo=opengl-hq
