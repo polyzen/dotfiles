@@ -23,7 +23,7 @@ nmap <A-x> :launchv<cr>
 set! cookieaccept=none
 set! browser.newtab.url=about:blank
 set! noscript.notify=false
-set! extensions.ublock.forceLegacyToolbarButton=true
+set! extensions.ublock0.forceLegacyToolbarButton=true
 
 " require websites preform safe ssl negotiation
 set! security.ssl.require_safe_negotiation=true
