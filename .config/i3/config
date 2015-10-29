@@ -52,11 +52,23 @@ bindsym Mod4+$down focus down
 bindsym Mod4+$up focus up
 bindsym Mod4+$right focus right
 
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
 # move focused window
 bindsym Mod4+Shift+$left move left
 bindsym Mod4+Shift+$down move down
 bindsym Mod4+Shift+$up move up
 bindsym Mod4+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
 
 # split in horizontal orientation
 bindsym Mod4+Shift+v split h
@@ -134,6 +146,12 @@ mode "resize" {
         bindsym $down       resize grow height 10 px or 10 ppt
         bindsym $up         resize shrink height 10 px or 10 ppt
         bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
