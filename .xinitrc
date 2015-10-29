@@ -13,4 +13,9 @@ fi
 
 export TERMINAL=termite
 export BROWSER=firefox
-exec i3
+
+xset -b
+xset s off
+
+sxhkd &
+i3

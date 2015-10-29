@@ -176,11 +176,6 @@ bar {
         }
 }
 
-# autostart
-exec --no-startup-id xset -b
-exec --no-startup-id xset s off
-exec --no-startup-id sxhkd
-
 # class                 border      backgr      text        indicator
 client.focused          $background $foreground $background $foreground
 client.focused_inactive $foreground $gray       $foreground $gray
