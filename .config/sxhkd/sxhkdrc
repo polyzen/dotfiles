@@ -1,8 +1,5 @@
-KP_Add
-  ponymix increase 2
-
-KP_Subtract
-  ponymix decrease 2
+KP_{Add,Subtract}
+  ponymix {increase,decrease} 2
 
 KP_Insert
   ponymix toggle
