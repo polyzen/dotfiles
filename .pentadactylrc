@@ -20,8 +20,10 @@ nmap -builtin x ;l
 nmap <A-x> :launchv<cr>
 
 " firefox prefs
-set! cookieaccept=none
 set! browser.newtab.url=about:blank
+set! browser.newtabpage.directory.source=''
+set! browser.newtabpage.directory.ping=''
+set! cookieaccept=none
 set! noscript.notify=false
 set! extensions.ublock0.forceLegacyToolbarButton=true
 
