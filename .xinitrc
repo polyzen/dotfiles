@@ -16,6 +16,6 @@ export BROWSER=firefox
 
 xset -b
 xset s off
-
+xrdb .Xresources
 sxhkd &
 i3
