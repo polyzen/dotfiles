@@ -1,3 +1,4 @@
 fs
 hwdec=auto
 vo=opengl-hq
+volume=100
