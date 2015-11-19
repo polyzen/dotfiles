@@ -19,6 +19,10 @@ nmap -b l 6l
 nmap -builtin x ;l
 nmap <A-x> :launchv<cr>
 
+" commands
+command dark :colorscheme gruvbox-dark | :colorscheme hints | :set! extensions.stylish.styleRegistrationEnabled=true
+command light :hi clear | :colorscheme solarized-light | :colorscheme hints | :set! extensions.stylish.styleRegistrationEnabled=false
+
 " firefox prefs
 set! browser.newtab.url=about:blank
 set! browser.newtabpage.directory.source=''
