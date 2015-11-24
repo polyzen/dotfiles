@@ -30,6 +30,7 @@ set! browser.newtabpage.directory.ping=''
 set! cookieaccept=none
 set! noscript.notify=false
 set! extensions.ublock0.forceLegacyToolbarButton=true
+set! extensions.umatrix.forceLegacyToolbarButton=true
 
 " require websites preform safe ssl negotiation
 set! security.ssl.require_safe_negotiation=true
