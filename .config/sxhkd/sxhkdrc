@@ -8,4 +8,4 @@ super + {_,shift + }Return
   termite -c .config/termite/config-gruvbox-{light,dark}
 
 super + d 
-  dmenu_zrun -fn Inconsolatazi4:size=11 -h 20 -nb '#282828' -nf '#ebdbb2' -sb '#ebdbb2' -sf '#282828'
+  dmenu_zrun -fn Inconsolatazi4:size=12 -nb '#282828' -nf '#ebdbb2' -sb '#ebdbb2' -sf '#282828'
