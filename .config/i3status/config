@@ -58,26 +58,26 @@ cpu_temperature 0 {
 }
 
 disk "/" {
-        format = " [ /(%percentage_avail)"
+        format = " [ /(%avail)"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 
 disk "/home" {
-        format = "~(%percentage_avail)"
+        format = "~(%avail)"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 disk "/var" {
-        format = "/var(%percentage_avail)"
+        format = "/var(%avail)"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 disk "/mnt/data" {
-        format = "Data(%percentage_avail) ] "
+        format = "Data(%avail) ] "
         low_threshold = 25
         threshold_type = percentage_avail
 }
