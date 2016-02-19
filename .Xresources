@@ -5,3 +5,4 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 Xft.dpi: 96
 Xft.rgba: rgb
+Xft.embeddedbitmap: 0
