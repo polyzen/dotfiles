@@ -20,8 +20,8 @@ nmap -builtin x ;l
 nmap <A-x> :launchv<cr>
 
 " commands
-command dark :colorscheme gruvbox-dark | :colorscheme hints | :set! extensions.stylish.styleRegistrationEnabled=true
-command light :hi clear | :colorscheme solarized-light | :colorscheme hints | :set! extensions.stylish.styleRegistrationEnabled=false
+command dark :colorscheme gruvbox-dark | colorscheme hints | set! extensions.stylish.styleRegistrationEnabled=true | set! layout.css.devPixelsPerPx='1.5'
+command light :hi clear | colorscheme solarized-light | colorscheme hints | set! extensions.stylish.styleRegistrationEnabled=false | set! layout.css.devPixelsPerPx='-1'
 
 " firefox prefs
 set! browser.download.useDownloadDir=false
