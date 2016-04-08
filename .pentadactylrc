@@ -25,25 +25,25 @@ command light :hi clear | colorscheme solarized-light | colorscheme hints | set!
 
 " firefox prefs
 set! browser.download.useDownloadDir=false
-set! browser.newtab.url=about:blank
-set! browser.newtabpage.directory.source=''
-set! browser.newtabpage.directory.ping=''
 set! browser.safebrowsing.enabled=false
 set! browser.safebrowsing.malware.enabled=false
-set! browser.search.defaultenginename="DuckDuckGo"
+set! browser.search.defaultenginename.US='DuckDuckGo'
 set! browser.search.suggest.enabled=false
-set! browser.startup.homepage="about:blank"
-set! browser.tabs.autoHide=false
+set! browser.startup.page=0
+set! browser.tabs.closeWindowWithLastTab=false
 set! browser.tabs.warnOnClose=false
-set! privacy.trackingprotection.pbmode.enabled=false
-set! general.autoScroll=true
-set! privacy.donottrackheader.value=1
-set! signon.rememberSignons=false
-set! cookieaccept=none
+set! datareporting.healthreport.uploadEnabled=false
+set! extensions.newtaboverride@agenedia.com.type='about:blank'
 set! extensions.ublock0.forceLegacyToolbarButton=true
 set! extensions.umatrix.forceLegacyToolbarButton=true
-set! noscript.notify=false
+set! general.autoScroll=true
+set! media.peerconnection.ice.default_address_only=true
+set! network.cookie.cookieBehavior=2
+set! network.cookie.prefsMigrated=true
+set! privacy.donottrackheader.value=1
+set! privacy.trackingprotection.pbmode.enabled=false
 set! security.ssl.require_safe_negotiation=true
+set! signon.rememberSignons=false
 
 colorscheme solarized-light
 colorscheme hints
