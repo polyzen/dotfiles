@@ -2,3 +2,4 @@ fs
 hwdec=auto
 vo=opengl-hq
 volume=100
+screenshot-directory=/tmp
