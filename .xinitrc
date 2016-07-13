@@ -14,6 +14,8 @@ fi
 export TERMINAL=termite
 export BROWSER=firefox
 
+export FT2_SUBPIXEL_HINTING=1 
+
 xset s off
 xrdb .Xresources
 sxhkd &
