@@ -21,7 +21,7 @@ nmap <A-x> :launchv<cr>
 
 " commands
 command dark :colorscheme gruvbox-dark | colorscheme hints | set! extensions.stylish.styleRegistrationEnabled=true | set! layout.css.devPixelsPerPx='1.5'
-command light :hi clear | colorscheme solarized-light | colorscheme hints | set! extensions.stylish.styleRegistrationEnabled=false | set! layout.css.devPixelsPerPx='-1'
+command light :colorscheme gruvbox-light | colorscheme hints | set! extensions.stylish.styleRegistrationEnabled=false | set! layout.css.devPixelsPerPx='-1'
 
 " firefox prefs
 set! browser.download.useDownloadDir=false
@@ -45,5 +45,5 @@ set! privacy.trackingprotection.pbmode.enabled=false
 set! security.ssl.require_safe_negotiation=true
 set! signon.rememberSignons=false
 
-colorscheme solarized-light
+colorscheme gruvbox-light
 colorscheme hints
