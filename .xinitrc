@@ -16,6 +16,7 @@ export TERMINAL=termite
 
 export FT2_SUBPIXEL_HINTING=1 
 
+xset -b
 xset s off
 xrdb .Xresources
 sxhkd &
