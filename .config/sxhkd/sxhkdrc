@@ -5,7 +5,7 @@ KP_Insert
   ponymix toggle
 
 super + {_,shift + }Return
-  termite -c .config/termite/config-gruvbox-{light,dark}
+  termite{_, -c .config/termite/config-gruvbox-dark}
 
 super + d 
   dmenu_zrun -fn Monaco:size=10 -nb '#282828' -nf '#ebdbb2' -sb '#ebdbb2' -sf '#282828'
