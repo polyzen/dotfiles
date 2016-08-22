@@ -77,7 +77,7 @@ disk "/var" {
 }
 
 disk "/mnt/data" {
-        format = "Data(%avail) ] "
+        format = "data(%avail) ] "
         low_threshold = 25
         threshold_type = percentage_avail
 }
