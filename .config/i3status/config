@@ -85,5 +85,5 @@ disk "/mnt/data" {
 volume master {
         format = "♪(%volume)"
         format_muted = "♪(%volume) muted"
-        device = "pulse"
+        device = "pulse:1"
 }

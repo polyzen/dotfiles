@@ -14,7 +14,7 @@ fi
 export BROWSER=firefox
 export TERMINAL=termite
 
-export FT2_SUBPIXEL_HINTING=1 
+export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 
 xset -b
 xset s off
