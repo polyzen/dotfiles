@@ -1,5 +1,5 @@
 fs
 hwdec=auto
-vo=opengl-hq
+profile=opengl-hq
 volume=100
 screenshot-directory=/tmp
