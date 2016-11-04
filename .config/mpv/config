@@ -1,5 +1,5 @@
-fs
-hwdec=auto
 profile=opengl-hq
+hwdec=auto
 volume=100
+fullscreen
 screenshot-directory=/tmp
