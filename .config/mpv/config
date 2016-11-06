@@ -1,3 +1,5 @@
+alang=jpn,eng
+slang=eng
 profile=opengl-hq
 hwdec=auto
 volume=100
