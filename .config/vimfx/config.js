@@ -64,6 +64,7 @@ vimfx.addCommand({
 
     args.push(url)
 
+    vim.notify(`mpv: ${url}`)
     process.runAsync(args, args.length)
   })
 })
