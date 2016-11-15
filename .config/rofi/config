@@ -1,0 +1,6 @@
+rofi.modi:  run,window
+rofi.font:  monaco 12
+rofi.m: -4
+rofi.threads: 4
+
+#include "gruvbox-dark.theme"

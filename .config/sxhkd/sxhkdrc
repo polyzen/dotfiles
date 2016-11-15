@@ -8,4 +8,4 @@ super + {_,shift + }Return
   termite{_, -c .config/termite/config-gruvbox-dark}
 
 super + d 
-  dmenu_zrun -fn Monaco:size=10 -nb '#282828' -nf '#ebdbb2' -sb '#ebdbb2' -sf '#282828'
+  rofi -show run
