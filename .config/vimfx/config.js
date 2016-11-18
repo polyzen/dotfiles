@@ -89,8 +89,8 @@ vimfx.addCommand({
   Preferences.set({
     'devtools.theme': 'light',
     'extensions.stylish.styleRegistrationEnabled': false,
-    'layout.css.devPixelsPerPx': '1.2',
   })
+  Preferences.reset('layout.css.devPixelsPerPx')
 })
 map(',l', 'light', true)
 
