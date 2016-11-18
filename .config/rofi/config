@@ -1,5 +1,5 @@
 rofi.modi:  run,window
-rofi.font:  monaco 12
+rofi.font:  monaco 10
 rofi.m: -4
 rofi.threads: 4
 
