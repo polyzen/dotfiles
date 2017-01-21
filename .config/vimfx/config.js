@@ -77,6 +77,7 @@ vimfx.addCommand({
   Preferences.set({
     'devtools.theme': 'dark',
     'extensions.stylish.styleRegistrationEnabled': true,
+    'extensions.tabtree.theme': 2,
   })
 })
 map(',d', 'dark', true)
@@ -89,6 +90,7 @@ vimfx.addCommand({
     'devtools.theme': 'light',
     'extensions.stylish.styleRegistrationEnabled': false,
   })
+  Preferences.reset('extensions.tabtree.theme')
 })
 map(',l', 'light', true)
 
@@ -103,6 +105,7 @@ Preferences.set({
   'browser.tabs.warnOnOpen': false,
   'browser.tabs.warnOnClose': false,
   'extensions.newtaboverride@agenedia.com.type': 'about:blank',
+  'extensions.tabtree.new-tab-button': false,
   'general.autoScroll': true,
   'media.peerconnection.ice.default_address_only': true,
   'network.cookie.cookieBehavior': 2,
