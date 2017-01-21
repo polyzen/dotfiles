@@ -76,9 +76,10 @@ vimfx.addCommand({
 }, ({vim}) => {
   Preferences.set({
     'devtools.theme': 'dark',
-    'extensions.stylish.styleRegistrationEnabled': true,
-    'extensions.tabtree.theme': 2,
+    'extensions.tabtree.theme': 2
   })
+  Preferences.reset('extensions.stylish.styleRegistrationEnabled')
+
 })
 map(',d', 'dark', true)
 
@@ -86,11 +87,11 @@ vimfx.addCommand({
   name: 'light',
   description: 'Adjust for high ambient light'
 }, ({vim}) => {
-  Preferences.set({
-    'devtools.theme': 'light',
-    'extensions.stylish.styleRegistrationEnabled': false,
-  })
-  Preferences.reset('extensions.tabtree.theme')
+  Preferences.set('extensions.stylish.styleRegistrationEnabled', false)
+  Preferences.reset([
+    'devtools.theme',
+    'extensions.tabtree.theme'
+  ])
 })
 map(',l', 'light', true)
 
@@ -113,5 +114,5 @@ Preferences.set({
   'privacy.donottrackheader.value': 1,
   'privacy.trackingprotection.pbmode.enabled': false,
   'security.ssl.require_safe_negotiation': true,
-  'signon.rememberSignons': false,
+  'signon.rememberSignons': false
 })
