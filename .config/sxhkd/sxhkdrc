@@ -8,4 +8,4 @@ super + {_,shift + }Return
   termite{_, -c .config/termite/config-gruvbox-dark}
 
 super + d 
-  PATH=$PATH:~/.local/bin rofi -show run
+  rofi -show run
