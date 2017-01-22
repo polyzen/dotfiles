@@ -19,5 +19,4 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 xset -b
 xset s off
 xrdb .Xresources
-sxhkd &
 i3
