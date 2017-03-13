@@ -100,11 +100,12 @@ TERM screen-w
 TERM screen.xterm-256color
 TERM screen.linux
 TERM screen.xterm-new
-TERM tmux-256color
 TERM st
 TERM st-meta
 TERM st-256color
 TERM st-meta-256color
+TERM tmux
+TERM tmux-256color
 TERM vt100
 TERM xterm
 TERM xterm-new
@@ -209,6 +210,7 @@ EXEC 01;31  # Unix
 
 # Source text
 .h 32
+.hpp 32
 .c 32
 .C 32
 .cc 32
@@ -260,6 +262,7 @@ EXEC 01;31  # Unix
 .tex 32
 .go 32
 .sql 32
+.csv 32
 
 ### Multimedia formats
 
@@ -310,6 +313,7 @@ EXEC 01;31  # Unix
 .mpeg 33
 .mpg 33
 .ogg  33
+.opus 33
 .ra 33
 .wav 33
 
