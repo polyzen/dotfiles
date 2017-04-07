@@ -1,6 +1,3 @@
-function! s:goyo_before()
-endfunction
-
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -34,6 +31,5 @@ function! s:goyo_leave()
   endif
 endfunction
 
-let g:goyo_callbacks = [function('s:goyo_before')]
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()

@@ -1,7 +1,7 @@
 " Toggle Background
 " Modified:     2017 Feb 21
 " Author:       Ethan Schoonover
-" Maintainer:   Faniel M. Capella
+" Maintainer:   Daniel M. Capella
 " License:      OSI approved MIT license
 
 if exists('g:loaded_togglebg')
