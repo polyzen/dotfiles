@@ -33,7 +33,7 @@ alias cp='cp --reflink=auto'
 alias grep='grep --color=auto'
 alias ix="curl -F 'f:1=<-' ix.io"
 alias ls='ls --color=auto --file-type'
-function lsupd() { checkupdates; cower -ub }
+function lsupd() { checkupdates; cower -u }
 
 function aurpush() (
   branch=${"$(<.git/HEAD)"##*/}
