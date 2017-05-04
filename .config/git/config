@@ -5,8 +5,6 @@
 	prompt = false
 [diff]
 	tool = vimdiff
-[push]
-	default = simple
 [sendemail]
 	smtpencryption = tls
 	smtpserver = mail.archlinux.info
