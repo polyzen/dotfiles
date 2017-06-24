@@ -1,7 +1,7 @@
 const {classes: Cc, interfaces: Ci, utils: Cu} = Components
 
 const mpv_path = '/usr/bin/mpv'
-const mpv_options = '--cache-file=TMP --loop-file --ytdl-raw-options=format=best'
+const mpv_options = '--cache-file=TMP --loop-file'
 
 let map = (shortcuts, command, custom=false) => {
   vimfx.set(`${custom ? 'custom.' : ''}mode.normal.${command}`, shortcuts)
