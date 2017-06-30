@@ -109,7 +109,6 @@ Preferences.set({
   'extensions.tabtree.new-tab-button': false,
   'general.autoScroll': true,
   'media.peerconnection.ice.default_address_only': true,
-  'network.cookie.cookieBehavior': 2,
   'network.cookie.prefsMigrated': true,
   'privacy.donottrackheader.value': 1,
   'privacy.trackingprotection.pbmode.enabled': false,
