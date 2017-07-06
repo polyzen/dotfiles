@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons' " Load after supported plugins
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
+Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'jalvesaq/vimcmdline'
@@ -28,11 +29,6 @@ set autoindent
 " Ignore case unless 'the search pattern contains upper case characters'
 set ignorecase
 set smartcase
-
-" Use Tab to select completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 " Colorscheme
 set t_8f=[38;2;%lu;%lu;%lum
