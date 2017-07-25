@@ -31,8 +31,8 @@ set ignorecase
 set smartcase
 
 " Colorscheme
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
+let &t_8f='[38;2;%lu;%lu;%lum'
+let &t_8b='[48;2;%lu;%lu;%lum'
 set termguicolors
 set background=dark
 let g:gruvbox_italic=1
@@ -45,9 +45,8 @@ let g:airline#extensions#tabline#enabled=1
 let g:bufferline_echo=0
 let g:bufferline_solo_highlight=1
 let g:tar_cmd='bsdtar'
-set backspace=indent,eol,start
 set hidden
 set laststatus=2
 
 " Close Vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
