@@ -54,3 +54,6 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " '.. prevent passwords leaking into swap, backup and undo files.'
 " http://lists.zx2c4.com/pipermail/password-store/2015-July/001618.html
 autocmd BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
+
+" Ignore warnings that aren't applicable to PKGBUILDs
+autocmd BufEnter PKGBUILD let b:ale_sh_shellcheck_exclusions = 'SC2034,SC2154,SC2164'
