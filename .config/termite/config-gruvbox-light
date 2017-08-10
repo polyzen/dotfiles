@@ -3,7 +3,7 @@
 audible_bell = true
 #clickable_url = true
 #dynamic_title = true
-font = MonacoforPowerline Nerd Font 10
+font = Monaco 10
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
