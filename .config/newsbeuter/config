@@ -1,0 +1,39 @@
+auto-reload     yes
+browser         firefox
+delete-read-articles-on-quit yes
+download-path   "~/media/podcast/%n"
+error-log       "~/.local/share/newsbeuter/error.log"
+notify-format   "%d new article(s)"
+notify-program  notify-send
+player          "mpv --no-vid"
+reload-threads  150
+show-read-feeds no
+
+unbind-key C
+unbind-key J
+bind-key   J next-feed feedlist
+bind-key   J next-feed articlelist
+bind-key   J next      article
+unbind-key K
+bind-key   K prev-feed feedlist
+bind-key   K prev-feed articlelist
+bind-key   K prev      article
+bind-key   j down
+bind-key   k up
+bind-key   g home
+bind-key   G end
+unbind-key s
+bind-key   S save
+
+color background       white black
+color info             black white
+color listfocus        black yellow
+color listfocus_unread white yellow
+
+highlight article "^(Title):.*$"         blue  default
+highlight article "https?://[^ ]+"       red   default
+highlight article "\\[image\\ [0-9]+\\]" green default
+
+macro y set browser "echo %u | tr -d '\n' | xsel" ; open-in-browser ; set browser firefox
+
+include "~/.config/newsbeuter/ignore"
