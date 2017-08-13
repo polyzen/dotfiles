@@ -16,6 +16,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
+Plug 'cespare/vim-toml'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'jalvesaq/vimcmdline'
 call plug#end()
