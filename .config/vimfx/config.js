@@ -87,11 +87,11 @@ vimfx.addCommand({
   name: 'light',
   description: 'Adjust for high ambient light'
 }, ({vim}) => {
-  Preferences.set('extensions.stylish.styleRegistrationEnabled', false)
-  Preferences.reset([
-    'devtools.theme',
-    'extensions.tabtree.theme'
-  ])
+  Preferences.set({
+    'extensions.stylish.styleRegistrationEnabled': false,
+    'extensions.tabtree.theme': 1
+  })
+  Preferences.reset('devtools.theme')
 })
 map(',l', 'light', true)
 
