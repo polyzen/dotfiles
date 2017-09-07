@@ -100,6 +100,7 @@ Preferences.set({
   'browser.safebrowsing.enabled': false,
   'browser.safebrowsing.malware.enabled': false,
   'browser.search.defaultenginename.US': 'DuckDuckGo',
+  'browser.search.hiddenOneOffs': 'Google,Yahoo,Bing,Amazon.com,DuckDuckGo,Twitter,Wikipedia (en)',
   'browser.search.suggest.enabled': false,
   'browser.startup.homepage': 'about:blank',
   'browser.startup.page': 3,
