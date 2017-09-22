@@ -18,6 +18,7 @@ Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
 Plug 'cespare/vim-toml'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-unimpaired'
 Plug 'jalvesaq/vimcmdline'
 call plug#end()
 
