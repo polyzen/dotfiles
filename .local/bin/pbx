@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Create paste from stdin or file, and copy link to primary selection.
+
+curl -sF "c=@${1:--}" -w "%{redirect_url}" -o /dev/stderr 'https://pb.gehidore.net/?r=1' |
+  xclip 2>/dev/null

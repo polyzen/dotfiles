@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Take a screenshot, and pass it to `pbx`. Script args provide options for maim.
+
+FILE=/tmp/$(date -Is).png
+
+maim ${*:---} $FILE
+pbx $FILE
