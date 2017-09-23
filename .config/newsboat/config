@@ -2,7 +2,7 @@ auto-reload     yes
 browser         firefox
 delete-read-articles-on-quit yes
 download-path   "~/media/podcast/%n"
-error-log       "~/.local/share/newsbeuter/error.log"
+error-log       "~/.local/share/newsboat/error.log"
 notify-format   "%d new article(s)"
 notify-program  notify-send
 player          "mpv --no-vid"
@@ -36,4 +36,4 @@ highlight article "\\[image\\ [0-9]+\\]" green default
 
 macro y set browser "echo %u | tr -d '\n' | xsel" ; open-in-browser ; set browser firefox
 
-include "~/.config/newsbeuter/ignore"
+include "~/.config/newsboat/ignore"
