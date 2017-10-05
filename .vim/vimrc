@@ -13,6 +13,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons' " Load after supported plugins
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'jremmen/vim-ripgrep'
 Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
