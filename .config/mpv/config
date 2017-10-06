@@ -1,7 +1,7 @@
 alang=jpn,eng
 slang=eng
 profile=opengl-hq
-hwdec=auto
+hwdec=vaapi
 volume=100
 fullscreen
 screenshot-directory=/tmp

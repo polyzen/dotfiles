@@ -6,7 +6,7 @@ error-log       "~/.local/share/newsboat/error.log"
 notify-format   "%d new article(s)"
 notify-program  notify-send
 player          "mpv --no-vid"
-reload-threads  150
+reload-threads  30
 show-read-feeds no
 
 unbind-key C
