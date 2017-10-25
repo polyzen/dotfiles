@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Push current(orphan) branch to correspohding AUR repo.
+# Push current(orphan) branch to AUR repo of same name.
 
 branch=${"$(<.git/HEAD)"##*/}
 git push aur@aur.archlinux.org:$branch.git $branch:master
