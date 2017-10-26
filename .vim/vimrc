@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/gv.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons' " Load after supported plugins
