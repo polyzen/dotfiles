@@ -1,0 +1,19 @@
+user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.safebrowsing.enabled", false);
+user_pref("browser.safebrowsing.malware.enabled", false);
+user_pref("browser.search.defaultenginename.US", "DuckDuckGo");
+user_pref("browser.search.hiddenOneOffs", "Google);Yahoo,Bing,Amazon.com,DuckDuckGo,Twitter,Wikipedia (en)",
+user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.page", 3);
+user_pref("browser.tabs.warnOnOpen", false);
+user_pref("browser.tabs.warnOnClose", false);
+user_pref("extensions.newtaboverride@agenedia.com.type", "about:blank");
+user_pref("extensions.tabtree.new-tab-button", false);
+user_pref("general.autoScroll", false);
+user_pref("media.peerconnection.ice.default_address_only", true);
+user_pref("network.cookie.prefsMigrated", true);
+user_pref("privacy.donottrackheader.value", 1);
+user_pref("privacy.trackingprotection.pbmode.enabled", false);
+user_pref("security.ssl.require_safe_negotiation", true);
+user_pref("signon.rememberSignons", false)
