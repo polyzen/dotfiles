@@ -1,0 +1,48 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* See https://github.com/Timvde/UserChrome-Tweaks for details */
+
+/* Disable all the things */
+
+#appMenu-fxa-container, #appMenu-fxa-container + toolbarseparator {
+  display: none !important;
+}
+
+#context-sendpagetodevice, #context-sep-sendpagetodevice,
+#context-sendlinktodevice, #context-sep-sendlinktodevice,
+#context_sendTabToDevice, #context_sendTabToDevice_separator {
+  display: none !important;
+}
+
+#pageActionButton {
+  display: none !important;
+}
+
+#sidebar-header {
+  display: none;
+}
+
+#tabbrowser-tabs {
+  visibility: collapse !important;
+}
+
+/* Make the toolbar extra-compact (applies to Compact density) */
+
+:root[uidensity=compact] #urlbar,
+:root[uidensity=compact] .searchbar-textbox {
+  font-size: unset !important;
+  min-height: 24px !important;
+}
+
+:root[uidensity=compact] #identity-box {
+  max-height: 22px;
+}
+
+:root[uidensity=compact] #nav-bar .toolbarbutton-1 {
+  padding: 0px !important;
+}
+
+/* Compatibility with auto-hide.css */
+:root[uidensity=compact] #navigator-toolbox {
+  --nav-bar-height: 31px !important;
+}
