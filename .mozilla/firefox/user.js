@@ -13,6 +13,8 @@ user_pref("extensions.pocket.enabled", false);
 user_pref("extensions.screenshots.disabled", true);
 user_pref("media.eme.enabled", false);
 user_pref("media.peerconnection.ice.no_host", true);
+user_pref("narrate.rate", 25);
+user_pref("narrate.voice", "{\"default\":\"urn:moz-tts:speechd:english-north?en-GB\",\"en\":\"urn:moz-tts:speechd:english-north?en-GB\"}");
 user_pref("network.cookie.prefsMigrated", true);
 user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.donottrackheader.value", 1);
