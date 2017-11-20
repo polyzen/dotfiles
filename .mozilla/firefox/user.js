@@ -16,6 +16,7 @@ user_pref("media.peerconnection.ice.no_host", true);
 user_pref("network.cookie.prefsMigrated", true);
 user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.donottrackheader.value", 1);
+user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.trackingprotection.pbmode.enabled", false);
 user_pref("security.ssl.require_safe_negotiation", true);
 user_pref("signon.rememberSignons", false)
