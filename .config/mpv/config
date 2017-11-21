@@ -1,6 +1,7 @@
 alang=jpn,eng
 slang=eng
 profile=opengl-hq
+ytdl-format=bestvideo[height<=1080]+bestaudio/best[height<=1080]
 hwdec=vaapi
 volume=100
 fullscreen
