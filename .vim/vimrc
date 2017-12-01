@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'yuttie/comfortable-motion.vim'
@@ -11,6 +10,8 @@ Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/gv.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale' | Plug 'taohex/lightline-buffer'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons' " Load after supported plugins
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -43,14 +44,71 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 call togglebg#map('<F5>')
 
+" lightline
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'gitgutter', 'readonly', 'filename', 'modified' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype' ],
+  \              [ 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
+  \ },
+  \ 'tabline': {
+  \   'left': [ [ 'bufferinfo' ],
+  \             [ 'separator' ],
+  \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ] ],
+  \   'right': [ [ 'close' ] ]
+  \ },
+  \ 'component_expand': {
+  \   'buffercurrent': 'lightline#buffer#buffercurrent',
+  \   'bufferbefore': 'lightline#buffer#bufferbefore',
+  \   'bufferafter': 'lightline#buffer#bufferafter',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok'
+  \ },
+  \ 'component_type': {
+  \   'buffercurrent': 'tabsel',
+  \   'bufferbefore': 'raw',
+  \   'bufferafter': 'raw',
+  \   'linter_warnings': 'warning',
+  \   'linter_errors': 'error'
+  \ },
+  \ 'component_function': {
+  \   'bufferinfo': 'lightline#buffer#bufferinfo',
+  \   'filetype': 'MyFiletype',
+  \   'fileformat': 'MyFileformat',
+  \   'gitbranch': 'gina#component#repo#branch',
+  \   'gitgutter': 'LightLineGitGutter'
+  \ },
+  \ 'component': {
+  \   'separator': ''
+  \ },
+  \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+function! LightLineGitGutter()
+  if exists('*GitGutterGetHunkSummary')
+    let [ added, modified, removed ] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', added, modified, removed)
+  endif
+  return ''
+endfunction
+
 " Miscellany
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:bufferline_echo=0
-let g:bufferline_solo_highlight=1
 let g:tar_cmd='bsdtar'
 set hidden
 set laststatus=2
+set showtabline=2
 
 " Close Vim if the only window left open is a NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
