@@ -3,6 +3,10 @@ Plug 'w0rp/ale'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'maralla/completor.vim'
+Plug 'itchyny/vim-cursorword'
+Plug 'Shougo/denite.nvim'
+Plug 'haya14busa/vim-edgemotion'
+Plug 'sgur/vim-editorconfig'
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/gina.vim'
 Plug 'airblade/vim-gitgutter'
@@ -15,10 +19,16 @@ Plug 'maximbaz/lightline-ale' | Plug 'taohex/lightline-buffer'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons' " Load after supported plugins
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'itchyny/vim-parenmatch'
+Plug 'tpope/vim-repeat'
 Plug 'jremmen/vim-ripgrep'
 Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
+Plug 'justinmk/vim-sneak'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
+Plug 'majutsushi/tagbar'
+Plug 'polyzen/togglebg.vim'
 Plug 'cespare/vim-toml'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
@@ -42,7 +52,11 @@ set termguicolors
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
+
+" Mappings
 call togglebg#map('<F5>')
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
 
 " lightline
 let g:lightline = {
@@ -105,6 +119,7 @@ function! LightLineGitGutter()
 endfunction
 
 " Miscellany
+let g:loaded_matchparen = 1
 let g:tar_cmd='bsdtar'
 set hidden
 set laststatus=2
