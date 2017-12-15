@@ -13,7 +13,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/gv.vim'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale' | Plug 'taohex/lightline-buffer'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -119,6 +119,7 @@ function! LightLineGitGutter()
 endfunction
 
 " Miscellany
+let g:indentLine_char = '⎸'
 let g:loaded_matchparen = 1
 let g:tar_cmd='bsdtar'
 set hidden
