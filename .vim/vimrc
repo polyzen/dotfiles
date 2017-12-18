@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'osyo-manga/vim-anzu'
 Plug 'haya14busa/vim-asterisk'
+Plug 'hotwatermorning/auto-git-diff'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'maralla/completor.vim'
