@@ -2,7 +2,7 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.safebrowsing.enabled", false);
 user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.search.defaultenginename.US", "DuckDuckGo");
-user_pref("browser.search.hiddenOneOffs", "Google,Yahoo,Bing,Amazon.com,DuckDuckGo,Twitter,Wikipedia (en)");
+user_pref("browser.search.hiddenOneOffs", "Google,Yahoo,Bing,Amazon.com,DuckDuckGo,eBay,Twitter,Wikipedia (en)");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);
