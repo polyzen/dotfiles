@@ -11,5 +11,3 @@
 	smtpuser = polycitizen@gmail.com
 	suppresscc = self
 	smtpserverport = 587
-[commit]
-	gpgsign = true
