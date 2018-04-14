@@ -1,13 +1,11 @@
 call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
-Plug 'haya14busa/vim-asterisk'
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'maralla/completor.vim'
 Plug 'romainl/vim-cool'
 Plug 'itchyny/vim-cursorword'
-Plug 'Shougo/denite.nvim'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'sgur/vim-editorconfig'
 Plug 'junegunn/fzf.vim'
@@ -28,14 +26,12 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
 Plug 'justinmk/vim-sneak'
 Plug 'ervandew/supertab'
-Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
 Plug 'majutsushi/tagbar'
 Plug 'polyzen/togglebg.vim'
 Plug 'cespare/vim-toml'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
-Plug 'jalvesaq/vimcmdline'
 call plug#end()
 
 " Two-space indentation
@@ -60,14 +56,6 @@ colorscheme gruvbox
 
 " Mappings
 call togglebg#map('<F5>')
-map *     <Plug>(asterisk-*)<Plug>(is-nohl-1)
-map g*    <Plug>(asterisk-g*)<Plug>(is-nohl-1)
-map #     <Plug>(asterisk-#)<Plug>(is-nohl-1)
-map g#    <Plug>(asterisk-g#)<Plug>(is-nohl-1)
-map z*    <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map gz*   <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map z#    <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map gz#   <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
 
