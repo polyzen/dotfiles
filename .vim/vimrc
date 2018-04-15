@@ -114,13 +114,15 @@ endfunction
 
 " Miscellany
 let g:indentLine_char = '⎸'
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#unicode_symbols = 1
 let g:loaded_matchparen = 1
 let g:tar_cmd='bsdtar'
 set hidden
 set hlsearch
 set incsearch
 set laststatus=2
-set showtabline=2
 
 " Close Vim if the only window left open is a NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
