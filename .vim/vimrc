@@ -23,7 +23,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'itchyny/vim-parenmatch'
 Plug 'tpope/vim-repeat'
 Plug 'jremmen/vim-ripgrep'
-Plug 'matthew-brett/vim-rst-sections', { 'for': 'rst' }
+Plug 'matthew-brett/vim-rst-sections'
 Plug 'justinmk/vim-sneak'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
