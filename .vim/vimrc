@@ -105,7 +105,7 @@ function! MyFileformat()
 endfunction
 
 function! LightLineGitGutter()
-  if exists('*GitGutterGetHunkSummary')
+  if exists('*GitGutterGetHunkSummary') && !empty(gina#component#repo#name())
     let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
     return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
   endif
