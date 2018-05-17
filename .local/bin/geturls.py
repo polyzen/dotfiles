@@ -1,5 +1,12 @@
 #!/usr/bin/env python
-""" Get URLs from a Firefox sessionstore file """
+""" Parse URLs from Firefox sessionstore JSON.
+Requires https://github.com/andikleen/lz4json.
+
+Example::
+
+    geturls.py <(lz4jsoncat ~/.mozilla/firefox/*.Default\
+            \ User/sessionstore-backups/recovery.jsonlz4) | less
+"""
 
 import json
 import sys
