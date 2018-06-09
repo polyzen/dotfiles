@@ -50,7 +50,6 @@ let &t_8f='[38;2;%lu;%lu;%lum'
 let &t_8b='[48;2;%lu;%lu;%lum'
 scriptencoding
 set termguicolors
-set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
 
