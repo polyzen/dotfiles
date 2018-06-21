@@ -111,6 +111,21 @@ function! LightLineGitGutter()
   return ''
 endfunction
 
+" Tagbar
+let g:tagbar_type_rst = {
+    \ 'ctagstype': 'rst',
+    \ 'ctagsbin' : 'rst2ctags',
+    \ 'ctagsargs' : '-f - --sort=no',
+    \ 'kinds' : [
+        \ 's:sections'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section'
+    \ },
+    \ 'sort': 0,
+\ }
+
 " Miscellany
 let g:indentLine_char = '⎸'
 let g:lightline#bufferline#enable_devicons = 1
