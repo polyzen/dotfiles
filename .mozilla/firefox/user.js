@@ -23,4 +23,4 @@ user_pref("privacy.donottrackheader.value", 1);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.trackingprotection.pbmode.enabled", false);
 user_pref("security.ssl.require_safe_negotiation", true);
-user_pref("signon.rememberSignons", false)
+user_pref("signon.rememberSignons", false);
