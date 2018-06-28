@@ -1,4 +1,5 @@
 user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.safebrowsing.enabled", false);
 user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.search.defaultenginename.US", "DuckDuckGo");
