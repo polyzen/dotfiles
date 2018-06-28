@@ -1,8 +1,8 @@
 KP_{Add,Subtract}
-  pactl set-sink-volume 0 {+,-}2%
+  pactl set-sink-volume @DEFAULT_SINK@ {+,-}2%
 
 KP_Insert
-  pactl set-sink-mute 0 toggle
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 super + {_,shift + }Return
   termite{_, -c .config/termite/config-gruvbox-dark}
