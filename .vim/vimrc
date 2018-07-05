@@ -1,3 +1,4 @@
+" {{{ Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'hotwatermorning/auto-git-diff'
@@ -37,31 +38,20 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
 call plug#end()
 
-" Two-space indentation
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set autoindent
+let g:indentLine_char = '⎸'
+let g:indentLine_fileTypeExclude = ['help']
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#unicode_symbols = 1
 
-" Ignore case unless 'the search pattern contains upper case characters'
-set ignorecase
-set smartcase
+" Close Vim if the only window left open is a NERDTree
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Colorscheme
-scriptencoding utf-8
-let &t_8f='[38;2;%lu;%lu;%lum'
-let &t_8b='[48;2;%lu;%lu;%lum'
-scriptencoding
-set termguicolors
-let g:gruvbox_italic=1
-colorscheme gruvbox
+" Ignore warnings not applicable to PKGBUILDs
+autocmd BufEnter PKGBUILD let b:ale_sh_shellcheck_exclusions = 'SC2034,SC2154,SC2164'
 
-" Mappings
-call togglebg#map('<F5>')
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
-
-" lightline
+" {{{ lightline
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
@@ -113,8 +103,9 @@ function! LightLineGitGutter()
   endif
   return ''
 endfunction
+" }}}
 
-" Tagbar
+" {{{ Tagbar
 let g:tagbar_type_rst = {
     \ 'ctagstype': 'rst',
     \ 'ctagsbin' : 'rst2ctags',
@@ -128,23 +119,38 @@ let g:tagbar_type_rst = {
     \ },
     \ 'sort': 0,
 \ }
+" }}}
+" }}}
 
-" Miscellany
-let g:indentLine_char = '⎸'
-let g:indentLine_fileTypeExclude = ['help']
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#unicode_symbols = 1
-let g:loaded_matchparen = 1
-let g:tar_cmd='bsdtar'
-set hidden
-set hlsearch
-set incsearch
-set laststatus=2
+" {{{ General
+let g:tar_cmd='bsdtar'  " Workaround 'unknown extended header' error
+set hidden        " Allow hidden buffers
+set hlsearch      " Highlight searches
+set incsearch     " .. incrementally
+set ignorecase    " Ignore case
+set smartcase     " .. unless 'the search pattern contains upper case characters'
+set laststatus=2  " Always show status line
 
-" Close Vim if the only window left open is a NERDTree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Gruvbox colorscheme with italics and true colors
+scriptencoding utf-8
+let &t_8f='[38;2;%lu;%lu;%lum'
+let &t_8b='[48;2;%lu;%lu;%lum'
+scriptencoding
+set termguicolors
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
-" Ignore warnings that aren't applicable to PKGBUILDs
-autocmd BufEnter PKGBUILD let b:ale_sh_shellcheck_exclusions = 'SC2034,SC2154,SC2164'
+" Two-space indentation
+set autoindent
+set expandtab
+set shiftwidth=2
+set tabstop=2
+" }}}
+
+" {{{ Mappings
+call togglebg#map('<F5>')
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+" }}}
+
+" vim: fdm=marker
