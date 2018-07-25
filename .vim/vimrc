@@ -40,10 +40,6 @@ call plug#end()
 
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#unicode_symbols = 1
 
 " Close Vim if the only window left open is a NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -55,16 +51,16 @@ autocmd BufEnter PKGBUILD let b:ale_sh_shellcheck_exclusions = 'SC2034,SC2154,SC
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'gitbranch', 'gitgutter', 'readonly', 'filename', 'modified' ] ],
-  \   'right': [ [ 'lineinfo' ],
-  \              [ 'percent' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype' ],
-  \              [ 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
+  \   'left': [['mode', 'paste'],
+  \            ['gitbranch', 'gitgutter', 'readonly', 'filename', 'modified']],
+  \   'right': [['lineinfo'],
+  \             ['percent'],
+  \             ['fileformat', 'fileencoding', 'filetype'],
+  \             ['linter_errors', 'linter_warnings', 'linter_ok']]
   \ },
   \ 'tabline': {
-  \   'left': [ [ 'buffers' ] ],
-  \   'right': [ [ 'close' ] ]
+  \   'left': [['buffers']],
+  \   'right': [['close']]
   \ },
   \ 'component_expand': {
   \   'buffers': 'lightline#bufferline#buffers',
@@ -87,6 +83,11 @@ let g:lightline = {
   \   'separator': ''
   \ },
   \ }
+
+let g:lightline#bufferline#enable_devicons  = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#show_number      = 1
+let g:lightline#bufferline#unicode_symbols  = 1
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -123,21 +124,21 @@ let g:tagbar_type_rst = {
 " }}}
 
 " {{{ General
-let g:tar_cmd='bsdtar'  " Workaround 'unknown extended header' error
-set hidden        " Allow hidden buffers
-set hlsearch      " Highlight searches
-set incsearch     " .. incrementally
-set ignorecase    " Ignore case
-set smartcase     " .. unless 'the search pattern contains upper case characters'
-set laststatus=2  " Always show status line
+let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
+set hidden       " Allow hidden buffers
+set hlsearch     " Highlight searches
+set incsearch    " .. incrementally
+set ignorecase   " Ignore case
+set smartcase    " .. unless 'the search pattern contains upper case characters'
+set laststatus=2 " Always show status line
 
 " Gruvbox colorscheme with italics and true colors
 scriptencoding utf-8
-let &t_8f='[38;2;%lu;%lu;%lum'
-let &t_8b='[48;2;%lu;%lu;%lum'
+let &t_8f = '[38;2;%lu;%lu;%lum'
+let &t_8b = '[48;2;%lu;%lu;%lum'
 scriptencoding
 set termguicolors
-let g:gruvbox_italic=1
+let g:gruvbox_italic = 1
 colorscheme gruvbox
 
 " Two-space indentation
