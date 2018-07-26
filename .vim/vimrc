@@ -137,6 +137,7 @@ set incsearch    " .. incrementally
 set ignorecase   " Ignore case
 set smartcase    " .. unless 'the search pattern contains upper case characters'
 set laststatus=2 " Always show status line
+set noshowmode   " Do not echo the mode, lightline will display it instead
 
 " Gruvbox colorscheme with italics and true colors
 scriptencoding utf-8
