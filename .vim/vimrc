@@ -1,4 +1,4 @@
-" {{{ Plugins
+" {{{ vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'hotwatermorning/auto-git-diff'
@@ -43,7 +43,41 @@ Plug 'andymass/vim-tradewinds'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
 call plug#end()
+" }}}
 
+" {{{ General
+let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
+set hidden       " Allow hidden buffers
+set hlsearch     " Highlight searches
+set incsearch    " .. incrementally
+set ignorecase   " Ignore case
+set smartcase    " .. unless 'the search pattern contains upper case characters'
+set laststatus=2 " Always show status line
+set noshowmode   " Do not echo the mode, lightline will display it instead
+
+" Gruvbox colorscheme with italics and true colors
+scriptencoding utf-8
+let &t_8f = '[38;2;%lu;%lu;%lum'
+let &t_8b = '[48;2;%lu;%lu;%lum'
+scriptencoding
+set termguicolors
+let g:gruvbox_italic = 1
+colorscheme gruvbox
+
+" Two-space indentation
+set autoindent
+set expandtab
+set shiftwidth=2
+set tabstop=2
+" }}}
+
+" {{{ Mappings
+call togglebg#map('<F5>')
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+" }}}
+
+" {{{ Plugins
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
 
@@ -127,38 +161,6 @@ let g:tagbar_type_rst = {
     \ 'sort': 0,
 \ }
 " }}}
-" }}}
-
-" {{{ General
-let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
-set hidden       " Allow hidden buffers
-set hlsearch     " Highlight searches
-set incsearch    " .. incrementally
-set ignorecase   " Ignore case
-set smartcase    " .. unless 'the search pattern contains upper case characters'
-set laststatus=2 " Always show status line
-set noshowmode   " Do not echo the mode, lightline will display it instead
-
-" Gruvbox colorscheme with italics and true colors
-scriptencoding utf-8
-let &t_8f = '[38;2;%lu;%lu;%lum'
-let &t_8b = '[48;2;%lu;%lu;%lum'
-scriptencoding
-set termguicolors
-let g:gruvbox_italic = 1
-colorscheme gruvbox
-
-" Two-space indentation
-set autoindent
-set expandtab
-set shiftwidth=2
-set tabstop=2
-" }}}
-
-" {{{ Mappings
-call togglebg#map('<F5>')
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
 " }}}
 
 " vim: fdm=marker
