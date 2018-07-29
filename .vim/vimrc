@@ -84,9 +84,6 @@ let g:indentLine_fileTypeExclude = ['help']
 " Close Vim if the only window left open is a NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Ignore warnings not applicable to PKGBUILDs
-autocmd BufEnter PKGBUILD let b:ale_sh_shellcheck_exclusions = 'SC2034,SC2154,SC2164'
-
 " {{{ lightline
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
