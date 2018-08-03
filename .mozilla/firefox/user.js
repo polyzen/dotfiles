@@ -12,7 +12,6 @@ user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("extensions.pocket.enabled", false);
-user_pref("extensions.screenshots.disabled", true);
 user_pref("extensions.update.autoUpdateDefault", false);
 user_pref("media.eme.enabled", false);
 user_pref("media.peerconnection.ice.no_host", true);
