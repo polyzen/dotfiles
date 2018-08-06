@@ -35,7 +35,7 @@ Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'polyzen/togglebg.vim'
+Plug 'https://gitlab.com/polyzen/togglebg.vim.git'
 Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
