@@ -11,5 +11,5 @@ case $1 in
     ;;
   *)
     echo 'Usage: aur [pull|push]'
-    echo 'Pull/Push current(orphan) branch to AUR repo of same name.'
+    echo 'Pull/Push current(orphan) branch from/to AUR repo of same name.'
 esac
