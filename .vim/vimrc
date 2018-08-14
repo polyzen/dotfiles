@@ -31,7 +31,6 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
 Plug 'justinmk/vim-sneak'
-Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
