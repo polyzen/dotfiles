@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'hotwatermorning/auto-git-diff'
+Plug 'moll/vim-bbye'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'yuttie/comfortable-motion.vim'
