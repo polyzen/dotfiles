@@ -26,6 +26,7 @@ Plug 'ryanoasis/vim-devicons' " Load after supported plugins
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'junegunn/vim-peekaboo'
 Plug 'blueyed/vim-qf_resize'
+Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-repeat'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-rsi'
