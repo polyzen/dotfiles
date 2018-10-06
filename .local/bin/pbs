@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Take a screenshot, and pass it to `pbx`. Script args provide options for maim.
+# Select an area on the screen to screenshot and pass to `pbx`.
 
-FILE=/tmp/$(date -Is).png
+file=/tmp/$(date -Is).png
+sel=$(slop -f "-i %i -g %g")
 
-maim ${*:---} $FILE
-pbx $FILE
+shotgun $sel $file
+pbx $file
