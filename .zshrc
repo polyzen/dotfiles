@@ -14,12 +14,13 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 bindkey -v
+bindkey $terminfo[kcbt] reverse-menu-complete
 KEYTIMEOUT=1
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=5
 zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.*' insert-sections   true
+zstyle ':completion:*:manuals.*' insert-sections true
 zstyle ':completion:*:man:*' menu yes select
 
 fpath+=~/.local/fpath
