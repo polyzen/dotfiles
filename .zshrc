@@ -8,7 +8,8 @@ setopt appendhistory \
   interactivecomments \
   nobgnice \
   nolistbeep \
-  printexitvalue
+  printexitvalue \
+  promptsubst
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -25,10 +26,8 @@ zstyle ':completion:*:man:*' menu yes select
 
 fpath+=~/.local/fpath
 precmd() { disambiguate-keeplast }
-source ~/code/zsh-git-prompt/zshrc.sh
-GIT_PROMPT_EXECUTABLE=haskell
 PROMPT='$REPLY %(!.#.>) '
-RPROMPT='$(git_super_status)'
+RPROMPT='$(gitprompt-rs zsh)'
 
 alias cp='cp --reflink=auto'
 alias exa='exa -F'
