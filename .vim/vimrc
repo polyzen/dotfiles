@@ -90,7 +90,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [['mode', 'paste'],
-  \            ['gitbranch', 'gitgutter', 'readonly', 'filename', 'modified']],
+  \            ['gina', 'readonly', 'filename', 'modified']],
   \   'right': [['lineinfo'],
   \             ['percent'],
   \             ['fileformat', 'fileencoding', 'filetype'],
@@ -112,10 +112,9 @@ let g:lightline = {
   \   'linter_errors': 'error'
   \ },
   \ 'component_function': {
+  \   'gina': 'Gina',
   \   'filetype': 'MyFiletype',
-  \   'fileformat': 'MyFileformat',
-  \   'gitbranch': 'gina#component#repo#branch',
-  \   'gitgutter': 'LightLineGitGutter'
+  \   'fileformat': 'MyFileformat'
   \ },
   \ 'component': {
   \   'separator': ''
@@ -127,20 +126,21 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
 
+function! Gina()
+  let components = [
+    \ gina#component#repo#branch(),
+    \ gina#component#status#preset('fancy'),
+    \ gina#component#traffic#preset('fancy'),
+    \ ]
+  return join(filter(components, '!empty(v:val)'), ' | ')
+endfunction
+
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
 function! MyFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
-function! LightLineGitGutter()
-  if exists('*GitGutterGetHunkSummary') && !empty(gina#component#repo#name())
-    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
-  endif
-  return ''
 endfunction
 " }}}
 
