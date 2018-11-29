@@ -3,7 +3,7 @@
 case $1 in
   pull)
     branch=${"$(<.git/HEAD)"##*/}
-    git pull ssh://aur@aur.archlinux.org/$branch.git master
+    git pull aur@aur.archlinux.org:$branch.git master
     ;;
   push)
     branch=${"$(<.git/HEAD)"##*/}
