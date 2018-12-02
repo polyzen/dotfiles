@@ -29,7 +29,7 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-repeat'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-rsi'
-Plug 'matthew-brett/vim-rst-sections', { 'frozen': 1 }
+Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
@@ -113,10 +113,10 @@ let g:lightline = {
   \   'buffers': 'tabsel'
   \ },
   \ 'component_function': {
-  \   'gitgutter': 'LightLineGitGutter',
-  \   'gina': 'Gina',
-  \   'fileformat': 'MyFileformat',
-  \   'filetype': 'MyFiletype'
+  \   'gitgutter': 'LightlineGitGutter',
+  \   'gina': 'LightlineGina',
+  \   'fileformat': 'LightlineFileformat',
+  \   'filetype': 'LightlineFiletype'
   \ },
   \ 'component': {
   \   'separator': ''
@@ -128,7 +128,7 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
 
-function! LightLineGitGutter()
+function! LightlineGitGutter()
   if exists('*GitGutterGetHunkSummary') && !empty(gina#component#repo#name())
     let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
     return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
@@ -136,7 +136,7 @@ function! LightLineGitGutter()
   return ''
 endfunction
 
-function! Gina()
+function! LightlineGina()
   let components = [
     \ gina#component#repo#branch(),
     \ gina#component#status#preset('fancy'),
@@ -145,11 +145,11 @@ function! Gina()
   return join(filter(components, '!empty(v:val)'), ' | ')
 endfunction
 
-function! MyFileformat()
+function! LightlineFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-function! MyFiletype()
+function! LightlineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 " }}}
