@@ -89,7 +89,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [['mode', 'paste'],
-  \            ['gina', 'readonly', 'filename', 'modified']],
+  \            ['gitgutter', 'gina', 'readonly', 'filename', 'modified']],
   \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'],
   \             ['percent'],
   \             ['fileformat', 'fileencoding', 'filetype']]
@@ -113,6 +113,7 @@ let g:lightline = {
   \   'buffers': 'tabsel'
   \ },
   \ 'component_function': {
+  \   'gitgutter': 'LightLineGitGutter',
   \   'gina': 'Gina',
   \   'fileformat': 'MyFileformat',
   \   'filetype': 'MyFiletype'
@@ -126,6 +127,14 @@ let g:lightline#bufferline#enable_devicons  = 1
 let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
+
+function! LightLineGitGutter()
+  if exists('*GitGutterGetHunkSummary') && !empty(gina#component#repo#name())
+    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
+  endif
+  return ''
+endfunction
 
 function! Gina()
   let components = [
