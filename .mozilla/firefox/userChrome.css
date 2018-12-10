@@ -1,5 +1,8 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+/* Hide "Saved to Library!" bookmark confirmation popup */
+#confirmation-hint { display: none !important; }
+
 /* https://github.com/Timvde/UserChrome-Tweaks */
 
 /* Remove sync in hamburger menu */
