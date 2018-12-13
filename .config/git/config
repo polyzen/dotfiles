@@ -1,5 +1,5 @@
 [user]
-	email = polycitizen@gmail.com
+	email = polyzen@archlinux.org
 	name = Daniel M. Capella
 [difftool]
 	prompt = false
@@ -7,7 +7,7 @@
 	tool = vimdiff
 [sendemail]
 	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = polycitizen@gmail.com
+	smtpserver = mail.archlinux.org
+	smtpuser = polyzen@archlinux.org
 	suppresscc = self
 	smtpserverport = 587
