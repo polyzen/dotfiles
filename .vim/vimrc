@@ -47,6 +47,7 @@ call plug#end()
 " }}}
 
 " {{{ General
+let g:rst_style = 0
 let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
 set hidden       " Allow hidden buffers
 set hlsearch     " Highlight searches
