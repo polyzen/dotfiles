@@ -81,6 +81,7 @@ map <C-k> <Plug>(edgemotion-k)
 
 " {{{ Plugins
 let g:ale_completion_enabled = 1
+let g:ale_linter_aliases = {'PKGBUILD': 'sh'}
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
 
