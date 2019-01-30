@@ -5,6 +5,8 @@ colors
 setopt appendhistory \
   correct \
   histexpiredupsfirst \
+  histignorespace \
+  histreduceblanks \
   interactivecomments \
   nobgnice \
   nolistbeep \
