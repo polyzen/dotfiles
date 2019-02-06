@@ -1,5 +1,6 @@
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("browser.safebrowsing.malware.enabled", false);
