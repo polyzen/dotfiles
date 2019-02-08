@@ -85,8 +85,11 @@ let g:ale_completion_enabled = 1
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
 
-" Close Vim if the only window left open is a NERDTree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup vimrc
+  autocmd!
+  " Close Vim if the only window left open is a NERDTree
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 " {{{ lightline
 let g:lightline = {
