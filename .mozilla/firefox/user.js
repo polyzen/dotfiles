@@ -29,3 +29,6 @@ user_pref("privacy.trackingprotection.pbmode.enabled", false);
 user_pref("security.pki.sha1_enforcement_level", 1);
 user_pref("security.ssl.require_safe_negotiation", true);
 user_pref("signon.rememberSignons", false);
+user_pref("toolkit.coverage.endpoint.base", "");
+user_pref("toolkit.coverage.opt-out", true);
+user_pref("toolkit.telemetry.coverage.opt-out", true);
