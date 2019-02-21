@@ -1,7 +1,7 @@
-rofi.modi:  run,window
-rofi.font:  Fantasque Sans Mono 12
-rofi.terminal:  termite
-rofi.run-command: bash -i -c "{cmd}"
-rofi.m: -4
-rofi.threads: 4
-rofi.theme: gruvbox-dark.rasi
+rofi.modi:         run
+rofi.font:         Fantasque Sans Mono 12
+rofi.terminal:     termite
+rofi.run-command:  bash -i -c "{cmd}"
+rofi.m:            -4
+rofi.threads:      4
+rofi.theme:        gruvbox-dark.rasi
