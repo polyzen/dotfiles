@@ -36,6 +36,7 @@ Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'https://gitlab.com/polyzen/togglebg.vim.git'
