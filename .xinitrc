@@ -16,7 +16,6 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 export BROWSER=firefox
 export TERMINAL=termite
 
-xrandr --output HDMI-3 --set "Broadcast RGB" "Full"
 xrdb .Xresources
 xset b off s off
 
