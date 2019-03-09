@@ -5,4 +5,4 @@ file=/tmp/$(date -Is).png
 sel=$(slop -f "-i %i -g %g")
 
 shotgun $sel $file
-pbx $file
+fb $file

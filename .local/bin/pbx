@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Create paste from stdin or file, and copy link to primary selection.
-
-curl -sF "c=@${1:--}" -w "%{redirect_url}" -o /dev/stderr 'https://ptpb.pw/?r=1' |
-  xclip 2>/dev/null
