@@ -7,6 +7,7 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-dispatch'
+Plug 'junegunn/vim-easy-align'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
@@ -36,7 +37,6 @@ Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'https://gitlab.com/polyzen/togglebg.vim.git'
@@ -76,9 +76,11 @@ set softtabstop=2
 " }}}
 
 " {{{ Mappings
-call togglebg#map('<F5>')
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
+call togglebg#map('<F5>')
 " }}}
 
 " {{{ Plugins
