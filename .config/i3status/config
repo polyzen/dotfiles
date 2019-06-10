@@ -20,50 +20,57 @@ order += "volume master"
 order += "disk /"
 order += "disk /home"
 order += "disk /var"
+order += "disk /mnt/chroot"
 order += "disk /mnt/data"
 order += "load"
 order += "cpu_temperature 0"
 order += "tztime local"
 
 tztime local {
-        format = "☉ %a %d %H:%M:%S"
+        format = "🌎 %a %d %H:%M:%S"
 }
 
 load {
-        format = "⚒ %1min %5min %15min"
+        format = "👣 %1min %5min %15min"
 }
 
 cpu_temperature 0 {
-        format = "🌶 %degrees °C"
+        format = "🌡️ %degrees °C"
+        format_above_threshold = "🔥 %degrees °C"
         path = "/sys/devices/platform/coretemp.0/hwmon/hwmon[1-3]/temp1_input"
 }
 
 disk "/" {
-        format = "⊥ %avail"
+        format = "🌱 %avail"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
-
 disk "/home" {
-        format = "🏠 %avail"
+        format = "🏡 %avail"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 disk "/var" {
-        format = "♼ %avail"
+        format = "🍃 %avail"
+        low_threshold = 25
+        threshold_type = percentage_avail
+}
+
+disk "/mnt/chroot" {
+        format = "🚀 %avail"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 disk "/mnt/data" {
-        format = "🖴 %avail"
+        format = "🏦 %avail"
         low_threshold = 25
         threshold_type = percentage_avail
 }
 
 volume master {
-        format = "♪ %volume"
-        format_muted = "♪ muted (%volume)"
+        format = "🎚️ %volume"
+        format_muted = "🔇 %volume"
 }
