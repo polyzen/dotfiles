@@ -67,9 +67,9 @@ load {
 }
 
 memory {
-        format = "📊 %used | %available"
+        format = "⚖️ %used | %available"
         threshold_degraded = "1G"
-        format_degraded = "📈 < %available"
+        format_degraded = "⛔ < %available"
 }
 
 cpu_temperature 0 {
