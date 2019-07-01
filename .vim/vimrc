@@ -36,6 +36,7 @@ Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
