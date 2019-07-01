@@ -23,21 +23,13 @@ order += "disk /var"
 order += "disk /mnt/chroot"
 order += "disk /mnt/data"
 order += "load"
+order += "memory"
 order += "cpu_temperature 0"
 order += "tztime local"
 
-tztime local {
-        format = "🌎 %a %d %H:%M:%S"
-}
-
-load {
-        format = "👣 %1min %5min %15min"
-}
-
-cpu_temperature 0 {
-        format = "🌡️ %degrees °C"
-        format_above_threshold = "🔥 %degrees °C"
-        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon[1-3]/temp1_input"
+volume master {
+        format = "🎚️ %volume"
+        format_muted = "🔇 %volume"
 }
 
 disk "/" {
@@ -70,7 +62,22 @@ disk "/mnt/data" {
         threshold_type = percentage_avail
 }
 
-volume master {
-        format = "🎚️ %volume"
-        format_muted = "🔇 %volume"
+load {
+        format = "👣 %1min %5min %15min"
+}
+
+memory {
+        format = "📊 %used | %available"
+        threshold_degraded = "1G"
+        format_degraded = "📈 < %available"
+}
+
+cpu_temperature 0 {
+        format = "🌡️ %degrees °C"
+        format_above_threshold = "🔥 %degrees °C"
+        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon[1-3]/temp1_input"
+}
+
+tztime local {
+        format = "🌎 %a %d %H:%M:%S"
 }
