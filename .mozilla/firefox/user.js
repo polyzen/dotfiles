@@ -12,6 +12,7 @@ user_pref("browser.tabs.warnOnOpen", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.urlbar.oneOffSearches", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("extensions.update.autoUpdateDefault", false);
 user_pref("general.autoScroll", true);
