@@ -1,6 +1,6 @@
 " {{{ vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'moll/vim-bbye'
 Plug 'kalekundert/vim-coiled-snake'
@@ -14,7 +14,7 @@ Plug 'Konfekt/FastFold'
 Plug 'lambdalisue/gina.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'
 Plug 'henrik/vim-indexed-search'
