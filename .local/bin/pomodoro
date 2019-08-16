@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pomodo=('Po' '  mo' '    do')
+
+for i in "${pomodo[@]}"; do
+  termdown -T Work 25m && (beep -f 5000 -l 50 -r 2; toastify send --id 45 Break "$i")
+  termdown -T "$i" 5m && (beep -f 5000 -l 50 -r 2; toastify send --id 45 Work)
+done
+
+termdown -T Work 25m && (beep -f 5000 -l 50 -r 2; toastify send --id 45 Long\ break '      ro')
+termdown -T ro 15m && (beep -f 5000 -l 50 -r 2; toastify send --id 45 Pomodoro)
