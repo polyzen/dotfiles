@@ -2,11 +2,12 @@
 
 timer() { termdown -T "$1" "$2" && (beep -f 5000 -l 50 -r 2; toastify send --id 45 "$3" "$4") }
 
-pomodo=('Po' '  mo' '    do')
+pomodo=('<b>Po</b>modoro' 'Po<b>mo</b>doro' 'Pomo<b>do</b>ro')
 for o in "${pomodo[@]}"; do
   timer Work 25m Break "$o"
-  timer "$o" 5m Work
+  tmp=${o##*<b>}
+  timer "${tmp%%</b>*}" 5m Work
 done
 
-timer Work 25m Long\ break '      ro'
+timer Work 25m Long\ break 'Pomodo<b>ro</b>'
 timer ro 15m Pomodoro
