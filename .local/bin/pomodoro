@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-timer() { termdown -T "$1" "$2" && (beep -f 5000 -l 50 -r 2; toastify send --id 45 "$3" "$4") }
+set -e
+
+timer() {
+  termdown -T "$1" "$2"
+  beep -f 5000 -l 50 -r 2
+  toastify send --id 45 "$3" "$4"
+}
 
 pomodo=('<b>Po</b>modoro' 'Po<b>mo</b>doro' 'Pomo<b>do</b>ro')
 for o in "${pomodo[@]}"; do
