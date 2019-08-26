@@ -11,9 +11,8 @@ timer() {
 pomodo=('<b>Po</b>modoro' 'Po<b>mo</b>doro' 'Pomo<b>do</b>ro')
 for o in "${pomodo[@]}"; do
   timer Work 25m Break "$o"
-  tmp=${o##*<b>}
-  timer "${tmp%%</b>*}" 5m Work
+  timer Break 5m Work
 done
 
 timer Work 25m Long\ break 'Pomodo<b>ro</b>'
-timer ro 15m Pomodoro
+timer Long\ break 15m Pomodoro
