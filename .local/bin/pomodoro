@@ -2,9 +2,16 @@
 
 set -e
 
+beep=0
+if [[ $1 == '-b' ]]; then
+  beep=1
+fi
+
 timer() {
   termdown -T "$1" "$2"
-  beep -f 5000 -l 50 -r 2
+  if [[ $beep -eq 1 ]]; then
+    beep -f 5000 -l 50 -r 2
+  fi
   toastify send --id 45 "$3" "$4"
 }
 
