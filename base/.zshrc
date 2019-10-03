@@ -35,7 +35,6 @@ alias cp='cp --reflink=auto'
 alias exa='exa -F'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --file-type'
-alias mksrcinfo='makepkg --printsrcinfo > .SRCINFO'
 
 function man() {
   env \
