@@ -11,7 +11,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
-Plug 'lambdalisue/gina.vim'
+Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
+Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
@@ -38,6 +39,7 @@ Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'aymericbeaumet/vim-symlink'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -101,7 +103,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [['mode', 'paste'],
-  \            ['zoom', 'gitgutter', 'gina', 'readonly', 'filename']],
+  \            ['zoom', 'githunks', 'gitbranch', 'readonly', 'filename']],
   \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'trailing', 'lineinfo'],
   \             ['percent'],
   \             ['fileformat', 'fileencoding', 'filetype']]
@@ -112,6 +114,7 @@ let g:lightline = {
   \ },
   \ 'component_expand': {
   \   'zoom': 'zoom#statusline',
+  \   'gitbranch': 'FugitiveHead',
   \   'linter_checking': 'lightline#ale#checking',
   \   'linter_errors': 'lightline#ale#errors',
   \   'linter_warnings': 'lightline#ale#warnings',
@@ -128,15 +131,11 @@ let g:lightline = {
   \   'buffers': 'tabsel'
   \ },
   \ 'component_function': {
-  \   'gitgutter': 'LightlineGitGutter',
-  \   'gina': 'LightlineGina',
+  \   'githunks': 'LightlineGitGutter',
   \   'filename': 'LightlineFilename',
   \   'fileformat': 'LightlineFileformat',
   \   'filetype': 'LightlineFiletype'
-  \ },
-  \ 'component': {
-  \   'separator': ''
-  \ },
+  \ }
   \ }
 
 let g:lightline#bufferline#enable_devicons  = 1
@@ -146,20 +145,12 @@ let g:lightline#bufferline#unicode_symbols  = 1
 let g:lightline#trailing_whitespace#indicator = '•'
 
 function! LightlineGitGutter()
-  if exists('*GitGutterGetHunkSummary') && !empty(gina#component#repo#name())
-    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
+  if !get(g:, 'gitgutter_enabled', 0) || empty(FugitiveHead())
+    return ''
   endif
-  return ''
+  let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
 endfunction
-
-function! LightlineGina()
-  let components = [
-    \ gina#component#repo#branch(),
-    \ gina#component#status#preset('fancy'),
-    \ gina#component#traffic#preset('fancy'),
-    \ ]
-  return join(filter(components, '!empty(v:val)'), ' | ')
 
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
