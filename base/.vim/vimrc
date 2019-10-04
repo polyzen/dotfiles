@@ -110,7 +110,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [['mode', 'paste'],
-  \            ['zoom', 'githunks', 'gitbranch', 'readonly', 'filename']],
+  \            ['zoom', 'githunks', 'gitbranch', 'readonly', 'filename', 'method']],
   \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'trailing', 'lineinfo'],
   \             ['percent'],
   \             ['fileformat', 'fileencoding', 'filetype']]
@@ -120,8 +120,6 @@ let g:lightline = {
   \   'right': [['close']]
   \ },
   \ 'component_expand': {
-  \   'zoom': 'zoom#statusline',
-  \   'gitbranch': 'FugitiveHead',
   \   'linter_checking': 'lightline#ale#checking',
   \   'linter_errors': 'lightline#ale#errors',
   \   'linter_warnings': 'lightline#ale#warnings',
@@ -138,8 +136,11 @@ let g:lightline = {
   \   'buffers': 'tabsel'
   \ },
   \ 'component_function': {
+  \   'zoom': 'zoom#statusline',
   \   'githunks': 'LightlineGitGutter',
+  \   'gitbranch': 'FugitiveHead',
   \   'filename': 'LightlineFilename',
+  \   'method': 'NearestMethodOrFunction',
   \   'fileformat': 'LightlineFileformat',
   \   'filetype': 'LightlineFiletype'
   \ }
@@ -163,6 +164,10 @@ function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' [+]' : ''
   return filename . modified
+endfunction
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
 function! LightlineFileformat()
