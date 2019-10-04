@@ -4,7 +4,7 @@ Plug 'dense-analysis/ale'
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'moll/vim-bbye'
 Plug 'kalekundert/vim-coiled-snake'
-Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' }
+Plug 'lilydjwg/colorizer'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-dispatch'
