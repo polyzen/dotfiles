@@ -41,7 +41,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'https://gitlab.com/polyzen/togglebg.vim.git'
 Plug 'cespare/vim-toml'
@@ -49,6 +48,7 @@ Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
+Plug 'liuchengxu/vista.vim'
 Plug 'dhruvasagar/vim-zoom'
 call plug#end()
 " }}}
@@ -91,6 +91,10 @@ call togglebg#map('<F5>')
 let g:ale_completion_enabled = 1
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
+let g:vista_executive_for = {
+  \ 'python': 'ale',
+  \ 'rust': 'ale',
+  \ }
 
 augroup vimrc
   autocmd!
@@ -165,23 +169,6 @@ endfunction
 function! LightlineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
-" }}}
-
-" {{{ Tagbar
-let g:tagbar_type_rst = {
-  \ 'ctagstype': 'rst',
-  \ 'ctagsbin': 'rst2ctags',
-  \ 'ctagsargs': '-f - --sort=yes --sro=»',
-  \ 'kinds': [
-  \   's:sections',
-  \   'i:images'
-  \ ],
-  \ 'sro': '»',
-  \ 'kind2scope': {
-  \   's': 'section'
-  \ },
-  \ 'sort': 0
-  \ }
 " }}}
 " }}}
 
