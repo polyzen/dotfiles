@@ -20,6 +20,6 @@ xrdb .Xresources
 xset b off s off
 
 picom -b
-hsetroot -solid '#000000'
+hsetroot -solid '#282828'
 sxhkd &
 i3

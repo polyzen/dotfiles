@@ -14,7 +14,7 @@ set $down j
 set $left h
 set $right l
 
-# Use Mouse+Mod4 to drag floating windows to their wanted position
+# use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
 # kill focused window
@@ -138,44 +138,48 @@ mode "resize" {
 
 bindsym Mod4+r mode "resize"
 
-# Gruvbox Dark Colorscheme
-set $background   #282828
-set $foreground   #ebdbb2
-set $gray         #928374
-set $faded_red    #cc241d
-set $red          #fb4934
-set $faded_green  #98971a
-set $green        #b8bb26
-set $faded_yellow #d79921
-set $yellow       #fabd2f
-set $faded_blue   #458588
-set $blue         #83a598
-set $faded_purple #b16286
-set $purple       #d3869b
-set $faded_aqua   #689d6a
-set $aqua         #8ec07c
-set $light_gray   #a89984
+# gruvbox dark colorscheme
+set $dark0          #282828
+set $dark1          #3c3836
+set $dark2          #504945
+set $dark4          #7c6f64
+set $light1         #ebdbb2
+set $light4         #a89984
+set $gray           #928374
+set $neutral_red    #cc241d
+set $bright_red     #fb4934
+set $neutral_green  #98971a
+set $bright_green   #b8bb26
+set $neutral_yellow #d79921
+set $bright_yellow  #fabd2f
+set $neutral_blue   #458588
+set $bright_blue    #83a598
+set $neutral_purple #b16286
+set $bright_purple  #d3869b
+set $neutral_aqua   #689d6a
+set $bright_aqua    #8ec07c
+set $neutral_orange #d65d0e
+set $bright_orange  #fe8019
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
         colors {
-            background $background
-            statusline $foreground
-            separator $gray
-            # workspace         border      backgr      text
-            focused_workspace   $background $foreground $background
-            active_workspace    $foreground $gray       $foreground
-            inactive_workspace  $gray       $background $foreground
-            urgent_workspace    $gray       $red        $foreground
+            background $dark1
+            statusline $light1
+            # workspace        border      backgr.     text
+            focused_workspace  $light4     $light4     $dark0
+            active_workspace   $dark2      $dark2      $light1
+            inactive_workspace $dark1      $dark1      $light4
+            urgent_workspace   $bright_red $bright_red $dark0
         }
 }
 
-# class                 border      backgr      text        indicator
-client.focused          $background $foreground $background $foreground
-client.focused_inactive $foreground $gray       $foreground $gray
-client.unfocused        $gray       $background $foreground $background
-client.urgent           $faded_red  $red        $foreground $red
-client.placeholder      #000000     $background $foreground #000000
-client.background       $background
+# class                 border       backgr.     text    indicator   child_border
+client.focused          $dark0       $light4     $dark0  $light1     $light4
+client.focused_inactive $light1      $gray       $light1 $gray       $gray
+client.unfocused        $gray        $dark1      $light1 $dark0      $dark1
+client.urgent           $neutral_red $bright_red $light1 $bright_red $bright_red
+client.placeholder      #000000      $dark0      $light1 #000000     $dark0
+client.background       $dark0
