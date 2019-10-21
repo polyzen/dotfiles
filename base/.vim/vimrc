@@ -94,6 +94,7 @@ let g:ale_completion_enabled = 1
 let g:gitgutter_preview_win_floating = 1
 let g:indentLine_char = '⎸'
 let g:indentLine_fileTypeExclude = ['help']
+let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 let g:vista_executive_for = {
   \ 'python': 'ale',
   \ 'rust': 'ale',
