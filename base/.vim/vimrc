@@ -20,7 +20,6 @@ Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'
-Plug 'henrik/vim-indexed-search'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'mgee/lightline-bufferline'
@@ -64,6 +63,7 @@ set ignorecase   " Ignore case
 set smartcase    " .. unless 'the search pattern contains upper case characters'
 set laststatus=2 " Always show status line
 set noshowmode   " Do not echo the mode, lightline will display it instead
+set shortmess-=S " Show search count message when searching
 
 " Gruvbox colorscheme with italics and true colors
 scriptencoding utf-8
