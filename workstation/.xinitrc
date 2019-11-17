@@ -19,7 +19,7 @@ export TERMINAL=termite
 xrdb .Xresources
 xset b off s off
 
-compton -b
+picom -b
 hsetroot -solid '#000000'
 sxhkd &
 i3
