@@ -36,7 +36,6 @@ Plug 'unblevable/quick-scope', { 'on': 'QuickScopeToggle' }
 Plug 'AndrewRadev/quickpeek.vim'
 Plug 'tpope/vim-repeat'
 Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
-Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
 Plug 'lotabout/skim.vim'
