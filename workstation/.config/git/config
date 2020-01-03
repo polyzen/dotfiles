@@ -13,3 +13,5 @@
 	smtpserverport = 587
 [commit]
 	gpgsign = true
+[fetch]
+	writeCommitGraph = true
