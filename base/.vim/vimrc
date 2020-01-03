@@ -14,6 +14,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
+Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
