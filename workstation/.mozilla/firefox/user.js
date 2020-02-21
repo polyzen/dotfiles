@@ -7,7 +7,6 @@ user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.search.defaultenginename.US", "DuckDuckGo");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.startup.homepage", "about:blank");
-user_pref("browser.startup.page", 3);
 user_pref("browser.tabs.warnOnOpen", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.urlbar.oneOffSearches", false);
