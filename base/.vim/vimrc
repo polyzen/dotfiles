@@ -39,6 +39,7 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
+Plug 'arzg/vim-rust-syntax-ext'
 Plug 'lotabout/skim.vim'
 Plug 'psliwka/vim-smoothie'
 Plug 'justinmk/vim-sneak'
