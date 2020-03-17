@@ -13,6 +13,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'haya14busa/vim-edgemotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
+Plug 'Jorengarenar/fauxClip'
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
