@@ -101,6 +101,7 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_bufTypeExclude = ['help']
 let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 let g:vista_executive_for = {
+  \ 'sh': 'ale',
   \ 'python': 'ale',
   \ 'rust': 'ale',
   \ }
