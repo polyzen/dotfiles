@@ -118,7 +118,7 @@ let g:lightline = {
   \ 'active': {
   \   'left': [['mode', 'paste'],
   \            ['zoom', 'githunks', 'gitbranch'],
-  \            ['filename', 'readonly', 'method']],
+  \            ['filename', 'modified', 'readonly', 'method']],
   \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'trailing', 'lineinfo'],
   \             ['percent'],
   \             ['fileformat', 'fileencoding', 'filetype']]
@@ -152,7 +152,6 @@ let g:lightline = {
   \   'githunks': 'LightlineGitGutter',
   \   'gitbranch': 'LightlineFugitive',
   \   'readonly': 'LightlineReadonly',
-  \   'filename': 'LightlineFilename',
   \   'method': 'NearestMethodOrFunction',
   \   'fileformat': 'LightlineFileformat',
   \   'filetype': 'LightlineFiletype'
@@ -182,12 +181,6 @@ function! LightlineFugitive()
     return l:branch !=# '' ? "\ue0a0 ".branch : ''
   endif
   return ''
-endfunction
-
-function! LightlineFilename()
-  let l:filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let l:modified = &modified ? ' [+]' : ''
-  return l:filename . l:modified
 endfunction
 
 function! LightlineReadonly()
