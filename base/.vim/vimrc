@@ -168,7 +168,7 @@ let g:lightline#bufferline#unicode_symbols  = 1
 let g:lightline#trailing_whitespace#indicator = "\u2022"
 
 function! LightlineGitGutter()
-  if exists('b:git_dir') && g:gitgutter_enabled
+  if &modifiable && exists('b:git_dir') && g:gitgutter_enabled
     let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
     return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
   endif
@@ -176,7 +176,7 @@ function! LightlineGitGutter()
 endfunction
 
 function! LightlineFugitive()
-  if exists('*FugitiveHead')
+  if &modifiable && exists('*FugitiveHead')
     let l:branch = FugitiveHead()
     return l:branch !=# '' ? "\ue0a0 ".branch : ''
   endif
@@ -184,7 +184,7 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlineReadonly()
-  return &readonly ? "\ue0a2" : ''
+  return &readonly && &filetype !~# '\v(help|nerdtree)' ? "\ue0a2" : ''
 endfunction
 
 function! NearestMethodOrFunction() abort
