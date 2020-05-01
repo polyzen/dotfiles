@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Select an area on the screen to screenshot and pass to `pbx`.
 
-file=/tmp/$(date -Is).png
-sel=$(slop -f "-i %i -g %g")
+FILE=/tmp/$(date -Is).png
+SEL=$(slop -f "-i %i -g %g")
 
-shotgun $sel $file
-fb $file
+shotgun $SEL $FILE
+fb $FILE

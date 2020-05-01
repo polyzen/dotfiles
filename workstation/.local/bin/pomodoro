@@ -2,14 +2,14 @@
 
 set -e
 
-beep=0
+BEEP=0
 if [[ $1 == '-b' ]]; then
-  beep=1
+  BEEP=1
 fi
 
 timer() {
   termdown -T "$1" "$2"
-  if [[ $beep -eq 1 ]]; then
+  if [[ $BEEP -eq 1 ]]; then
     beep -f 5000 -l 50 -r 2
   fi
   toastify send --id 45 "$3" "$4"
