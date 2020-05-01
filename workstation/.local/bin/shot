@@ -4,5 +4,12 @@
 FILE=/tmp/$(date -Is).png
 SEL=$(hacksaw -f "-i %i -g %g")
 
+PASTE=0
+if [[ $1 == '-p' ]]; then
+  PASTE=1
+fi
+
 shotgun $SEL $FILE
-fb $FILE
+if [[ $PASTE -eq 1 ]]; then
+  fb $FILE
+fi
