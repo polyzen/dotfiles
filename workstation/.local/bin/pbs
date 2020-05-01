@@ -2,7 +2,7 @@
 # Select an area on the screen to screenshot and pass to `pbx`.
 
 FILE=/tmp/$(date -Is).png
-SEL=$(slop -f "-i %i -g %g")
+SEL=$(hacksaw -f "-i %i -g %g")
 
 shotgun $SEL $FILE
 fb $FILE
