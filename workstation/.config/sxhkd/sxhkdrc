@@ -5,7 +5,7 @@ KP_Insert
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 super + {_,shift + }Return
-  termite{_, -c .config/termite/config-gruvbox-dark}
+  alacritty{_, --config-file .config/alacritty/alacritty-dark.yml}
 
 super + d 
   rofi -show run

@@ -1,6 +1,6 @@
 rofi.modi:         run
 rofi.font:         Fantasque Sans Mono 12
-rofi.terminal:     termite
+rofi.terminal:     alacritty
 rofi.run-command:  bash -i -c "{cmd}"
 rofi.m:            -4
 rofi.threads:      4

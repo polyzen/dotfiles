@@ -14,7 +14,7 @@ fi
 export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 
 export BROWSER=firefox
-export TERMINAL=termite
+export TERMINAL=alacritty
 
 xrdb .Xresources
 xset b off s off
