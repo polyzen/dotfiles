@@ -162,7 +162,7 @@ font:
 
 # Colors (gruvbox)
 schemes:
-  gruvbox_light: &light
+  gruvbox_light: &gruvbox0
     # Default colors
     primary:
       # hard contrast: background = '#f9f5d7'
@@ -249,7 +249,7 @@ schemes:
     #
     #indexed_colors: []
 
-  gruvbox_dark: &dark
+  gruvbox_dark: &gruvbox1
     # Default colors
     primary:
       # hard contrast: background = '#1d2021'
@@ -336,7 +336,7 @@ schemes:
     #
     #indexed_colors: []
 
-colors: *dark
+colors: *gruvbox1
 
 # Visual Bell
 #
