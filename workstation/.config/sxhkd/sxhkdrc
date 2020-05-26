@@ -4,8 +4,8 @@ KP_{Add,Subtract}
 KP_Insert
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-super + {_,shift + }Return
-  alacritty{_, --config-file .config/alacritty/alacritty-dark.yml}
+super + Return
+  alacritty
 
 super + d 
   rofi -show run
