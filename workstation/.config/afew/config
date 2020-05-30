@@ -1,0 +1,11 @@
+[SpamFilter]
+[KillThreadsFilter]
+[ListMailsFilter]
+[ArchiveSentMailsFilter]
+
+[FolderNameFilter]
+folder_blacklist = arch/INBOX
+folder_transforms = arch/Drafts:draft arch/Junk:spam arch/Sent:sent arch/Trash:killed
+maildir_separator = /
+
+[InboxFilter]

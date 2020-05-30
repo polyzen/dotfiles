@@ -1,0 +1,24 @@
+# Set default values for all following accounts.
+defaults
+port 587
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+
+# Arch
+account arch
+host mail.archlinux.org
+
+# Envelope-from address
+from polyzen@archlinux.org
+
+# Authentication
+auth on
+user polyzen
+passwordeval pass services/email/polyzen@archlinux.org
+
+
+# Set a default account
+account default : arch
+
+# vim:filetype=msmtp

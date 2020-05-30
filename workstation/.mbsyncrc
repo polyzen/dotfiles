@@ -1,0 +1,19 @@
+Create Both
+Expunge Both
+SyncState *
+
+MaildirStore arch-local
+Path ~/.mail/arch/
+Inbox ~/.mail/arch/INBOX
+
+IMAPStore arch-remote
+Host mail.archlinux.org
+User polyzen
+PassCmd "pass services/email/polyzen@archlinux.org"
+SSLType IMAPS
+#CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+Channel arch
+Master :arch-remote:
+Slave :arch-local:
+Patterns *
