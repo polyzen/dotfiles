@@ -1,0 +1,78 @@
+base/
+├── .config
+│   ├── pylintrc
+│   ├── tmux
+│   │   └── tmux.conf
+│   └── yamllint
+│       └── config
+├── .vim
+│   ├── after
+│   │   ├── ftplugin
+│   │   │   ├── markdown.vim
+│   │   │   └── rst.vim
+│   │   └── plugin
+│   │       └── goyo.vim
+│   ├── ftplugin
+│   │   ├── PKGBUILD.vim
+│   │   ├── python.vim
+│   │   └── rust.vim
+│   └── vimrc
+├── .zprofile
+└── .zshrc
+misc/
+└── .config
+    └── urlwatch
+        └── hooks.py
+workstation/
+├── .config
+│   ├── aerc
+│   │   ├── accounts.conf
+│   │   ├── aerc.conf
+│   │   ├── binds.conf
+│   │   └── querymap
+│   ├── afew
+│   │   └── config
+│   ├── alacritty
+│   │   └── alacritty.yml
+│   ├── fontconfig
+│   │   └── fonts.conf
+│   ├── git
+│   │   └── config
+│   ├── i3
+│   │   └── config
+│   ├── i3status
+│   │   └── config
+│   ├── mpv
+│   │   ├── config
+│   │   └── input.conf
+│   ├── msmtp
+│   │   └── config
+│   ├── newsboat
+│   │   └── config
+│   ├── notifymuch
+│   │   └── notifymuch.cfg
+│   ├── rofi
+│   │   └── config
+│   ├── rofimoji.rc
+│   ├── sxhkd
+│   │   └── sxhkdrc
+│   ├── user-dirs.dirs
+│   └── youtube-dl
+│       └── config
+├── .local
+│   └── bin
+│       ├── geturls.py
+│       ├── pomodoro
+│       └── shot
+├── .mail
+│   └── .notmuch
+│       └── hooks
+│           ├── post-new
+│           └── pre-new
+├── .mbsyncrc
+├── .mozilla
+│   └── firefox
+│       ├── userChrome.css
+│       └── user.js
+├── .xinitrc
+└── .Xresources
