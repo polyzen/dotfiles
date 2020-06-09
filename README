@@ -1,4 +1,4 @@
-base/
+base
 ├── .config
 │   ├── pylintrc
 │   ├── tmux
@@ -19,11 +19,11 @@ base/
 │   └── vimrc
 ├── .zprofile
 └── .zshrc
-misc/
+misc
 └── .config
     └── urlwatch
         └── hooks.py
-workstation/
+workstation
 ├── .config
 │   ├── aerc
 │   │   ├── accounts.conf
