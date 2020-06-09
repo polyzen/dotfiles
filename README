@@ -74,5 +74,6 @@ workstation
 │   └── firefox
 │       ├── userChrome.css
 │       └── user.js
+├── .notmuch-config
 ├── .xinitrc
 └── .Xresources
