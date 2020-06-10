@@ -25,7 +25,7 @@
 #
 
 from requests import get
-from sh import jq
+from subprocess import run, PIPE
 from urlwatch import jobs
 
 
@@ -33,8 +33,13 @@ def retrieve_and_filter(url, jqfilter):
     """Retrieve an API and parse with jq"""
     r = get(url)
     r.raise_for_status()
-    p = jq("--raw-output", "--exit-status", jqfilter, _in=r.text)
-    return str(p)
+    p = run(
+        ["jq", "--raw-output", "--exit-status", jqfilter],
+        input=r.text,
+        stdout=PIPE,
+        encoding="utf-8",
+    )
+    return p.stdout
 
 
 class AMOJob(jobs.Job):
