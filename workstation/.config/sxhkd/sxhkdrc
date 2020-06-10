@@ -7,5 +7,8 @@ KP_Insert
 super + Return
   alacritty
 
-super + d 
+super + d
   rofi -show run
+
+super + {_,shift + }Print
+  shot {_,-p}
