@@ -17,7 +17,6 @@ base
 │   │   ├── python.vim
 │   │   └── rust.vim
 │   └── vimrc
-├── .zprofile
 └── .zshrc
 misc
 └── .config

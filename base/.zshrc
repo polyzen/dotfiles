@@ -26,10 +26,15 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.*' insert-sections true
 zstyle ':completion:*:man:*' menu yes select
 
+path+=~/.local/bin
 fpath+=~/.local/fpath
 precmd() { disambiguate-keeplast }
 PROMPT='$REPLY %(!.#.>) '
 RPROMPT='$(gitprompt-rs zsh)'
+
+export EDITOR=vim
+export LS_COLORS="$(vivid generate molokai)"
+export SKIM_DEFAULT_COMMAND='fd --type f'
 
 alias cp='cp --reflink=auto'
 alias exa='exa -F'
