@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Select an area on the screen to screenshot and pass to `pbx`.
+# Select an area to screenshot; optionally upload the image and copy the link
+# into the clipboard.
 
 FILE=/tmp/$(date -Is).png
 SEL=$(hacksaw -f "-i %i -g %g")
