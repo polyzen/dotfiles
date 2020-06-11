@@ -11,4 +11,4 @@ super + d
   rofi -show run
 
 super + {_,shift + }Print
-  shot {_,-p}
+  .local/bin/shot {_,-p}
