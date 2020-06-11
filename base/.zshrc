@@ -33,7 +33,7 @@ PROMPT='$REPLY %(!.#.>) '
 RPROMPT='$(gitprompt-rs zsh)'
 
 export EDITOR=vim
-export LS_COLORS="$(vivid generate molokai)"
+export LS_COLORS="$(vivid generate solarized-dark)"
 export SKIM_DEFAULT_COMMAND='fd --type f'
 
 alias cp='cp --reflink=auto'
