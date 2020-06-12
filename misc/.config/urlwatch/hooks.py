@@ -24,8 +24,9 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+from subprocess import PIPE, run
+
 from requests import get
-from subprocess import run, PIPE
 from urlwatch import jobs
 
 
