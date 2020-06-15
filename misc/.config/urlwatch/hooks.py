@@ -24,23 +24,8 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-from subprocess import PIPE, run
-
-from requests import get
+import requests
 from urlwatch import jobs
-
-
-def retrieve_and_filter(url, jqfilter):
-    """Retrieve an API and parse with jq"""
-    r = get(url)
-    r.raise_for_status()
-    p = run(
-        ["jq", "--raw-output", "--exit-status", jqfilter],
-        input=r.text,
-        stdout=PIPE,
-        encoding="utf-8",
-    )
-    return p.stdout
 
 
 class AMOJob(jobs.Job):
@@ -54,8 +39,20 @@ class AMOJob(jobs.Job):
 
     def retrieve(self, job_state):
         url = "https://addons.mozilla.org/api/v4/addons/addon/" + self.extension
-        jqfilter = '.current_version | .version, (.files[0] | .created, .hash), .release_notes."en-US"'  # noqa: E501
-        return retrieve_and_filter(url, jqfilter)
+        r = requests.get(url)
+        r.raise_for_status()
+        api = r.json()
+        # '.current_version | .version, (.files[0] | .created, .hash), .release_notes."en-US"'  # noqa: E501
+        version = api["current_version"]
+        file = version["files"][0]
+        content = [
+            version["version"],
+            file["created"],
+            file["hash"],
+            version["release_notes"]["en-US"],
+        ]
+        release = "\n".join(content).strip()
+        return release
 
 
 class PyPIJob(jobs.Job):
@@ -69,5 +66,15 @@ class PyPIJob(jobs.Job):
 
     def retrieve(self, job_state):
         url = "https://pypi.org/pypi/" + self.package + "/json"
-        jqfilter = ".info.version, (.urls[-1] | .upload_time, .digests.sha256)"
-        return retrieve_and_filter(url, jqfilter)
+        r = requests.get(url)
+        r.raise_for_status()
+        api = r.json()
+        # ".info.version, (.urls[-1] | .upload_time, .digests.sha256)"
+        file = api["urls"][-1]
+        content = [
+            api["info"]["version"],
+            file["upload_time"],
+            file["digests"]["sha256"],
+        ]
+        release = "\n".join(content).strip()
+        return release
