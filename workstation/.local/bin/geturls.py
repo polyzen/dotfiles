@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """ Parse URLs from Firefox sessionstore JSON.
-Requires https://github.com/andikleen/lz4json.
+.jsonlz4 can be extracted using https://github.com/andikleen/lz4json.
 
 Examples::
 
@@ -15,10 +15,10 @@ import json
 
 def get_urls(line):
     session = json.loads(line)
-    for win in session.get("windows"):
-        for tab in win.get("tabs"):
-            i = tab.get("index") - 1
-            url = tab.get("entries")[i].get("url")
+    for win in session["windows"]:
+        for tab in win["tabs"]:
+            i = tab["index"] - 1
+            url = tab["entries"][i]["url"]
             print(url)
 
 
