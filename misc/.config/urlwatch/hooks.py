@@ -24,25 +24,18 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import requests
-from urlwatch import jobs
+import json
+import re
+
+from urlwatch import filters
 
 
-class AMOJob(jobs.Job):
-    """Get release version, creation time, sha256 hash, and release notes from AMO"""
+class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
+    MATCH = {'url': re.compile('https://addons.mozilla.org/api/v4/addons/addon/.*')}
 
-    __kind__ = "amo"
-    __required__ = ("extension",)
-
-    def get_location(self):
-        return "{} (AMO)".format(self.extension)
-
-    def retrieve(self, job_state):
-        url = "https://addons.mozilla.org/api/v4/addons/addon/" + self.extension
-        r = requests.get(url)
-        r.raise_for_status()
-        api = r.json()
-        # '.current_version | .version, (.files[0] | .created, .hash), .release_notes."en-US"'  # noqa: E501
+    def filter(self, data):
+        api = json.loads(data)
+        # jq '.current_version | .version, (.files[0] | .created, .hash), .release_notes."en-US"'  # noqa: E501
         version = api["current_version"]
         file = version["files"][0]
         content = [
@@ -55,21 +48,12 @@ class AMOJob(jobs.Job):
         return release
 
 
-class PyPIJob(jobs.Job):
-    """Get release version, creation time, and sha256 hash from PyPI"""
+class PypiRegexMatchUrlFilter(filters.RegexMatchFilter):
+    MATCH = {'url': re.compile('https://pypi.org/pypi/.*/json')}
 
-    __kind__ = "pypi"
-    __required__ = ("package",)
-
-    def get_location(self):
-        return "{} (PyPI)".format(self.package)
-
-    def retrieve(self, job_state):
-        url = "https://pypi.org/pypi/" + self.package + "/json"
-        r = requests.get(url)
-        r.raise_for_status()
-        api = r.json()
-        # ".info.version, (.urls[-1] | .upload_time, .digests.sha256)"
+    def filter(self, data):
+        api = json.loads(data)
+        # jq ".info.version, (.urls[-1] | .upload_time, .digests.sha256)"
         file = api["urls"][-1]
         content = [
             api["info"]["version"],
