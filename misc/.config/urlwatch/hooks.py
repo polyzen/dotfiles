@@ -31,6 +31,7 @@ from urlwatch import filters
 
 
 class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
+    """Get release version, creation time, sha256 hash, and release notes from AMO"""
     MATCH = {'url': re.compile('https://addons.mozilla.org/api/v4/addons/addon/.*')}
 
     def filter(self, data):
@@ -49,6 +50,7 @@ class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
 
 
 class PypiRegexMatchUrlFilter(filters.RegexMatchFilter):
+    """Get release version, creation time, and sha256 hash from PyPI"""
     MATCH = {'url': re.compile('https://pypi.org/pypi/.*/json')}
 
     def filter(self, data):
