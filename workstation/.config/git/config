@@ -19,3 +19,5 @@
 	log  = /usr/share/git/diff-highlight/diff-highlight | less
 	show = /usr/share/git/diff-highlight/diff-highlight | less
 	diff = /usr/share/git/diff-highlight/diff-highlight | less
+[tig]
+	diff-highlight = /usr/share/git/diff-highlight/diff-highlight
