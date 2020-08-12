@@ -61,6 +61,7 @@ call plug#end()
 
 " {{{ General
 let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
+set guifont=Fantasque\ Sans\ Mono\ 12
 set hidden       " Allow hidden buffers
 set hlsearch     " Highlight searches
 set incsearch    " .. incrementally
