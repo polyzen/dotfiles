@@ -14,10 +14,12 @@ Plug 'haya14busa/vim-edgemotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
 Plug 'Jorengarenar/fauxClip'
+Plug 'lambdalisue/fern.vim' | Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'airblade/vim-gitgutter'
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'RRethy/vim-illuminate'
@@ -28,9 +30,7 @@ Plug 'mgee/lightline-bufferline'
 Plug 'maximbaz/lightline-trailing-whitespace'
 Plug 'andymass/vim-matchup'
 Plug 'severin-lemaignan/vim-minimap'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'ryanoasis/vim-devicons' " Load after supported plugins
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'lambdalisue/nerdfont.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'blueyed/vim-qf_resize'
 Plug 'itchyny/vim-qfedit'
@@ -96,6 +96,7 @@ call togglebg#map('<F5>')
 
 " {{{ Plugins
 let g:ale_completion_enabled = 1
+let g:fern#renderer = 'nerdfont'
 let g:gitgutter_preview_win_floating = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_fileTypeExclude = ['help']
@@ -106,10 +107,9 @@ let g:vista_executive_for = {
   \ 'rust': 'ale',
   \ }
 
-augroup vimrc
-  autocmd!
-  " Close Vim if the only window left open is a NERDTree
-  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup my-glyph-palette
+    autocmd! *
+      autocmd FileType fern call glyph_palette#apply()
 augroup END
 
 " {{{ lightline
@@ -161,7 +161,7 @@ let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_infos = "\uf129 "
 let g:lightline#ale#indicator_warnings = "\uf071 "
 let g:lightline#ale#indicator_errors = "\uf00d "
-let g:lightline#bufferline#enable_devicons  = 1
+let g:lightline#bufferline#enable_nerdfont  = 1
 let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
@@ -184,7 +184,7 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlineReadonly()
-  return &readonly && &filetype !~# '\v(help|nerdtree)' ? "\ue0a2" : ''
+  return &readonly && &filetype !~# '\v(help|fern)' ? "\ue0a2" : ''
 endfunction
 
 function! NearestMethodOrFunction() abort
@@ -192,11 +192,11 @@ function! NearestMethodOrFunction() abort
 endfunction
 
 function! LightlineFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  return winwidth(0) > 70 ? (&fileformat . ' ' . nerdfont#fileformat#find()) : ''
 endfunction
 
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . nerdfont#find() : 'no ft') : ''
 endfunction
 " }}}
 " }}}
