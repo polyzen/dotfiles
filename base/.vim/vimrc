@@ -7,6 +7,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'romainl/vim-cool'
 Plug 'ap/vim-css-color'
+Plug 'maralla/completor.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/echodoc.vim'
@@ -98,8 +99,13 @@ call togglebg#map('<F5>')
 " }}}
 
 " {{{ Plugins
-let g:ale_completion_enabled = 1
 let g:ale_set_balloons = 1
+let g:completor_complete_options = 'menuone,noselect,popup'
+let g:completor_filetype_map = {
+  \ 'sh': {'ft': 'ale'},
+  \ 'python': {'ft': 'ale'},
+  \ 'rust': {'ft': 'ale'},
+  \ }
 let g:fern#renderer = 'nerdfont'
 let g:gitgutter_preview_win_floating = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
