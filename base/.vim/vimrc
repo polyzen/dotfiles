@@ -6,6 +6,7 @@ Plug 'moll/vim-bbye'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
+Plug 'rhysd/committia.vim'
 Plug 'romainl/vim-cool'
 Plug 'ap/vim-css-color'
 Plug 'maralla/completor.vim'
