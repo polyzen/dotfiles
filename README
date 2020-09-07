@@ -51,7 +51,7 @@ workstation
 │   ├── notifymuch
 │   │   └── notifymuch.cfg
 │   ├── rofi
-│   │   └── config
+│   │   └── config.rasi
 │   ├── rofimoji.rc
 │   ├── sxhkd
 │   │   └── sxhkdrc

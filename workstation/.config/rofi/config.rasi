@@ -1,0 +1,9 @@
+configuration {
+	modi: "run";
+	font: "Fantasque Sans Mono 12";
+	terminal: "alacritty";
+	run-command: "bash -i -c "{cmd}"";
+	m: "-4";
+	threads: 4;
+	theme: "gruvbox-dark.rasi";
+}
