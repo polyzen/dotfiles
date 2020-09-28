@@ -1,4 +1,4 @@
-" {{{ vim-plug
+" {{{ Plugin management
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'hotwatermorning/auto-git-diff'
@@ -8,6 +8,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'rhysd/committia.vim'
 Plug 'romainl/vim-cool'
+Plug 'rbong/vim-crystalline'
 Plug 'ap/vim-css-color'
 Plug 'maralla/completor.vim'
 Plug 'tpope/vim-dispatch'
@@ -27,10 +28,7 @@ Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'mgee/lightline-bufferline'
-Plug 'maximbaz/lightline-trailing-whitespace'
+"Plug 'maximbaz/lightline-ale'
 Plug 'andymass/vim-matchup'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'lambdalisue/nerdfont.vim'
@@ -51,7 +49,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'https://gitlab.com/polyzen/togglebg.vim.git'
 Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
@@ -70,10 +67,9 @@ set hlsearch     " Highlight searches
 set incsearch    " .. incrementally
 set ignorecase   " Ignore case
 set smartcase    " .. unless 'the search pattern contains upper case characters'
-set laststatus=2 " Always show status line
 set mouse=a      " Enable mouse (esp. for balloons and scrolling in popups)
 set ttymouse=sgr " .. also in 'terminals that emit SGR-styled mouse reporting'
-set noshowmode   " Do not echo the mode, lightline will display it instead
+set noshowmode   " Do not echo the mode, status line will display it instead
 set shortmess-=S " 'Show search count message when searching'
 
 " Gruvbox colorscheme with italics and true colors
@@ -97,7 +93,106 @@ nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
-call togglebg#map('<F5>')
+" }}}
+
+" {{{ Status and tab pages lines
+function! StatusLine(current, width)
+  let l:s = ''
+
+  if a:current
+    let l:s .= crystalline#mode() . crystalline#right_mode_sep('')
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+  let l:s .= ' %t%h%w%m%r '
+  if a:current
+    let l:s .= '%{zoom#statusline()}' . crystalline#right_sep('', 'Fill')
+    if a:width > 80
+      let l:s .= ' %{MyGitGutter()}%{MyFugitive()}'
+    endif
+  endif
+
+  let l:s .= '%='
+  if a:current
+    if a:width > 80
+      let l:s .= '%{get(b:, "vista_nearest_method_or_function", "")} '
+    endif
+    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+    let l:s .= crystalline#left_mode_sep('')
+  endif
+  if a:width > 80
+    let l:s .= ' %{strlen(&filetype) ? &filetype . " " . nerdfont#find() . " " : ""}'
+      \ . '[%{&fenc!=#""?&fenc:&enc}][%{nerdfont#fileformat#find()} ] %l/%L %c%V %P '
+  else
+    let l:s .= ' '
+  endif
+  if a:current
+    let l:s .= MyTrailingWhitespace()
+  endif
+
+  return l:s
+endfunction
+
+function! TabLabel(buf, max_width) abort
+    let [l:left, l:name, l:short_name, l:right] = crystalline#default_tablabel_parts(a:buf, a:max_width)
+    return l:left . l:short_name . ' ' . nerdfont#find(l:name) . (l:right ==# ' ' ? '' : ' ') . l:right
+endfunction
+
+function! TabLine() abort
+    return crystalline#bufferline(0, 0, 0, 1, 'TabLabel', crystalline#default_tabwidth() + 3)
+endfunction
+
+function! s:CustomizeCrystalline() abort
+  if &background ==# 'dark'
+    highlight CrystallineWarning ctermfg=235 ctermbg=214 guifg=#282828 guibg=#fabd2f
+    highlight CrystallineError ctermfg=235 ctermbg=208 guifg=#282828 guibg=#fe8019
+  else
+    highlight CrystallineWarning ctermfg=229 ctermbg=136 guifg=#fbf1c7 guibg=#b57614
+    highlight CrystallineError ctermfg=229 ctermbg=130 guifg=#fbf1c7 guibg=#af3a03
+  endif
+endfunction
+
+augroup MyCrystalline_config
+  autocmd!
+  autocmd User CrystallineSetTheme call s:CustomizeCrystalline()
+augroup END
+
+function! MyGitGutter()
+  if &modifiable && exists('b:git_dir') && g:gitgutter_enabled
+    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
+  endif
+  return ''
+endfunction
+
+function! MyFugitive()
+  if &modifiable && exists('b:git_dir')
+    let l:branch = FugitiveHead()
+    return l:branch !=# '' ? "\ue0a0 " . l:branch : ''
+  endif
+  return ''
+endfunction
+
+function! MyTrailingWhitespace()
+  if &modifiable
+    return search('\s$', 'nw') ? crystalline#left_sep('Warning', crystalline#mode_hi()) . " \u2022 " : ''
+  endif
+  return ''
+endfunction
+
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'gruvbox'
+"let g:lightline#ale#indicator_checking = "\uf110"
+"let g:lightline#ale#indicator_infos = "\uf129 "
+"let g:lightline#ale#indicator_warnings = "\uf071 "
+"let g:lightline#ale#indicator_errors = "\uf00d "
+let g:zoom#statustext = "\uf848 "
+
+set showtabline=2
+set guioptions-=e
+set laststatus=2
 " }}}
 
 " {{{ Plugins
@@ -121,96 +216,8 @@ let g:vista_executive_for = {
 
 augroup my-glyph-palette
     autocmd! *
-      autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType fern call glyph_palette#apply()
 augroup END
-
-" {{{ lightline
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
-  \ 'active': {
-  \   'left': [['mode', 'paste'],
-  \            ['zoom', 'githunks', 'gitbranch'],
-  \            ['filename', 'modified', 'readonly', 'method']],
-  \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'trailing', 'lineinfo'],
-  \             ['percent'],
-  \             ['fileformat', 'fileencoding', 'filetype']]
-  \ },
-  \ 'tabline': {
-  \   'left': [['buffers']],
-  \   'right': [['close']]
-  \ },
-  \ 'component': {
-  \   'lineinfo': "\ue0a1 %3l:%-2v",
-  \ },
-  \ 'component_expand': {
-  \   'linter_checking': 'lightline#ale#checking',
-  \   'linter_infos': 'lightline#ale#infos',
-  \   'linter_errors': 'lightline#ale#errors',
-  \   'linter_warnings': 'lightline#ale#warnings',
-  \   'trailing': 'lightline#trailing_whitespace#component',
-  \   'buffers': 'lightline#bufferline#buffers'
-  \ },
-  \ 'component_type': {
-  \   'linter_checking': 'right',
-  \   'linter_infos': 'right',
-  \   'linter_warnings': 'warning',
-  \   'linter_errors': 'error',
-  \   'linter_ok': 'right',
-  \   'trailing': 'error',
-  \   'buffers': 'tabsel'
-  \ },
-  \ 'component_function': {
-  \   'zoom': 'zoom#statusline',
-  \   'githunks': 'LightlineGitGutter',
-  \   'gitbranch': 'LightlineFugitive',
-  \   'readonly': 'LightlineReadonly',
-  \   'method': 'NearestMethodOrFunction',
-  \   'fileformat': 'LightlineFileformat',
-  \   'filetype': 'LightlineFiletype'
-  \ }
-  \ }
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_infos = "\uf129 "
-let g:lightline#ale#indicator_warnings = "\uf071 "
-let g:lightline#ale#indicator_errors = "\uf00d "
-let g:lightline#bufferline#enable_nerdfont  = 1
-let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#show_number      = 1
-let g:lightline#bufferline#unicode_symbols  = 1
-let g:lightline#trailing_whitespace#indicator = "\u2022"
-
-function! LightlineGitGutter()
-  if &modifiable && exists('b:git_dir') && g:gitgutter_enabled
-    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
-  endif
-  return ''
-endfunction
-
-function! LightlineFugitive()
-  if &modifiable && exists('*FugitiveHead')
-    let l:branch = FugitiveHead()
-    return l:branch !=# '' ? "\ue0a0 ".branch : ''
-  endif
-  return ''
-endfunction
-
-function! LightlineReadonly()
-  return &readonly && &filetype !~# '\v(help|fern)' ? "\ue0a2" : ''
-endfunction
-
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . nerdfont#fileformat#find()) : ''
-endfunction
-
-function! LightlineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . nerdfont#find() : 'no ft') : ''
-endfunction
-" }}}
 " }}}
 
 " vim: fdm=marker
