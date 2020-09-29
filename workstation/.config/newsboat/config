@@ -33,6 +33,6 @@ highlight article "https?://[^ ]+"       red   default
 highlight article "\\[image\\ [0-9]+\\]" green default
 
 macro m set browser "mpv %u </dev/null &>/dev/null &" ; open-in-browser-and-mark-read ; set browser firefox
-macro y set browser "echo %u | tr -d '\n' | xsel" ; open-in-browser ; set browser firefox
+macro y set browser "echo %u | tr -d '\n' | xclip" ; open-in-browser ; set browser firefox
 
 include ignore
