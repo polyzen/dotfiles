@@ -174,7 +174,7 @@ function! MyFugitive()
 endfunction
 
 function! MyTrailingWhitespace()
-  if &modifiable
+  if &modifiable && &buftype !=# 'terminal'
     return search('\s$', 'nw') ? crystalline#left_sep('Warning', crystalline#mode_hi()) . " \u2022 " : ''
   endif
   return ''
