@@ -1,6 +1,38 @@
+" {{{ General
+let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
+set guifont=Fantasque\ Sans\ Mono\ 12
+set guioptions-=e " Use 'a non-GUI tab pages line'
+set hidden        " Allow hidden buffers
+set hlsearch      " Highlight searches
+set incsearch     " .. incrementally
+set ignorecase    " 'Ignore case in search patterns'
+set smartcase     " .. unless 'the search pattern contains upper case characters'
+set laststatus=2  " Always show status line
+set showtabline=2 " .. and tab pages line
+set mouse=a       " Enable mouse (esp. for balloons and scrolling in popups)
+set ttymouse=sgr  " .. also in 'terminals that emit SGR-styled mouse reporting'
+set noshowmode    " Do not echo the mode, status line will display it instead
+set shortmess-=S  " 'Show search count message when searching'
+
+" True colors
+scriptencoding utf-8
+let &t_8f = '[38;2;%lu;%lu;%lum'
+let &t_8b = '[48;2;%lu;%lu;%lum'
+scriptencoding
+set termguicolors
+
+" Two-space indentation
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+" }}}
+
 " {{{ Plugin management
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
+let g:ale_set_balloons = 1
+
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'moll/vim-bbye'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
@@ -9,27 +41,61 @@ Plug 'kalekundert/vim-coiled-snake'
 Plug 'rhysd/committia.vim'
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'gruvbox'
+
 Plug 'ap/vim-css-color'
 Plug 'maralla/completor.vim'
+let g:completor_complete_options = 'menuone,noselect,popup'
+let g:completor_filetype_map = {
+  \ 'sh': {'ft': 'ale'},
+  \ 'python': {'ft': 'ale'},
+  \ 'rust': {'ft': 'ale'},
+  \ }
+
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/vim-easy-align'
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+
 Plug 'Shougo/echodoc.vim'
 Plug 'haya14busa/vim-edgemotion'
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Konfekt/FastFold'
 Plug 'Jorengarenar/fauxClip'
 Plug 'lambdalisue/fern.vim' | Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+let g:fern#renderer = 'nerdfont'
+
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'airblade/vim-gitgutter'
+let g:gitgutter_preview_win_floating = 1
+
 Plug 'lambdalisue/glyph-palette.vim'
+augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+augroup END
+
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
+let g:gruvbox_italic = 1
+
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_bufTypeExclude = ['help']
+
 "Plug 'maximbaz/lightline-ale'
 Plug 'andymass/vim-matchup'
+let g:matchup_matchparen_offscreen = { 'method': 'popup' }
+
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -55,44 +121,15 @@ Plug 'andymass/vim-tradewinds'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
 Plug 'liuchengxu/vista.vim'
+let g:vista_executive_for = {
+  \ 'sh': 'ale',
+  \ 'python': 'ale',
+  \ 'rust': 'ale',
+  \ }
+
 Plug 'dhruvasagar/vim-zoom'
 call plug#end()
-" }}}
-
-" {{{ General
-let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
-set guifont=Fantasque\ Sans\ Mono\ 12
-set hidden       " Allow hidden buffers
-set hlsearch     " Highlight searches
-set incsearch    " .. incrementally
-set ignorecase   " Ignore case
-set smartcase    " .. unless 'the search pattern contains upper case characters'
-set mouse=a      " Enable mouse (esp. for balloons and scrolling in popups)
-set ttymouse=sgr " .. also in 'terminals that emit SGR-styled mouse reporting'
-set noshowmode   " Do not echo the mode, status line will display it instead
-set shortmess-=S " 'Show search count message when searching'
-
-" Gruvbox colorscheme with italics and true colors
-scriptencoding utf-8
-let &t_8f = '[38;2;%lu;%lu;%lum'
-let &t_8b = '[48;2;%lu;%lu;%lum'
-scriptencoding
-set termguicolors
-let g:gruvbox_italic = 1
 colorscheme gruvbox
-
-" Two-space indentation
-set autoindent
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-" }}}
-
-" {{{ Mappings
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
 " }}}
 
 " {{{ Status and tab pages lines
@@ -180,44 +217,11 @@ function! MyTrailingWhitespace()
   return ''
 endfunction
 
-let g:crystalline_enable_sep = 1
-let g:crystalline_statusline_fn = 'StatusLine'
-let g:crystalline_tabline_fn = 'TabLine'
-let g:crystalline_theme = 'gruvbox'
 "let g:lightline#ale#indicator_checking = "\uf110"
 "let g:lightline#ale#indicator_infos = "\uf129 "
 "let g:lightline#ale#indicator_warnings = "\uf071 "
 "let g:lightline#ale#indicator_errors = "\uf00d "
 let g:zoom#statustext = "\uf848 "
-
-set showtabline=2
-set guioptions-=e
-set laststatus=2
-" }}}
-
-" {{{ Plugins
-let g:ale_set_balloons = 1
-let g:completor_complete_options = 'menuone,noselect,popup'
-let g:completor_filetype_map = {
-  \ 'sh': {'ft': 'ale'},
-  \ 'python': {'ft': 'ale'},
-  \ 'rust': {'ft': 'ale'},
-  \ }
-let g:fern#renderer = 'nerdfont'
-let g:gitgutter_preview_win_floating = 1
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_bufTypeExclude = ['help']
-let g:matchup_matchparen_offscreen = { 'method': 'popup' }
-let g:vista_executive_for = {
-  \ 'sh': 'ale',
-  \ 'python': 'ale',
-  \ 'rust': 'ale',
-  \ }
-
-augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
-augroup END
 " }}}
 
 " vim: fdm=marker
