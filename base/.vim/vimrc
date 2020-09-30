@@ -119,6 +119,9 @@ Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+let g:snips_author = ''
+let g:snips_email = ''
+
 Plug 'tpope/vim-unimpaired'
 Plug 'liuchengxu/vista.vim'
 let g:vista_executive_for = {
