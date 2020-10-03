@@ -189,10 +189,10 @@ endfunction
 function! s:CustomizeCrystalline() abort
   if &background ==# 'dark'
     highlight CrystallineWarning ctermfg=235 ctermbg=214 guifg=#282828 guibg=#fabd2f
-    highlight CrystallineError ctermfg=235 ctermbg=208 guifg=#282828 guibg=#fe8019
+    highlight CrystallineError ctermfg=235 ctermbg=167 guifg=#282828 guibg=#fb4934
   else
     highlight CrystallineWarning ctermfg=229 ctermbg=136 guifg=#fbf1c7 guibg=#b57614
-    highlight CrystallineError ctermfg=229 ctermbg=130 guifg=#fbf1c7 guibg=#af3a03
+    highlight CrystallineError ctermfg=229 ctermbg=88 guifg=#fbf1c7 guibg=#9d0006
   endif
 endfunction
 
