@@ -168,8 +168,10 @@ function! StatusLine(current, width)
   else
   endif
   let l:s .= ' %l/%L %c%V %P '
-  if a:current
-    let l:s .= MyTrailingWhitespace()
+  if a:current && &modifiable && &buftype !=# 'terminal'
+    let l:s .= crystalline#left_sep('Warning', crystalline#mode_hi()) . ' '
+    let l:s .= search('\s$', 'nw') ? '[trailing] ' : ''
+    let l:s .= "%{search('^\t', 'nw') && search('^ ', 'nw') ? '[mixed-indent] ' : ''}"
   endif
 
   return l:s
@@ -211,13 +213,6 @@ function! MyFugitive()
   if &modifiable && exists('b:git_dir')
     let l:branch = FugitiveHead()
     return l:branch !=# '' ? "\ue0a0 " . l:branch : ''
-  endif
-  return ''
-endfunction
-
-function! MyTrailingWhitespace()
-  if &modifiable && &buftype !=# 'terminal'
-    return search('\s$', 'nw') ? crystalline#left_sep('Warning', crystalline#mode_hi()) . " \u2022 " : ''
   endif
   return ''
 endfunction
