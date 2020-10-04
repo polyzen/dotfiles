@@ -168,11 +168,6 @@ function! StatusLine(current, width)
   else
   endif
   let l:s .= ' %l/%L %c%V %P '
-  if a:current && &modifiable && &buftype !=# 'terminal'
-    let l:s .= crystalline#left_sep('Warning', crystalline#mode_hi()) . ' '
-    let l:s .= search('\s$', 'nw') ? '[trailing] ' : ''
-    let l:s .= "%{search('^\t', 'nw') && search('^ ', 'nw') ? '[mixed-indent] ' : ''}"
-  endif
 
   return l:s
 endfunction
