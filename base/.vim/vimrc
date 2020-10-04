@@ -150,7 +150,7 @@ function! StatusLine(current, width)
   if a:current
     let l:s .= '%{zoom#statusline()}' . crystalline#right_sep('', 'Fill')
     if a:width > 80
-      let l:s .= ' %{MyGitGutter()}%{MyFugitive()}'
+      let l:s .= '%{MyGitStatusline()}'
     endif
   endif
 
@@ -164,7 +164,7 @@ function! StatusLine(current, width)
   endif
   if a:width > 80
     let l:s .= ' %{strlen(&filetype) ? &filetype . " " . nerdfont#find() . " " : ""}'
-      \ . '[%{&fenc!=#""?&fenc:&enc}][%{nerdfont#fileformat#find()} ]'
+    let l:s .= '[%{&fenc!=#""?&fenc:&enc}][%{nerdfont#fileformat#find()} ]'
   else
   endif
   let l:s .= ' %l/%L %c%V %P '
@@ -196,20 +196,19 @@ augroup MyCrystalline_config
   autocmd User CrystallineSetTheme call s:CustomizeCrystalline()
 augroup END
 
-function! MyGitGutter()
-  if &modifiable && exists('b:git_dir') && g:gitgutter_enabled
-    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
-  endif
-  return ''
-endfunction
-
-function! MyFugitive()
+function! MyGitStatusline() abort
   if &modifiable && exists('b:git_dir')
+    let l:out = ''
+    if g:gitgutter_enabled
+      let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+      let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
+    endif
     let l:branch = FugitiveHead()
-    return l:branch !=# '' ? "\ue0a0 " . l:branch : ''
+    let l:out .= l:branch !=# '' ? "\ue0a0 " . l:branch : ''
+    return !empty(l:out) ? ' ' . l:out : ''
+  else
+    return ''
   endif
-  return ''
 endfunction
 
 "let g:lightline#ale#indicator_checking = "\uf110"
