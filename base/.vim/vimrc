@@ -94,7 +94,6 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_bufTypeExclude = ['help']
 
-"Plug 'maximbaz/lightline-ale'
 Plug 'andymass/vim-matchup'
 let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 
@@ -178,21 +177,6 @@ function! TabLine() abort
     return crystalline#bufferline(0, 0, 0, 1, 'TabLabel', crystalline#default_tabwidth() + 3)
 endfunction
 
-function! s:CustomizeCrystalline() abort
-  if &background ==# 'dark'
-    highlight CrystallineWarning ctermfg=235 ctermbg=214 guifg=#282828 guibg=#fabd2f
-    highlight CrystallineError ctermfg=235 ctermbg=167 guifg=#282828 guibg=#fb4934
-  else
-    highlight CrystallineWarning ctermfg=229 ctermbg=136 guifg=#fbf1c7 guibg=#b57614
-    highlight CrystallineError ctermfg=229 ctermbg=88 guifg=#fbf1c7 guibg=#9d0006
-  endif
-endfunction
-
-augroup MyCrystalline_config
-  autocmd!
-  autocmd User CrystallineSetTheme call s:CustomizeCrystalline()
-augroup END
-
 function! MyGitStatusline() abort
   if &modifiable && exists('b:git_dir')
     let l:out = ''
@@ -208,10 +192,6 @@ function! MyGitStatusline() abort
   endif
 endfunction
 
-"let g:lightline#ale#indicator_checking = "\uf110"
-"let g:lightline#ale#indicator_infos = "\uf129 "
-"let g:lightline#ale#indicator_warnings = "\uf071 "
-"let g:lightline#ale#indicator_errors = "\uf00d "
 let g:zoom#statustext = "\uf848 "
 " }}}
 
