@@ -75,7 +75,7 @@ let g:fern#renderer = 'nerdfont'
 
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
-Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
+Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_preview_win_floating = 1
 
@@ -102,10 +102,10 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'blueyed/vim-qf_resize'
 Plug 'itchyny/vim-qfedit'
-Plug 'unblevable/quick-scope', { 'on': 'QuickScopeToggle' }
+Plug 'unblevable/quick-scope'
 Plug 'AndrewRadev/quickpeek.vim'
 Plug 'tpope/vim-repeat'
-Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
+Plug 'rhysd/reply.vim'
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
 Plug 'arzg/vim-rust-syntax-ext'
@@ -114,7 +114,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'justinmk/vim-sneak'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'aymericbeaumet/vim-symlink'
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
