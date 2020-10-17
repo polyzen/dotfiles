@@ -99,6 +99,7 @@ Plug 'andymass/vim-matchup'
 let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'markwu/vim-mrufiles'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'blueyed/vim-qf_resize'
