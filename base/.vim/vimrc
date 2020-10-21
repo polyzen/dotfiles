@@ -39,7 +39,7 @@ let g:ale_set_balloons = 1
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'liuchengxu/vim-clap', { 'tag': '*', 'do': ':call clap#installer#build_python_dynamic_module()' }
 Plug 'rhysd/clever-f.vim'
 Plug 'kalekundert/vim-coiled-snake'
 Plug 'rhysd/committia.vim'
