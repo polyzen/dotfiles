@@ -35,14 +35,12 @@ set softtabstop=2
 call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'hotwatermorning/auto-git-diff'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
 Plug 'liuchengxu/vim-clap', { 'tag': '*', 'do': ':call clap#installer#build_python_dynamic_module()' }
 let g:clap_enable_icon = 1
 
 Plug 'rhysd/clever-f.vim'
-Plug 'rhysd/committia.vim'
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
 let g:crystalline_statusline_fn = 'StatusLine'
@@ -64,12 +62,6 @@ Plug 'Konfekt/FastFold'
 Plug 'Jorengarenar/fauxClip'
 Plug 'lambdalisue/fern.vim' | Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 let g:fern#renderer = 'nerdfont'
-
-Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
-Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
-Plug 'rhysd/git-messenger.vim'
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_preview_win_floating = 1
 
 Plug 'lambdalisue/glyph-palette.vim'
 augroup my_glyph_palette
@@ -116,6 +108,17 @@ Plug 'andymass/vim-tradewinds'
 Plug 'tpope/vim-unimpaired'
 Plug 'dhruvasagar/vim-zoom'
 let g:zoom#statustext = "\uf848 "
+
+" Git
+if executable('git')
+  Plug 'hotwatermorning/auto-git-diff'
+  Plug 'rhysd/committia.vim'
+  Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
+  Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
+  Plug 'rhysd/git-messenger.vim'
+  Plug 'airblade/vim-gitgutter'
+  let g:gitgutter_preview_win_floating = 1
+endif
 
 " Python
 Plug 'kalekundert/vim-coiled-snake'
