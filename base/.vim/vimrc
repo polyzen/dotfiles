@@ -91,6 +91,7 @@ Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_italic = 1
 
 Plug 'RRethy/vim-illuminate'
+Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_bufTypeExclude = ['help']
