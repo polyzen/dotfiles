@@ -98,7 +98,9 @@ let g:indentLine_bufTypeExclude = ['help']
 Plug 'andymass/vim-matchup'
 let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 
-Plug 'severin-lemaignan/vim-minimap'
+if executable('code-minimap')
+  Plug 'wfxr/minimap.vim'
+endif
 Plug 'markwu/vim-mrufiles'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'junegunn/vim-peekaboo'
