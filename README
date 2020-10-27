@@ -12,10 +12,6 @@ base
 │   │   │   └── rst.vim
 │   │   └── plugin
 │   │       └── goyo.vim
-│   ├── ftplugin
-│   │   ├── PKGBUILD.vim
-│   │   ├── python.vim
-│   │   └── rust.vim
 │   └── vimrc
 └── .zshrc
 misc

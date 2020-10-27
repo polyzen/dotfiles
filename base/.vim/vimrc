@@ -33,9 +33,8 @@ set softtabstop=2
 
 " {{{ Plugin management
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'
-let g:ale_set_balloons = 1
-
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
@@ -43,16 +42,7 @@ Plug 'liuchengxu/vim-clap', { 'tag': '*', 'do': ':call clap#installer#build_pyth
 let g:clap_enable_icon = 1
 
 Plug 'rhysd/clever-f.vim'
-Plug 'kalekundert/vim-coiled-snake'
 Plug 'rhysd/committia.vim'
-Plug 'maralla/completor.vim'
-let g:completor_complete_options = 'menuone,noselect,popup'
-let g:completor_filetype_map = {
-  \ 'sh': {'ft': 'ale'},
-  \ 'python': {'ft': 'ale'},
-  \ 'rust': {'ft': 'ale'},
-  \ }
-
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
 let g:crystalline_statusline_fn = 'StatusLine'
@@ -65,7 +55,6 @@ Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
-Plug 'Shougo/echodoc.vim'
 Plug 'haya14busa/vim-edgemotion'
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
@@ -83,16 +72,15 @@ Plug 'airblade/vim-gitgutter'
 let g:gitgutter_preview_win_floating = 1
 
 Plug 'lambdalisue/glyph-palette.vim'
-augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
+augroup my_glyph_palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
 augroup END
 
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_italic = 1
 
-Plug 'RRethy/vim-illuminate'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -125,16 +113,71 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
-Plug 'liuchengxu/vista.vim'
-let g:vista_executive_for = {
-  \ 'sh': 'ale',
-  \ 'python': 'ale',
-  \ 'rust': 'ale',
-  \ }
-
 Plug 'dhruvasagar/vim-zoom'
+let g:zoom#statustext = "\uf848 "
+
+" Python
+Plug 'kalekundert/vim-coiled-snake'
+if has('python3')
+  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+  augroup asyncomplete_ultisnips
+    autocmd!
+    autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+      \ 'name': 'ultisnips',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+      \ }))
+  augroup END
+endif
+
+" LSP
+if executable('ccls')
+  Plug 'm-pilia/vim-ccls' | Plug 'jackguo380/vim-lsp-cxx-highlight'
+  augroup lsp_ccls
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'ccls',
+      \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': {
+      \   'highlight': { 'lsRanges' : v:true },
+      \ },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+  augroup END
+endif
+if executable('efm-langserver')
+  Plug 'tsuyoshicho/vim-efm-langserver-settings'
+endif
+Plug 'prabirshrestha/vim-lsp'
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_semantic_enabled = 1
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
+
+Plug 'mattn/vim-lsp-settings'
+let g:lsp_settings = {
+  \  'clangd': { 'disabled': v:true },
+  \  'efm-langserver': { 'disabled': v:false }
+  \}
+let g:lsp_settings_enable_suggestions = 0
+
+Plug 'liuchengxu/vista.vim'
+let g:vista_default_executive = 'vim_lsp'
+
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+imap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 call plug#end()
 colorscheme gruvbox
 " }}}
@@ -175,19 +218,19 @@ function! StatusLine(current, width)
 endfunction
 
 function! TabLabel(buf, max_width) abort
-    let [l:left, l:name, l:short_name, l:right] = crystalline#default_tablabel_parts(a:buf, a:max_width)
-    return l:left . l:short_name . ' ' . nerdfont#find(l:name) . (l:right ==# ' ' ? '' : ' ') . l:right
+  let [l:left, l:name, l:short_name, l:right] = crystalline#default_tablabel_parts(a:buf, a:max_width)
+  return l:left . l:short_name . ' ' . nerdfont#find(l:name) . (l:right ==# ' ' ? '' : ' ') . l:right
 endfunction
 
 function! TabLine() abort
-    return crystalline#bufferline(0, 0, 0, 1, 'TabLabel', crystalline#default_tabwidth() + 3)
+  return crystalline#bufferline(0, 0, 0, 1, 'TabLabel', crystalline#default_tabwidth() + 3)
 endfunction
 
 function! MyGitStatusline() abort
   if &modifiable && exists('b:git_dir')
     let l:out = ''
     if g:gitgutter_enabled
-      let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+      let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
       let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
     endif
     let l:branch = FugitiveHead()
@@ -197,8 +240,6 @@ function! MyGitStatusline() abort
     return ''
   endif
 endfunction
-
-let g:zoom#statustext = "\uf848 "
 " }}}
 
 " vim: fdm=marker
