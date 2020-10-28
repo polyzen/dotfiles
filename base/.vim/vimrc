@@ -37,7 +37,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
-Plug 'liuchengxu/vim-clap', { 'tag': '*', 'do': ':call clap#installer#build_python_dynamic_module()' }
+Plug 'liuchengxu/vim-clap', { 'do': ':call clap#installer#build_python_dynamic_module()' }
 let g:clap_enable_icon = 1
 
 Plug 'rhysd/clever-f.vim'
