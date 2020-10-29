@@ -41,6 +41,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':call clap#installer#build_python_dynamic_m
 let g:clap_enable_icon = 1
 
 Plug 'rhysd/clever-f.vim'
+Plug 'wellle/context.vim'
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
 let g:crystalline_statusline_fn = 'StatusLine'
@@ -79,7 +80,7 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_bufTypeExclude = ['help']
 
 Plug 'andymass/vim-matchup'
-let g:matchup_matchparen_offscreen = { 'method': 'popup' }
+let g:matchup_matchparen_offscreen = {}
 
 if executable('code-minimap')
   Plug 'wfxr/minimap.vim'
