@@ -29,7 +29,9 @@ workstation
 │   ├── afew
 │   │   └── config
 │   ├── alacritty
-│   │   └── alacritty.yml
+│   │   ├── alacritty.yml
+│   │   ├── gruvbox-dark.yml
+│   │   └── gruvbox-light.yml
 │   ├── fontconfig
 │   │   └── fonts.conf
 │   ├── git
@@ -58,6 +60,7 @@ workstation
 ├── .local
 │   └── bin
 │       ├── geturls.py
+│       ├── lightdark
 │       ├── pomodoro
 │       └── shot
 ├── .mail

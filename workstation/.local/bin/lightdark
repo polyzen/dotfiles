@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+CONFPATH=~/.config/alacritty
+THEME=gruvbox
+
+if grep -q 'light' $CONFPATH/colors.yml
+  then ln -sf $CONFPATH/$THEME-dark.yml $CONFPATH/colors.yml
+  else ln -sf $CONFPATH/$THEME-light.yml $CONFPATH/colors.yml
+fi
