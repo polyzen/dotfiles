@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-""" Parse URLs from Firefox sessionstore JSON.
+"""Parse URLs from Firefox sessionstore JSON.
+
 .jsonlz4 can be extracted using https://github.com/andikleen/lz4json.
 
 Examples::
