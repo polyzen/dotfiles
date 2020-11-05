@@ -9,6 +9,8 @@ set showtabline=2 " .. and tab pages line
 set mouse=a       " Enable mouse (esp. for balloons and scrolling in popups)
 set ttymouse=sgr  " .. also in 'terminals that emit SGR-styled mouse reporting'
 set noshowmode    " Do not echo the mode, status line will display it instead
+set wildmenu      " Enable command-line completion menu
+set wildmode=longest:full,full " .. with incremental completions
 
 " Search
 set hlsearch      " Highlight matches
