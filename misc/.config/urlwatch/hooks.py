@@ -37,7 +37,7 @@ class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
         "url": re.compile("https://addons.mozilla.org/api/v4/addons/addon/.*")
     }
 
-    def filter(self, data):
+    def filter(self, data, subfilter):
         api = json.loads(data)
         # jq '.current_version | .version, (.files[0] | .created, .hash), .release_notes."en-US"'  # noqa: E501
         version = api["current_version"]
@@ -57,7 +57,7 @@ class PypiRegexMatchUrlFilter(filters.RegexMatchFilter):
 
     MATCH = {"url": re.compile("https://pypi.org/pypi/.*/json")}
 
-    def filter(self, data):
+    def filter(self, data, subfilter):
         api = json.loads(data)
         # jq ".info.version, (.urls[-1] | .upload_time, .digests.sha256)"
         file = api["urls"][-1]
