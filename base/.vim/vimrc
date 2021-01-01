@@ -121,6 +121,21 @@ if executable('git')
   Plug 'rhysd/git-messenger.vim'
   Plug 'airblade/vim-gitgutter'
   let g:gitgutter_preview_win_floating = 1
+
+  function! MyGitStatusline() abort
+    if &modifiable && exists('b:git_dir')
+      let l:out = ''
+      if g:gitgutter_enabled
+        let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
+        let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
+      endif
+      let l:branch = FugitiveHead()
+      let l:out .= l:branch !=# '' ? "\ue0a0 " . l:branch : ''
+      return !empty(l:out) ? ' ' . l:out : ''
+    else
+      return ''
+    endif
+  endfunction
 endif
 
 " Python
@@ -230,21 +245,6 @@ endfunction
 
 function! TabLine() abort
   return crystalline#bufferline(0, 0, 0, 1, 'TabLabel', crystalline#default_tabwidth() + 3)
-endfunction
-
-function! MyGitStatusline() abort
-  if &modifiable && exists('b:git_dir')
-    let l:out = ''
-    if g:gitgutter_enabled
-      let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
-      let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
-    endif
-    let l:branch = FugitiveHead()
-    let l:out .= l:branch !=# '' ? "\ue0a0 " . l:branch : ''
-    return !empty(l:out) ? ' ' . l:out : ''
-  else
-    return ''
-  endif
 endfunction
 " }}}
 
