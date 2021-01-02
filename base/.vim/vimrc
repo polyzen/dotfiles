@@ -39,9 +39,6 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
-Plug 'liuchengxu/vim-clap', { 'do': ':call clap#installer#build_python_dynamic_module()' }
-let g:clap_enable_icon = 1
-
 Plug 'rhysd/clever-f.vim'
 Plug 'wellle/context.vim'
 Plug 'romainl/vim-cool'
@@ -211,7 +208,9 @@ smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>
 imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 call plug#end()
+
 colorscheme gruvbox
+let g:clap_enable_icon = 1 " For system-installed vim-clap
 " }}}
 
 " {{{ Status and tab pages lines
