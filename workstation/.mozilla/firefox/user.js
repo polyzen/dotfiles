@@ -25,6 +25,7 @@ user_pref("narrate.rate", 25);
 user_pref("narrate.voice", "{\"default\":\"urn:moz-tts:speechd:english-north?en-GB\",\"en\":\"urn:moz-tts:speechd:english-north?en-GB\"}");
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.cookie.cookieBehavior", 1);
+user_pref("network.http.referer.XOriginPolicy", 2);
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
