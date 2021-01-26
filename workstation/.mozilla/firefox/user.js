@@ -1,3 +1,4 @@
+user_pref("browser.contentblocking.category", "custom");
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
@@ -24,6 +25,7 @@ user_pref("media.peerconnection.ice.no_host", true);
 user_pref("narrate.rate", 25);
 user_pref("narrate.voice", "{\"default\":\"urn:moz-tts:speechd:english-north?en-GB\",\"en\":\"urn:moz-tts:speechd:english-north?en-GB\"}");
 user_pref("network.auth.subresource-http-auth-allow", 1);
+user_pref("network.cookie.cookieBehavior", 1);
 user_pref("network.cookie.prefsMigrated", true);
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.geo", 2);
