@@ -30,6 +30,8 @@ user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("privacy.donottrackheader.enabled", true);
+user_pref("privacy.firstparty.isolate", true);
+user_pref("privacy.firstparty.isolate.block_post_message", true);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
