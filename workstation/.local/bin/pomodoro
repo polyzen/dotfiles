@@ -2,24 +2,40 @@
 
 set -e
 
+INTERVALS=('Po' 'mo' 'do' 'ro')
+WORKMSG='🔍 Focus'
+WORKTIME='25m'
+SHORTBREAKMSG='🧘 Stretch'
+SHORTBREAKTIME='5m'
+LONGBREAKMSG='💆 Rest'
+LONGBREAKTIME='15m'
+
 BEEP=0
 if [[ $1 == '-b' ]]; then
   BEEP=1
 fi
 
 timer() {
+  toastify send --id 45 "$1" "$INTERVALMSG"
   termdown -T "$1" "$2"
+
   if [[ $BEEP -eq 1 ]]; then
     beep -f 5000 -l 50 -r 2
   fi
-  toastify send --id 45 "$3" "$4"
 }
 
-pomodo=('<b>Po</b>modoro' 'Po<b>mo</b>doro' 'Pomo<b>do</b>ro')
-for o in "${pomodo[@]}"; do
-  timer Work 25m Break "$o"
-  timer Break 5m Work
-done
+for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
+  # Highlight (in bold) intervals as they pass
+  INTERVALMSG="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
 
-timer Work 25m Long\ break 'Pomodo<b>ro</b>'
-timer Long\ break 15m Pomodoro
+  if (( i < ${#INTERVALS[*]} )); then
+    breakmsg="$SHORTBREAKMSG"
+    breaktime="$SHORTBREAKTIME"
+  else
+    breakmsg="$LONGBREAKMSG"
+    breaktime="$LONGBREAKTIME"
+  fi
+
+  timer "$WORKMSG" "$WORKTIME"
+  timer "$breakmsg" "$breaktime"
+done
