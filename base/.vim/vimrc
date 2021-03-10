@@ -89,6 +89,8 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'blueyed/vim-qf_resize'
 Plug 'itchyny/vim-qfedit'
 Plug 'unblevable/quick-scope'
+let g:qs_enable=0
+
 Plug 'AndrewRadev/quickpeek.vim'
 Plug 'tpope/vim-repeat'
 Plug 'rhysd/reply.vim'
