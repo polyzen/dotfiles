@@ -14,6 +14,6 @@ SSLType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 Channel arch
-Master :arch-remote:
-Slave :arch-local:
+Far :arch-remote:
+Near :arch-local:
 Patterns *
