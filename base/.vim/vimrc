@@ -120,7 +120,7 @@ if executable('git')
   let g:gitgutter_preview_win_floating = 1
 
   function! MyGitStatusline() abort
-    if &modifiable && exists('b:git_dir')
+    if &modifiable && !empty(get(b:, 'git_dir', ''))
       let l:out = ''
       if g:gitgutter_enabled
         let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
