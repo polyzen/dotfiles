@@ -21,11 +21,6 @@ misc
         └── hooks.py
 workstation
 ├── .config
-│   ├── aerc
-│   │   ├── accounts.conf
-│   │   ├── aerc.conf
-│   │   ├── binds.conf
-│   │   └── querymap
 │   ├── afew
 │   │   └── config
 │   ├── alacritty
