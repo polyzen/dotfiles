@@ -2,6 +2,10 @@
 
 set -e
 
+if [[ -n $TMUX ]]; then
+  trap 'tmux set automatic-rename' EXIT
+fi
+
 INTERVALS=('Po' 'mo' 'do' 'ro')
 WORKMSG='🔍 Focus'
 WORKTIME='25m'
@@ -16,6 +20,10 @@ if [[ $1 == '-b' ]]; then
 fi
 
 timer() {
+  if [[ -n $TMUX ]]; then
+    tmux rename-window "$1"
+  fi
+
   toastify send --id 45 "$1" "$INTERVALMSG"
   termdown -T "$1" "$2"
 
