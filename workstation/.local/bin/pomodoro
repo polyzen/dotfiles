@@ -15,9 +15,25 @@ LONGBREAKMSG='💆 Rest'
 LONGBREAKTIME='15m'
 
 BEEP=0
-if [[ $1 == '-b' ]]; then
-  BEEP=1
-fi
+LOOP=0
+
+while :; do
+  case $1 in
+    -b|--beep)
+      BEEP=1
+      ;;
+    -l|--loop)
+      LOOP=1
+      ;;
+    -?*)
+      printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+      ;;
+    *)
+      break
+  esac
+
+  shift
+done
 
 timer() {
   if [[ -n $TMUX ]]; then
@@ -32,18 +48,28 @@ timer() {
   fi
 }
 
-for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
-  # Highlight (in bold) intervals as they pass
-  INTERVALMSG="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
+pomodoro() {
+  for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
+    # Highlight (in bold) intervals as they pass
+    INTERVALMSG="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
 
-  if (( i < ${#INTERVALS[*]} )); then
-    breakmsg="$SHORTBREAKMSG"
-    breaktime="$SHORTBREAKTIME"
-  else
-    breakmsg="$LONGBREAKMSG"
-    breaktime="$LONGBREAKTIME"
-  fi
+    if (( i < ${#INTERVALS[*]} )); then
+      breakmsg="$SHORTBREAKMSG"
+      breaktime="$SHORTBREAKTIME"
+    else
+      breakmsg="$LONGBREAKMSG"
+      breaktime="$LONGBREAKTIME"
+    fi
 
-  timer "$WORKMSG" "$WORKTIME"
-  timer "$breakmsg" "$breaktime"
-done
+    timer "$WORKMSG" "$WORKTIME"
+    timer "$breakmsg" "$breaktime"
+  done
+}
+
+if [[ $LOOP -eq 1 ]]; then
+  while true; do
+    pomodoro
+  done
+else
+  pomodoro
+fi
