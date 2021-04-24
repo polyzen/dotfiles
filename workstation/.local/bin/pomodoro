@@ -16,6 +16,7 @@ LONGBREAKTIME='15m'
 
 BEEP=0
 LOOP=0
+ARGS=()
 
 while :; do
   case $1 in
@@ -24,6 +25,11 @@ while :; do
       ;;
     -l|--loop)
       LOOP=1
+      ;;
+    --)
+      shift
+      ARGS=("$@")
+      break
       ;;
     -?*)
       printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
@@ -41,7 +47,9 @@ timer() {
   fi
 
   toastify send --id 45 "$1" "$intervalmsg"
-  termdown -T "$1" "$2"
+
+  local args=("${ARGS[@]}" "-T $1")
+  termdown "${args[@]}" "$2"
 
   if [[ $BEEP -eq 1 ]]; then
     beep -f 5000 -l 50 -r 2
