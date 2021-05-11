@@ -7,16 +7,15 @@ if [[ -n $TMUX ]]; then
 fi
 
 readonly INTERVALS=('Po' 'mo' 'do' 'ro')
-readonly WORKMSG='🔍 Focus'
-readonly WORKTIME='25m'
-readonly SHORTBREAKMSG='🧘 Stretch'
-readonly SHORTBREAKTIME='5m'
-readonly LONGBREAKMSG='💆 Rest'
-readonly LONGBREAKTIME='15m'
+readonly LONG_BREAK_MSG='💆 Rest'
+readonly LONG_BREAK_TIME='15m'
+readonly SHORT_BREAK_MSG='🧘 Stretch'
+readonly SHORT_BREAK_TIME='5m'
+readonly WORK_MSG='🔍 Focus'
+readonly WORK_TIME='25m'
 
-declare -i BEEP LOOP
 declare -a ARGS
-
+declare -i BEEP LOOP
 while :; do
   case $1 in
     -b|--beep)
@@ -39,8 +38,7 @@ while :; do
 
   shift
 done
-
-readonly BEEP LOOP ARGS
+readonly ARGS BEEP LOOP
 
 timer() {
   local -a args
@@ -49,7 +47,7 @@ timer() {
     tmux rename-window "$1"
   fi
 
-  toastify send --id 45 "$1" "$intervalmsg"
+  toastify send --id 45 "$1" "$interval_msg"
 
   args=("${ARGS[@]}" "-T $1")
   termdown "${args[@]}" "$2"
@@ -60,22 +58,22 @@ timer() {
 }
 
 pomodoro() {
-  local intervalmsg breakmsg breaktime
+  local break_msg break_time interval_msg
 
   for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
     # Highlight (in bold) intervals as they pass
-    intervalmsg="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
+    interval_msg="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
 
     if (( i < ${#INTERVALS[*]} )); then
-      breakmsg="$SHORTBREAKMSG"
-      breaktime="$SHORTBREAKTIME"
+      break_msg="$SHORT_BREAK_MSG"
+      break_time="$SHORT_BREAK_TIME"
     else
-      breakmsg="$LONGBREAKMSG"
-      breaktime="$LONGBREAKTIME"
+      break_msg="$LONG_BREAK_MSG"
+      break_time="$LONG_BREAK_TIME"
     fi
 
-    timer "$WORKMSG" "$WORKTIME"
-    timer "$breakmsg" "$breaktime"
+    timer "$WORK_MSG" "$WORK_TIME"
+    timer "$break_msg" "$break_time"
   done
 }
 
