@@ -2,9 +2,12 @@
 
 set -e
 
+declare PANE_ID
 if [[ -n $TMUX ]]; then
-  trap 'tmux set automatic-rename' EXIT
+  PANE_ID=$(tmux display-message -p '#D')
+  trap 'tmux set -t "$PANE_ID" automatic-rename' EXIT
 fi
+readonly PANE_ID
 
 readonly INTERVALS=('Po' 'mo' 'do' 'ro')
 readonly LONG_BREAK_MSG='💆 Rest'
@@ -44,7 +47,7 @@ timer() {
   local -a args
 
   if [[ -n $TMUX ]]; then
-    tmux rename-window "$1"
+    tmux rename-window -t "$PANE_ID" "$1"
   fi
 
   toastify send --id 45 "$1" "$interval_msg"
