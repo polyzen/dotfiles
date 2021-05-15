@@ -1,3 +1,2 @@
 #!/bin/sh
-afew --tag --new
-notifymuch
+afew --tag --new -C ~/.config/notmuch/default/config

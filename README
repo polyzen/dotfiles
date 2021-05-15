@@ -44,6 +44,9 @@ workstation
 │   │   └── config
 │   ├── notifymuch
 │   │   └── notifymuch.cfg
+│   ├── notmuch
+│   │   └── default
+│   │       └── config
 │   ├── rofi
 │   │   └── config.rasi
 │   ├── rofimoji.rc
@@ -68,7 +71,6 @@ workstation
 │   └── firefox
 │       ├── userChrome.css
 │       └── user.js
-├── .notmuch-config
 ├── .xinitrc
 ├── .Xresources
 └── .zprofile
