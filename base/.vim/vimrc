@@ -43,6 +43,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
+Plug 'kalekundert/vim-coiled-snake'
 Plug 'wellle/context.vim'
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
@@ -138,21 +139,6 @@ if executable('git')
   endfunction
 endif
 
-" Python
-Plug 'kalekundert/vim-coiled-snake'
-if has('python3')
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-  augroup asyncomplete_ultisnips
-    autocmd!
-    autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-      \ 'name': 'ultisnips',
-      \ 'allowlist': ['*'],
-      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-      \ }))
-  augroup END
-endif
-
 " LSP
 if executable('ccls')
   Plug 'm-pilia/vim-ccls' | Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -197,6 +183,7 @@ let g:lsp_settings_enable_suggestions = 0
 Plug 'liuchengxu/vista.vim'
 let g:vista_default_executive = 'vim_lsp'
 
+Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 imap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
