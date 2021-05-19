@@ -66,6 +66,11 @@ nvim_lsp.ccls.setup{
   on_attach = on_attach,
 }
 
+nvim_lsp.sumneko_lua.setup{
+  cmd = { 'lua-language-server' },
+  on_attach = on_attach,
+}
+
 local servers = { 'bashls', 'efm', 'tailwindcss', 'tsserver', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, }
