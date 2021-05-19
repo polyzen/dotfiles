@@ -7,7 +7,9 @@ set history=500
 set laststatus=2  " Always show status line
 set showtabline=2 " .. and tab pages line
 set mouse=a       " Enable mouse (esp. for balloons and scrolling in popups)
-set ttymouse=sgr  " .. also in 'terminals that emit SGR-styled mouse reporting'
+if !has('nvim')
+  set ttymouse=sgr  " .. also in 'terminals that emit SGR-styled mouse reporting'
+endif
 set noshowmode    " Do not echo the mode, status line will display it instead
 set wildmenu      " Enable command-line completion menu
 set wildmode=longest:full,full " .. with incremental completions
@@ -20,10 +22,12 @@ set smartcase     " .. unless 'the search pattern contains upper case characters
 set shortmess-=S  " 'Show search count message when searching'
 
 " True colors
-scriptencoding utf-8
-let &t_8f = '[38;2;%lu;%lu;%lum'
-let &t_8b = '[48;2;%lu;%lu;%lum'
-scriptencoding
+if !has('nvim')
+  scriptencoding utf-8
+  let &t_8f = '[38;2;%lu;%lu;%lum'
+  let &t_8b = '[48;2;%lu;%lu;%lum'
+  scriptencoding
+endif
 set termguicolors
 
 " Two-space indentation
@@ -32,26 +36,49 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" XT terminfo capability for tmux
-let &t_fe = "\<Esc>[?1004h"
-let &t_fd = "\<Esc>[?1004l"
+if !has('nvim')
+  " XT terminfo capability for tmux
+  let &t_fe = "\<Esc>[?1004h"
+  let &t_fd = "\<Esc>[?1004l"
+endif
 " }}}
 
 " {{{ Plugin management
 call plug#begin('~/.vim/plugged')
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'moll/vim-bbye'
-Plug 'kalekundert/vim-coiled-snake'
-Plug 'wellle/context.vim'
+if has('nvim')
+  Plug 'norcalli/nvim-colorizer.lua'
+else
+  Plug 'ap/vim-css-color'
+endif
+if has('nvim')
+  set completeopt=menuone,noselect
+  Plug 'hrsh7th/nvim-compe'
+  let g:compe = {}
+  let g:compe.enabled = v:true
+  let g:compe.source = {
+    \ 'path': v:true,
+    \ 'buffer': v:true,
+    \ 'tags': v:true,
+    \ 'nvim_lsp': v:true,
+    \ 'vsnip': v:true,
+    \ }
+  inoremap <silent><expr> <C-Space> compe#complete()
+  inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+  inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+  inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+  inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+else
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+endif
 Plug 'romainl/vim-cool'
 Plug 'rbong/vim-crystalline'
 let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_tabline_fn = 'TabLine'
 let g:crystalline_theme = 'gruvbox'
 
-Plug 'ap/vim-css-color'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
@@ -70,13 +97,23 @@ augroup my_glyph_palette
 augroup END
 
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
-Plug 'gruvbox-community/gruvbox'
+if has('nvim')
+  Plug 'rktjmp/lush.nvim'
+  Plug 'npxbr/gruvbox.nvim'
+else
+  Plug 'gruvbox-community/gruvbox'
+endif
 let g:gruvbox_italic = 1
 
 Plug 'machakann/vim-highlightedyank'
-Plug 'Yggdroot/indentLine'
+if has('nvim')
+  Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+else
+  Plug 'Yggdroot/indentLine'
+endif
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_bufTypeExclude = ['help']
+let g:indentLine_fileTypeExclude = ['help']
+let g:indentLine_bufTypeExclude = ['terminal']
 
 Plug 'andymass/vim-matchup'
 let g:matchup_matchparen_offscreen = {}
@@ -97,13 +134,23 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/reply.vim'
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
-Plug 'arzg/vim-rust-syntax-ext'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'aymericbeaumet/vim-symlink'
+Plug 'lambdalisue/suda.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'cespare/vim-toml'
 Plug 'markonm/traces.vim'
 Plug 'andymass/vim-tradewinds'
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
+
+  Plug 'romgrk/nvim-treesitter-context'
+else
+  Plug 'kalekundert/vim-coiled-snake'
+  Plug 'wellle/context.vim', { 'branch': '68-incremental-cache' }
+  Plug 'arzg/vim-rust-syntax-ext'
+endif
 Plug 'tpope/vim-unimpaired'
 Plug 'dhruvasagar/vim-zoom'
 let g:zoom#statustext = "\uf848 "
@@ -115,17 +162,27 @@ if executable('git')
   Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
   Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-rhubarb'
   Plug 'rhysd/git-messenger.vim'
-  Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_preview_win_floating = 1
+  if has('nvim')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'lewis6991/gitsigns.nvim'
+  else
+    Plug 'airblade/vim-gitgutter'
+    let g:gitgutter_preview_win_floating = 1
+  endif
 
   function! MyGitStatusline() abort
     if &modifiable && !empty(get(b:, 'git_dir', ''))
       let l:out = ''
-      if g:gitgutter_enabled
-        let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
-        let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
+      if has('nvim')
+        let l:out .= get(b:,'gitsigns_status','') . ' '
+        let l:branch = get(b:,'gitsigns_head','')
+      else
+        if g:gitgutter_enabled
+          let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
+          let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
+        endif
+        let l:branch = FugitiveHead()
       endif
-      let l:branch = FugitiveHead()
       let l:out .= l:branch !=# '' ? "\ue0a0 " . l:branch : ''
       return !empty(l:out) ? ' ' . l:out : ''
     else
@@ -135,48 +192,59 @@ if executable('git')
 endif
 
 " LSP
+if has('nvim')
+  Plug 'neovim/nvim-lspconfig'
+else
+  Plug 'prabirshrestha/vim-lsp'
+  let g:lsp_document_code_action_signs_enabled = 0
+  let g:lsp_diagnostics_float_cursor = 1
+  let g:lsp_semantic_enabled = 1
+  set foldmethod=expr
+    \ foldexpr=lsp#ui#vim#folding#foldexpr()
+    \ foldtext=lsp#ui#vim#folding#foldtext()
+  let g:lsp_work_done_progress_enabled = 1
+  function! MyLspProgress() abort
+    let l:progress = lsp#get_progress()
+    if empty(l:progress) | return '' | endif
+    let l:progress = l:progress[len(l:progress) - 1]
+    return l:progress['server'] . ': ' . l:progress['message']
+  endfunction
+  augroup my_crystalline_lsp
+    autocmd!
+    autocmd User lsp_progress_updated call crystalline#set_statusline(g:crystalline_statusline_fn)
+  augroup END
+
+  Plug 'mattn/vim-lsp-settings'
+  let g:lsp_settings = {
+    \  'clangd': { 'disabled': v:true },
+    \  'efm-langserver': { 'disabled': v:false }
+    \}
+  let g:lsp_settings_enable_suggestions = 0
+endif
 if executable('ccls')
   Plug 'm-pilia/vim-ccls' | Plug 'jackguo380/vim-lsp-cxx-highlight'
-  augroup lsp_ccls
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-      \ 'name': 'ccls',
-      \ 'cmd': {server_info->['ccls']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-      \ 'initialization_options': {
-      \   'highlight': { 'lsRanges' : v:true },
-      \ },
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-      \ })
-  augroup END
+  if !has('nvim')
+    augroup lsp_ccls
+      autocmd!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'ccls',
+        \ 'cmd': {server_info->['ccls']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+        \ 'initialization_options': {
+        \   'highlight': { 'lsRanges' : v:true },
+        \ },
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+        \ })
+    augroup END
+  endif
 endif
-Plug 'prabirshrestha/vim-lsp'
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_semantic_enabled = 1
-set foldmethod=expr
-  \ foldexpr=lsp#ui#vim#folding#foldexpr()
-  \ foldtext=lsp#ui#vim#folding#foldtext()
-let g:lsp_work_done_progress_enabled = 1
-function! MyLspProgress() abort
-  let l:progress = lsp#get_progress()
-  if empty(l:progress) | return '' | endif
-  let l:progress = l:progress[len(l:progress) - 1]
-  return l:progress['server'] . ': ' . l:progress['message']
-endfunction
-augroup my_crystalline_lsp
-  autocmd!
-  autocmd User lsp_progress_updated call crystalline#set_statusline(g:crystalline_statusline_fn)
-augroup END
-
-Plug 'mattn/vim-lsp-settings'
-let g:lsp_settings = {
-  \  'clangd': { 'disabled': v:true },
-  \  'efm-langserver': { 'disabled': v:false }
-  \}
-let g:lsp_settings_enable_suggestions = 0
 
 Plug 'liuchengxu/vista.vim'
-let g:vista_default_executive = 'vim_lsp'
+if has('nvim')
+  let g:vista_default_executive = 'nvim_lsp'
+else
+  let g:vista_default_executive = 'vim_lsp'
+endif
 
 Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
@@ -193,6 +261,28 @@ call plug#end()
 
 colorscheme gruvbox
 let g:clap_enable_icon = 1 " For system-installed vim-clap
+if has('nvim')
+  lua << EOF
+require('colorizer').setup()
+require('gitsigns').setup()
+require('lsp')
+require('nvim-treesitter.configs').setup {
+  highlight = {
+    enable = true,
+    disable = { "c", "cpp" },
+  },
+  incremental_selection = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+  matchup = {
+    enable = true,
+  },
+}
+EOF
+endif
 " }}}
 
 " {{{ Status and tab pages lines
@@ -208,7 +298,11 @@ function! StatusLine(current, width)
   if a:current
     let l:s .= '%{zoom#statusline()}' . crystalline#right_sep('', 'Fill')
     if a:width > 80
-      let l:s .= '%{MyGitStatusline()} %{MyLspProgress()}'
+      if has('nvim')
+        let l:s .= '%{MyGitStatusline()}'
+      else
+        let l:s .= '%{MyGitStatusline()} %{MyLspProgress()}'
+      endif
     endif
   endif
 

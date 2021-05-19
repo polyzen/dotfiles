@@ -3,6 +3,11 @@ base
 │   ├── efm-langserver
 │   │   └── config.yaml
 │   ├── flake8
+│   ├── nvim
+│   │   ├── after -> ../../.vim/after
+│   │   ├── init.vim -> ../../.vim/vimrc
+│   │   └── lua
+│   │       └── lsp.lua
 │   ├── pylintrc
 │   ├── tmux
 │   │   └── tmux.conf

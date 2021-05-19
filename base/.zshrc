@@ -32,7 +32,7 @@ precmd() { disambiguate-keeplast }
 PROMPT='$REPLY %(!.#.>) '
 RPROMPT='$(gitprompt-rs zsh)'
 
-export EDITOR=vim
+export EDITOR=nvim
 export LS_COLORS="$(vivid generate solarized-dark)"
 export SKIM_DEFAULT_COMMAND='fd --type f'
 
