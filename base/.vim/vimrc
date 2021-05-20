@@ -113,6 +113,9 @@ Plug 'tpope/vim-repeat'
 Plug 'rhysd/reply.vim'
 Plug 'tpope/vim-rsi'
 Plug 'matthew-brett/vim-rst-sections'
+Plug 'mhinz/vim-signify'
+let g:signify_skip = { 'vcs': { 'deny': ['git'] } }
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'dhruvasagar/vim-table-mode'
