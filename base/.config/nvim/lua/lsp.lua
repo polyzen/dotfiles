@@ -71,12 +71,12 @@ nvim_lsp.sumneko_lua.setup{
   on_attach = on_attach,
 }
 
-local servers = { 'bashls', 'efm', 'tailwindcss', 'tsserver', 'yamlls' }
+local servers = { 'bashls', 'efm', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, }
 end
 
-local servers_with_snippets = { 'jedi_language_server', 'rust_analyzer' }
+local servers_with_snippets = { 'rust_analyzer' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
