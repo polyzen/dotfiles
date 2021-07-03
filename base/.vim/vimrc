@@ -212,7 +212,9 @@ endif
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'kosayoda/nvim-lightbulb'
-  autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+  augroup my_lsp_lightbulb
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+  augroup END
 else
   Plug 'prabirshrestha/vim-lsp'
   let g:lsp_document_code_action_signs_enabled = 0
