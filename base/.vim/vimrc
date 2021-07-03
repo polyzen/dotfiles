@@ -215,6 +215,8 @@ if has('nvim')
   augroup my_lsp_lightbulb
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
   augroup END
+
+  Plug 'simrat39/rust-tools.nvim'
 else
   Plug 'prabirshrestha/vim-lsp'
   let g:lsp_document_code_action_signs_enabled = 0
@@ -275,6 +277,7 @@ if has('nvim')
 require('colorizer').setup()
 require('gitsigns').setup()
 require('lsp')
+require('rust-tools').setup()
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
