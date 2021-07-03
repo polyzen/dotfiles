@@ -21,3 +21,5 @@
 	diff = /usr/share/git/diff-highlight/diff-highlight | less
 [tig]
 	diff-highlight = /usr/share/git/diff-highlight/diff-highlight
+[tag]
+	gpgsign = enable
