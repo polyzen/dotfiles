@@ -6,7 +6,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'documentation',
     'detail',
     'additionalTextEdits',
-  }
+  },
 }
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -76,7 +76,7 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, }
 end
 
-local servers_with_snippets = { 'rust_analyzer' }
+local servers_with_snippets = { 'gopls', 'rust_analyzer' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
