@@ -2,6 +2,7 @@ version: 2
 root-markers:
   - .git/
   - .svn/
+lint-debounce: 1s
 
 tools:
   vint-lint: &vint-lint
