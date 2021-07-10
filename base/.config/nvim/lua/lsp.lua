@@ -69,6 +69,13 @@ nvim_lsp.ccls.setup{
 nvim_lsp.sumneko_lua.setup{
   cmd = { 'lua-language-server' },
   on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
 }
 
 local servers = { 'bashls', 'efm', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }

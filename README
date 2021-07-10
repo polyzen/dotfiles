@@ -4,23 +4,22 @@ base
 │   │   └── config.yaml
 │   ├── flake8
 │   ├── nvim
-│   │   ├── after -> ../../.vim/after
-│   │   ├── init.vim -> ../../.vim/vimrc
+│   │   ├── after
+│   │   │   ├── ftplugin
+│   │   │   │   ├── markdown.vim
+│   │   │   │   └── rst.vim
+│   │   │   └── plugin
+│   │   │       └── goyo.vim
+│   │   ├── init.vim
 │   │   └── lua
-│   │       └── lsp.lua
+│   │       ├── lsp.lua
+│   │       └── plugins.lua
 │   ├── pylintrc
 │   ├── tmux
 │   │   └── tmux.conf
 │   └── yamllint
 │       └── config
 ├── .vim
-│   ├── after
-│   │   ├── ftplugin
-│   │   │   ├── markdown.vim
-│   │   │   └── rst.vim
-│   │   └── plugin
-│   │       └── goyo.vim
-│   └── vimrc
 └── .zshrc
 misc
 └── .config
