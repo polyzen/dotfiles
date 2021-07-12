@@ -54,7 +54,6 @@ return require('packer').startup(function()
   use 'junegunn/vim-easy-align'
   use 'editorconfig/editorconfig-vim'
   use 'Konfekt/FastFold'
-  use 'Jorengarenar/fauxClip'
   use { 'junegunn/goyo.vim', 'junegunn/limelight.vim' }
   use {
     'npxbr/gruvbox.nvim',
@@ -82,6 +81,7 @@ return require('packer').startup(function()
     use 'wfxr/minimap.vim'
   end
   use 'markwu/vim-mrufiles'
+  use 'ojroques/vim-oscyank'
   use 'junegunn/vim-peekaboo'
   use 'blueyed/vim-qf_resize'
   use 'itchyny/vim-qfedit'
