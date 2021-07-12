@@ -63,7 +63,6 @@ return require('packer').startup(function()
       vim.cmd[[colorscheme gruvbox]]
     end,
   }
-  use 'machakann/vim-highlightedyank'
   use {
     'lukas-reineke/indent-blankline.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },

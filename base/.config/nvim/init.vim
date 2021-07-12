@@ -26,11 +26,22 @@ set autoindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank {}
+augroup END
 " }}}
 
 " {{{ Plugin management
 lua require('plugins')
 
+augroup my_lsp_lightbulb
+  autocmd!
+  autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
+augroup END
+
+"  {{{ Mappings
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
@@ -47,10 +58,6 @@ smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<  use>(vsnip-jump-prev)'      : '<S-T
 
 nmap ga <  use>(EasyAlign)
 xmap ga <  use>(EasyAlign)
-
-augroup my_lsp_lightbulb
-  autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
-augroup END
 " }}}
 
 " {{{ Status line
