@@ -60,6 +60,8 @@ return require('packer').startup(function()
     requires = { 'rktjmp/lush.nvim' },
     config = function()
       vim.g.gruvbox_italic = 1
+      local h = tonumber(os.date("%H"))
+      if 6 <= h and h < 20 then vim.opt.background = "light" end
       vim.cmd[[colorscheme gruvbox]]
     end,
   }
