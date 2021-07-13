@@ -9,7 +9,8 @@ base
 │   │   │   │   ├── markdown.vim
 │   │   │   │   └── rst.vim
 │   │   │   └── plugin
-│   │   │       └── goyo.vim
+│   │   │       ├── goyo.vim
+│   │   │       └── vim-crystalline.vim
 │   │   ├── init.vim
 │   │   └── lua
 │   │       ├── lsp.lua
@@ -19,7 +20,6 @@ base
 │   │   └── tmux.conf
 │   └── yamllint
 │       └── config
-├── .vim
 └── .zshrc
 misc
 └── .config
