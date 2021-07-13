@@ -28,12 +28,11 @@ function! StatusLine(current, width)
   endif
   let l:s .= ' %t%h%w%m%r '
   if a:current
-    let l:s .= '%{zoom#statusline()}' . crystalline#right_sep('', 'Fill')
+    let l:s .= zoom#statusline() . crystalline#right_sep('', 'Fill')
     if a:width > 80
-      let l:s .= '%{MyGitStatusline()}'
+      let l:s .= MyGitStatusline()
     endif
   endif
-
   let l:s .= '%='
   if a:current
     let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
