@@ -123,7 +123,7 @@ return require('packer').startup(function()
   use 'tpope/vim-unimpaired'
   use {
     'dhruvasagar/vim-zoom',
-    config = [[vim.g['zoom#statustext'] = ' ']],
+    config = [[vim.g['zoom#statustext'] = '🔍 ']],
     }
 
   -- Completions
