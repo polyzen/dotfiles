@@ -11,7 +11,7 @@ function! MyGitStatusline() abort
       endif
       let l:branch = FugitiveHead()
     endif
-    let l:out .= l:branch !=# '' ? '🌱 ' . l:branch : ''
+    let l:out .= l:branch !=# '' ? '(' . l:branch . ')' : ''
     return !empty(l:out) ? ' ' . l:out : ''
   else
     return ''
