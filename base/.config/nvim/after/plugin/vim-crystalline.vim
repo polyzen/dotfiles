@@ -1,16 +1,8 @@
 function! MyGitStatusline() abort
   if &modifiable && !empty(get(b:, 'git_dir', ''))
     let l:out = ''
-    if has('nvim')
-      let l:out .= get(b:,'gitsigns_status','') . ' '
-      let l:branch = get(b:,'gitsigns_head','')
-    else
-      if g:gitgutter_enabled
-        let [l:added, l:modified, l:removed] = GitGutterGetHunkSummary()
-        let l:out .= printf('+%d ~%d -%d ', l:added, l:modified, l:removed)
-      endif
-      let l:branch = FugitiveHead()
-    endif
+    let l:out .= get(b:,'gitsigns_status','') . ' '
+    let l:branch = get(b:,'gitsigns_head','')
     let l:out .= l:branch !=# '' ? '(' . l:branch . ')' : ''
     return !empty(l:out) ? ' ' . l:out : ''
   else
