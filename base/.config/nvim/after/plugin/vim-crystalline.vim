@@ -1,7 +1,8 @@
 function! MyGitStatusline() abort
   if &modifiable && !empty(get(b:, 'git_dir', ''))
     let l:out = ''
-    let l:out .= get(b:,'gitsigns_status','') . ' '
+    let l:status = get(b:,'gitsigns_status','')
+    let l:out .= l:status !=# '' ? l:status . ' ' : ''
     let l:branch = get(b:,'gitsigns_head','')
     let l:out .= l:branch !=# '' ? '🌳 ' . l:branch : ''
     return !empty(l:out) ? ' ' . l:out : ''
