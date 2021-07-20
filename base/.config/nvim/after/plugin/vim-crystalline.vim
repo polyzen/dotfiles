@@ -3,8 +3,9 @@ function! MyGitStatusline() abort
     let l:out = ''
     let l:status = get(b:,'gitsigns_status','')
     let l:out .= l:status !=# '' ? l:status . ' ' : ''
-    let l:branch = get(b:,'gitsigns_head','')
-    let l:out .= l:branch !=# '' ? '🌳 ' . l:branch : ''
+    let l:out .= '🌳'
+    let l:head = get(b:,'gitsigns_head','')
+    let l:out .= l:head !=# '' ? ' ' . l:head : ''
     return !empty(l:out) ? ' ' . l:out : ''
   else
     return ''
