@@ -9,7 +9,7 @@ return require('packer').startup(function()
       require('nvim-treesitter.configs').setup {
         highlight = {
           enable = true,
-          disable = { "c", "cpp" },
+          disable = { 'c', 'cpp' },
         },
         incremental_selection = {
           enable = true,
@@ -32,7 +32,7 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require('buftabline').setup {
-        tab_format = " #{n}: #{b}#{f} #{i} ",
+        tab_format = ' #{n}: #{b}#{f} #{i} ',
         buffer_id_index = true,
       }
     end,
@@ -59,8 +59,8 @@ return require('packer').startup(function()
     requires = { 'rktjmp/lush.nvim' },
     config = function()
       vim.g.gruvbox_italic = 1
-      local h = tonumber(os.date("%H"))
-      if 6 <= h and h < 20 then vim.opt.background = "light" end
+      local h = tonumber(os.date('%H'))
+      if 6 <= h and h < 20 then vim.opt.background = 'light' end
       vim.cmd[[colorscheme gruvbox]]
     end,
   }
