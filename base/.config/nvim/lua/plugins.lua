@@ -32,9 +32,8 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require('buftabline').setup {
+        tab_format = " #{n}: #{b}#{f} #{i} ",
         buffer_id_index = true,
-        icons = true,
-        icon_colors = true,
       }
     end,
   }
