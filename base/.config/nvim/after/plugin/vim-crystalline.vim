@@ -3,17 +3,20 @@ function! MyVCSStatusline() abort
     let l:head = ''
     let l:out = ' '
     let l:status = ''
+    let l:vcs = ''
     if !empty(get(b:, 'git_dir', ''))
       let l:status = get(b:,'gitsigns_status','')
       let l:head = get(b:,'gitsigns_head','')
     elseif !empty(get(b:, 'sy')) && !empty(get(b:sy, 'vcs'))
       let l:status = sy#repo#get_stats_decorated()
+      let l:vcs = get(b:sy, 'vcs')[0]
     else
       return ''
     endif
     let l:out .= l:status !=# '' ? l:status . ' ' : ''
     let l:out .= '🌳'
     let l:out .= l:head !=# '' ? ' ' . l:head : ''
+    let l:out .= l:vcs !=# '' ? ' ' . l:vcs : ''
     return l:out
   else
     return ''
