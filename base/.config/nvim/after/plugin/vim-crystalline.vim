@@ -1,12 +1,20 @@
-function! MyGitStatusline() abort
-  if &modifiable && !empty(get(b:, 'git_dir', ''))
-    let l:out = ''
-    let l:status = get(b:,'gitsigns_status','')
+function! MyVCSStatusline() abort
+  if &modifiable
+    let l:head = ''
+    let l:out = ' '
+    let l:status = ''
+    if !empty(get(b:, 'git_dir', ''))
+      let l:status = get(b:,'gitsigns_status','')
+      let l:head = get(b:,'gitsigns_head','')
+    elseif !empty(get(b:, 'sy')) && !empty(get(b:sy, 'vcs'))
+      let l:status = sy#repo#get_stats_decorated()
+    else
+      return ''
+    endif
     let l:out .= l:status !=# '' ? l:status . ' ' : ''
     let l:out .= '🌳'
-    let l:head = get(b:,'gitsigns_head','')
     let l:out .= l:head !=# '' ? ' ' . l:head : ''
-    return !empty(l:out) ? ' ' . l:out : ''
+    return l:out
   else
     return ''
   endif
@@ -24,7 +32,7 @@ function! StatusLine(current, width)
   if a:current
     let l:s .= zoom#statusline() . crystalline#right_sep('', 'Fill')
     if a:width > 80
-      let l:s .= MyGitStatusline()
+      let l:s .= MyVCSStatusline()
     endif
   endif
   let l:s .= '%='
