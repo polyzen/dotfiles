@@ -1,9 +1,10 @@
 function! MyVCSStatusline() abort
   if &modifiable
     let l:head = ''
-    let l:out = ' '
+    let l:out = ''
     let l:status = ''
     let l:vcs = ''
+
     if !empty(get(b:, 'git_dir', ''))
       let l:status = get(b:,'gitsigns_status','')
       let l:head = get(b:,'gitsigns_head','')
@@ -13,11 +14,13 @@ function! MyVCSStatusline() abort
     else
       return ''
     endif
+
     let l:out .= l:status !=# '' ? l:status . ' ' : ''
     let l:out .= '🌳'
     let l:out .= l:head !=# '' ? ' ' . l:head : ''
     let l:out .= l:vcs !=# '' ? ' ' . l:vcs : ''
-    return l:out
+
+    return ' ' . l:out
   else
     return ''
   endif
