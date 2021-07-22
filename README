@@ -5,9 +5,6 @@ base
 │   ├── flake8
 │   ├── nvim
 │   │   ├── after
-│   │   │   ├── ftplugin
-│   │   │   │   ├── markdown.vim
-│   │   │   │   └── rst.vim
 │   │   │   └── plugin
 │   │   │       ├── goyo.vim
 │   │   │       └── vim-crystalline.vim
