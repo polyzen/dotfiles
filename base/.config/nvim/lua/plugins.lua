@@ -39,7 +39,7 @@ return require('packer').startup(function()
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    config = [[require('colorizer').setup()]],
+    config = "require('colorizer').setup()",
   }
   use 'romainl/vim-cool'
   use {
@@ -61,7 +61,7 @@ return require('packer').startup(function()
       vim.g.gruvbox_italic = 1
       local h = tonumber(os.date('%H'))
       if 6 <= h and h < 20 then vim.opt.background = 'light' end
-      vim.cmd[[colorscheme gruvbox]]
+      vim.cmd('colorscheme gruvbox')
     end,
   }
   use {
@@ -76,7 +76,7 @@ return require('packer').startup(function()
   }
   use {
     'andymass/vim-matchup',
-    config = [[vim.g.matchup_matchparen_offscreen = {}]],
+    config = 'vim.g.matchup_matchparen_offscreen = {}',
   }
   if vim.fn.executable('code-minimap') == 1 then
     use 'wfxr/minimap.vim'
@@ -88,7 +88,7 @@ return require('packer').startup(function()
   use 'itchyny/vim-qfedit'
   use {
     'unblevable/quick-scope',
-    config = [[vim.g.qs_enable = 0]],
+    config = 'vim.g.qs_enable = 0',
   }
   use 'AndrewRadev/quickpeek.vim'
   use 'tpope/vim-repeat'
@@ -97,7 +97,7 @@ return require('packer').startup(function()
   use 'matthew-brett/vim-rst-sections'
   use {
     'mhinz/vim-signify',
-    config = [[vim.g.signify_skip = { vcs = { deny = { 'git' } } }]],
+    config = "vim.g.signify_skip = { vcs = { deny = { 'git' } } }",
   }
   use 'AndrewRadev/splitjoin.vim'
   use 'lambdalisue/suda.vim'
@@ -125,7 +125,7 @@ return require('packer').startup(function()
   use 'tpope/vim-unimpaired'
   use {
     'dhruvasagar/vim-zoom',
-    config = [[vim.g['zoom#statustext'] = '🔍 ']],
+    config = "vim.g['zoom#statustext'] = '🔍 '",
     }
 
   -- Completions
@@ -162,7 +162,7 @@ return require('packer').startup(function()
       {
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        config = [[require('gitsigns').setup()]],
+        config = "require('gitsigns').setup()",
       }
     }
   end
@@ -173,7 +173,7 @@ return require('packer').startup(function()
     'kosayoda/nvim-lightbulb',
     {
       'liuchengxu/vista.vim',
-      config = [[vim.g.vista_default_executive = 'nvim_lsp']],
+      config = "vim.g.vista_default_executive = 'nvim_lsp'",
     },
   }
   if vim.fn.executable('ccls') == 1 then
@@ -183,7 +183,7 @@ return require('packer').startup(function()
     use {
       'simrat39/rust-tools.nvim',
       requires = { 'nvim-lua/plenary.nvim', opt = true },
-      config = [[require('rust-tools').setup()]],
+      config = "require('rust-tools').setup()",
     }
   end
   if vim.fn.executable('typescript-language-server') == 1 then
