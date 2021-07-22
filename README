@@ -6,7 +6,6 @@ base
 │   ├── nvim
 │   │   ├── after
 │   │   │   └── plugin
-│   │   │       ├── goyo.vim
 │   │   │       └── vim-crystalline.vim
 │   │   ├── init.vim
 │   │   └── lua

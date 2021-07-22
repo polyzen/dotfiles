@@ -61,7 +61,6 @@ return require('packer').startup(function()
   }
   use 'editorconfig/editorconfig-vim'
   use 'Konfekt/FastFold'
-  use { 'junegunn/goyo.vim', 'junegunn/limelight.vim' }
   use {
     'npxbr/gruvbox.nvim',
     requires = { 'rktjmp/lush.nvim' },
@@ -131,11 +130,20 @@ return require('packer').startup(function()
     'romgrk/nvim-treesitter-context',
     requires = { 'nvim-treesitter/nvim-treesitter' },
   }
+  use {
+    'folke/twilight.nvim',
+    config = "require('twilight').setup()",
+  }
   use 'tpope/vim-unimpaired'
+  use {
+    'folke/zen-mode.nvim',
+    requires = { 'folke/twilight.nvim', opt = true },
+    config = "require('zen-mode').setup()",
+  }
   use {
     'dhruvasagar/vim-zoom',
     config = "vim.g['zoom#statustext'] = '🔍 '",
-    }
+  }
 
   -- Completions
   use {
