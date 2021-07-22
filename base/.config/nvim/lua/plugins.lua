@@ -50,7 +50,15 @@ return require('packer').startup(function()
     end,
   }
   use 'tpope/vim-dispatch'
-  use 'junegunn/vim-easy-align'
+  use {
+    'junegunn/vim-easy-align',
+    config = function()
+      vim.cmd([[
+        nmap ga <Plug>(EasyAlign)
+        xmap ga <Plug>(EasyAlign)
+      ]])
+    end,
+  }
   use 'editorconfig/editorconfig-vim'
   use 'Konfekt/FastFold'
   use { 'junegunn/goyo.vim', 'junegunn/limelight.vim' }
@@ -143,11 +151,32 @@ return require('packer').startup(function()
             vsnip = true,
           },
         }
+        vim.cmd([[
+          inoremap <silent><expr> <C-Space> compe#complete()
+          inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+          inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+          inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+          inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+        ]])
         vim.opt.completeopt = 'menuone,noselect'
       end,
     },
     'rafamadriz/friendly-snippets',
-    'hrsh7th/vim-vsnip',
+    {
+      'hrsh7th/vim-vsnip',
+      config = function()
+        vim.cmd([[
+          imap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
+          smap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
+          imap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+          smap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+          imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+          smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+          imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+          smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        ]])
+      end,
+    },
     'hrsh7th/vim-vsnip-integ',
   }
 
@@ -170,7 +199,17 @@ return require('packer').startup(function()
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    'kosayoda/nvim-lightbulb',
+    {
+      'kosayoda/nvim-lightbulb',
+      config = function()
+        vim.cmd([[
+          augroup my_lsp_lightbulb
+            autocmd!
+            autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
+          augroup END
+        ]])
+      end,
+    },
     {
       'liuchengxu/vista.vim',
       config = "vim.g.vista_default_executive = 'nvim_lsp'",
