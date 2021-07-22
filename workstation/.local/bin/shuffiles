@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-if [[ -z $tmp ]] || [[ $i -ge $#tmp ]]; then
-  { i=1; IFS=$'\n'; tmp=($(shuf -e *)); unset IFS; }
-  for (( i = i; i <= $#tmp; i++ )); do
-    echo $tmp[i]
-    sleep 3.2s
-  done
-fi
+IFS=$'\n'
+tmp=($(shuf -e *))
+
+for (( i = 1; i <= $#tmp; i++ )); do
+  echo $tmp[i]
+  sleep 3.2s
+done
