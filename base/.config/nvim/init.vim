@@ -1,4 +1,3 @@
-let g:tar_cmd = 'bsdtar' " Workaround 'unknown extended header' error
 set guifont=Fantasque\ Sans\ Mono\ 12
 set guioptions-=e " Use 'a non-GUI tab pages line'
 set hidden        " Allow hidden buffers
