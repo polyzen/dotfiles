@@ -7,7 +7,7 @@ base
 │   │   ├── after
 │   │   │   └── plugin
 │   │   │       └── vim-crystalline.vim
-│   │   ├── init.vim
+│   │   ├── init.lua
 │   │   └── lua
 │   │       ├── lsp.lua
 │   │       └── plugins.lua
