@@ -2,29 +2,6 @@ local use = require('packer').use
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        highlight = {
-          enable = true,
-          disable = { 'c', 'cpp' },
-        },
-        incremental_selection = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-        },
-        matchup = {
-          enable = true,
-        },
-      }
-      vim.opt.foldmethod = 'expr'
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    end,
-  }
   use 'ntpeters/vim-better-whitespace'
   use 'moll/vim-bbye'
   use {
@@ -125,6 +102,29 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        highlight = {
+          enable = true,
+          disable = { 'c', 'cpp' },
+        },
+        incremental_selection = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        matchup = {
+          enable = true,
+        },
+      }
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    end,
   }
   use {
     'romgrk/nvim-treesitter-context',
