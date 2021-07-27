@@ -1,33 +1,33 @@
 local use = require('packer').use
 
 return require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
-  use 'ntpeters/vim-better-whitespace'
-  use 'moll/vim-bbye'
-  use {
+  use('wbthomason/packer.nvim')
+  use('ntpeters/vim-better-whitespace')
+  use('moll/vim-bbye')
+  use({
     'jose-elias-alvarez/buftabline.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require('buftabline').setup {
+      require('buftabline').setup({
         tab_format = ' #{n}: #{b}#{f} #{i} ',
         buffer_id_index = true,
-      }
+      })
     end,
-  }
-  use {
+  })
+  use({
     'norcalli/nvim-colorizer.lua',
     config = "require('colorizer').setup()",
-  }
-  use 'romainl/vim-cool'
-  use {
+  })
+  use('romainl/vim-cool')
+  use({
     'rbong/vim-crystalline',
     config = function()
       vim.g.crystalline_statusline_fn = 'StatusLine'
       vim.g.crystalline_theme = 'gruvbox'
     end,
-  }
-  use 'tpope/vim-dispatch'
-  use {
+  })
+  use('tpope/vim-dispatch')
+  use({
     'junegunn/vim-easy-align',
     config = function()
       vim.cmd([[
@@ -35,20 +35,22 @@ return require('packer').startup(function()
         xmap ga <Plug>(EasyAlign)
       ]])
     end,
-  }
-  use 'editorconfig/editorconfig-vim'
-  use 'Konfekt/FastFold'
-  use {
+  })
+  use('editorconfig/editorconfig-vim')
+  use('Konfekt/FastFold')
+  use({
     'npxbr/gruvbox.nvim',
     requires = { 'rktjmp/lush.nvim' },
     config = function()
       vim.g.gruvbox_italic = 1
       local h = tonumber(os.date('%H'))
-      if 6 <= h and h < 20 then vim.opt.background = 'light' end
+      if 6 <= h and h < 20 then
+        vim.opt.background = 'light'
+      end
       vim.cmd('colorscheme gruvbox')
     end,
-  }
-  use {
+  })
+  use({
     'lukas-reineke/indent-blankline.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
@@ -58,36 +60,36 @@ return require('packer').startup(function()
       vim.g.indent_blankline_show_current_context = true
       vim.g.indent_blankline_use_treesitter = true
     end,
-  }
-  use {
+  })
+  use({
     'andymass/vim-matchup',
     config = 'vim.g.matchup_matchparen_offscreen = {}',
-  }
+  })
   if vim.fn.executable('code-minimap') == 1 then
-    use 'wfxr/minimap.vim'
+    use('wfxr/minimap.vim')
   end
-  use 'markwu/vim-mrufiles'
-  use 'ojroques/vim-oscyank'
-  use 'blueyed/vim-qf_resize'
-  use 'itchyny/vim-qfedit'
-  use {
+  use('markwu/vim-mrufiles')
+  use('ojroques/vim-oscyank')
+  use('blueyed/vim-qf_resize')
+  use('itchyny/vim-qfedit')
+  use({
     'unblevable/quick-scope',
     config = 'vim.g.qs_enable = 0',
-  }
-  use 'AndrewRadev/quickpeek.vim'
-  use 'tversteeg/registers.nvim'
-  use 'tpope/vim-repeat'
-  use 'rhysd/reply.vim'
-  use 'tpope/vim-rsi'
-  use 'matthew-brett/vim-rst-sections'
-  use {
+  })
+  use('AndrewRadev/quickpeek.vim')
+  use('tversteeg/registers.nvim')
+  use('tpope/vim-repeat')
+  use('rhysd/reply.vim')
+  use('tpope/vim-rsi')
+  use('matthew-brett/vim-rst-sections')
+  use({
     'mhinz/vim-signify',
     config = "vim.g.signify_skip = { vcs = { deny = { 'git' } } }",
-  }
-  use 'AndrewRadev/splitjoin.vim'
-  use 'lambdalisue/suda.vim'
-  use 'dhruvasagar/vim-table-mode'
-  use {
+  })
+  use('AndrewRadev/splitjoin.vim')
+  use('lambdalisue/suda.vim')
+  use('dhruvasagar/vim-table-mode')
+  use({
     'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
@@ -95,19 +97,19 @@ return require('packer').startup(function()
       { 'nvim-treesitter/nvim-treesitter', opt = true },
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
-  }
-  use 'cespare/vim-toml'
-  use 'markonm/traces.vim'
-  use 'andymass/vim-tradewinds'
-  use {
+  })
+  use('cespare/vim-toml')
+  use('markonm/traces.vim')
+  use('andymass/vim-tradewinds')
+  use({
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
-  use {
+  })
+  use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.configs').setup({
         highlight = {
           enable = true,
           disable = { 'c', 'cpp' },
@@ -121,36 +123,36 @@ return require('packer').startup(function()
         matchup = {
           enable = true,
         },
-      }
+      })
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
     end,
-  }
-  use {
+  })
+  use({
     'romgrk/nvim-treesitter-context',
     requires = { 'nvim-treesitter/nvim-treesitter' },
-  }
-  use {
+  })
+  use({
     'folke/twilight.nvim',
     config = "require('twilight').setup()",
-  }
-  use 'tpope/vim-unimpaired'
-  use {
+  })
+  use('tpope/vim-unimpaired')
+  use({
     'folke/zen-mode.nvim',
     requires = { 'folke/twilight.nvim', opt = true },
     config = "require('zen-mode').setup()",
-  }
-  use {
+  })
+  use({
     'dhruvasagar/vim-zoom',
     config = "vim.g['zoom#statustext'] = '🔍 '",
-  }
+  })
 
   -- Completions
-  use {
+  use({
     {
       'hrsh7th/nvim-compe',
       config = function()
-        require('compe').setup {
+        require('compe').setup({
           enabled = true,
           source = {
             path = true,
@@ -159,7 +161,7 @@ return require('packer').startup(function()
             nvim_lsp = true,
             vsnip = true,
           },
-        }
+        })
         vim.cmd([[
           inoremap <silent><expr> <C-Space> compe#complete()
           inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -187,26 +189,28 @@ return require('packer').startup(function()
       end,
     },
     'hrsh7th/vim-vsnip-integ',
-  }
+  })
 
   -- Git
   if vim.fn.executable('git') == 1 then
-    use {
+    use({
       'hotwatermorning/auto-git-diff',
       'rhysd/committia.vim',
-      'tpope/vim-fugitive', 'junegunn/gv.vim',
-      'shumphrey/fugitive-gitlab.vim', 'tpope/vim-rhubarb',
+      'tpope/vim-fugitive',
+      'junegunn/gv.vim',
+      'shumphrey/fugitive-gitlab.vim',
+      'tpope/vim-rhubarb',
       'rhysd/git-messenger.vim',
       {
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         config = "require('gitsigns').setup()",
-      }
-    }
+      },
+    })
   end
 
   -- LSP
-  use {
+  use({
     'neovim/nvim-lspconfig',
     {
       'kosayoda/nvim-lightbulb',
@@ -223,22 +227,22 @@ return require('packer').startup(function()
       'liuchengxu/vista.vim',
       config = "vim.g.vista_default_executive = 'nvim_lsp'",
     },
-  }
+  })
   if vim.fn.executable('ccls') == 1 then
-    use { 'm-pilia/vim-ccls', 'jackguo380/vim-lsp-cxx-highlight' }
+    use({ 'm-pilia/vim-ccls', 'jackguo380/vim-lsp-cxx-highlight' })
   end
   if vim.fn.executable('rust-analyzer') == 1 then
-    use {
+    use({
       'simrat39/rust-tools.nvim',
       requires = { 'nvim-lua/plenary.nvim', opt = true },
       config = "require('rust-tools').setup()",
-    }
+    })
   end
   if vim.fn.executable('typescript-language-server') == 1 then
-    use {
+    use({
       'jose-elias-alvarez/nvim-lsp-ts-utils',
       requires = { 'nvim-lua/plenary.nvim' },
-    }
+    })
   end
   require('lsp')
 end)

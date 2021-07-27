@@ -8,9 +8,11 @@ base
 │   │   │   └── plugin
 │   │   │       └── vim-crystalline.vim
 │   │   ├── init.lua
-│   │   └── lua
-│   │       ├── lsp.lua
-│   │       └── plugins.lua
+│   │   ├── lua
+│   │   │   ├── lsp.lua
+│   │   │   └── plugins.lua
+│   │   ├── selene.toml
+│   │   └── stylua.toml
 │   ├── pylintrc
 │   ├── tmux
 │   │   └── tmux.conf
