@@ -5,7 +5,7 @@ function! MyVCSStatusline() abort
     let l:status = ''
     let l:vcs = ''
 
-    if !empty(get(b:, 'git_dir', ''))
+    if !empty(FugitiveGitDir())
       let l:status = get(b:,'gitsigns_status','')
       let l:head = get(b:,'gitsigns_head','')
     elseif !empty(get(b:, 'sy')) && !empty(get(b:sy, 'vcs'))
