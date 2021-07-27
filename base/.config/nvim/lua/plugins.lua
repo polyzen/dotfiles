@@ -68,7 +68,6 @@ return require('packer').startup(function()
   end
   use 'markwu/vim-mrufiles'
   use 'ojroques/vim-oscyank'
-  use 'junegunn/vim-peekaboo'
   use 'blueyed/vim-qf_resize'
   use 'itchyny/vim-qfedit'
   use {
@@ -76,6 +75,7 @@ return require('packer').startup(function()
     config = 'vim.g.qs_enable = 0',
   }
   use 'AndrewRadev/quickpeek.vim'
+  use 'tversteeg/registers.nvim'
   use 'tpope/vim-repeat'
   use 'rhysd/reply.vim'
   use 'tpope/vim-rsi'
