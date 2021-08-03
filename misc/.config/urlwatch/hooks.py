@@ -33,9 +33,7 @@ from urlwatch import filters
 class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
     """Get release version, creation time, sha256 hash, and release notes from AMO"""
 
-    MATCH = {
-        "url": re.compile("https://addons.mozilla.org/api/v4/addons/addon/.*")
-    }
+    MATCH = {"url": re.compile("https://addons.mozilla.org/api/v4/addons/addon/.*")}
 
     def filter(self, data, subfilter):
         api = json.loads(data)
