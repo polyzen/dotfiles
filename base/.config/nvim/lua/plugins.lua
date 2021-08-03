@@ -54,11 +54,13 @@ return require('packer').startup(function()
     'lukas-reineke/indent-blankline.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
-      vim.g.indent_blankline_char_list = { '|', '¦', '┆', '┊' }
-      vim.g.indent_blankline_filetype_exclude = { 'help' }
-      vim.g.indent_blankline_buftype_exclude = { 'terminal' }
-      vim.g.indent_blankline_show_current_context = true
-      vim.g.indent_blankline_use_treesitter = true
+      require('indent_blankline').setup({
+        char_list = { '|', '¦', '┆', '┊' },
+        filetype_exclude = { 'help' },
+        buftype_exclude = { 'terminal' },
+        show_current_context = true,
+        use_treesitter = true,
+      })
     end,
   })
   use({
