@@ -6,11 +6,7 @@
 [diff]
 	tool = vimdiff
 [sendemail]
-	smtpencryption = tls
-	smtpserver = mail.archlinux.org
-	smtpuser = polyzen@archlinux.org
 	suppresscc = self
-	smtpserverport = 587
 [commit]
 	gpgsign = true
 [fetch]
