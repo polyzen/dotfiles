@@ -64,18 +64,24 @@ local on_attach = function(client, bufnr)
 end
 
 nvim_lsp.ccls.setup({
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
   init_options = {
     highlight = {
       lsRanges = true,
     },
   },
   capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 nvim_lsp.sumneko_lua.setup({
-  cmd = { 'lua-language-server' },
   on_attach = on_attach,
+  cmd = { 'lua-language-server' },
+  flags = {
+    debounce_text_changes = 150,
+  },
   settings = {
     Lua = {
       diagnostics = {
@@ -87,13 +93,21 @@ nvim_lsp.sumneko_lua.setup({
 
 local servers = { 'bashls', 'efm', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({ on_attach = on_attach })
+  nvim_lsp[lsp].setup({
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  })
 end
 
 local servers_with_snippets = { 'gopls', 'rust_analyzer' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup({
-    capabilities = capabilities,
     on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
   })
 end
