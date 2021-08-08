@@ -1,13 +1,9 @@
 local nvim_lsp = require('lspconfig')
-nvim_lsp.util.default_config = vim.tbl_extend(
-  'force',
-  nvim_lsp.util.default_config,
-  {
-    flags = {
-      debounce_text_changes = 150,
-    },
-  }
-)
+nvim_lsp.util.default_config = vim.tbl_extend('force', nvim_lsp.util.default_config, {
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
