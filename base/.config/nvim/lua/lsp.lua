@@ -60,7 +60,21 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { 'bashls', 'efm', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }
+local null_ls = require('null-ls')
+local sources = {
+  null_ls.builtins.diagnostics.flake8,
+  null_ls.builtins.diagnostics.selene,
+  null_ls.builtins.diagnostics.vint,
+  null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.isort,
+  null_ls.builtins.formatting.json_tool,
+  null_ls.builtins.formatting.rustfmt,
+  null_ls.builtins.formatting.shfmt,
+  null_ls.builtins.formatting.stylua,
+}
+null_ls.config({ sources = sources })
+
+local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end

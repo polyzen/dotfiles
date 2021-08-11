@@ -71,6 +71,10 @@ return require('packer').startup(function()
     use('wfxr/minimap.vim')
   end
   use('markwu/vim-mrufiles')
+  use({
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
+  })
   use('ojroques/vim-oscyank')
   use('blueyed/vim-qf_resize')
   use('itchyny/vim-qfedit')
