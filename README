@@ -10,9 +10,9 @@ base
 │   │   │   ├── lsp.lua
 │   │   │   └── plugins.lua
 │   │   ├── selene.toml
-│   │   ├── stylua.toml
 │   │   └── vim.toml
 │   ├── pylintrc
+│   ├── stylua.toml
 │   ├── tmux
 │   │   └── tmux.conf
 │   └── yamllint
