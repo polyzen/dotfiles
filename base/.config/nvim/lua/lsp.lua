@@ -64,6 +64,12 @@ local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.selene,
+  null_ls.builtins.diagnostics.shellcheck.with({
+    extra_args = function(params)
+      return params.ft == 'PKGBUILD' and { '--exclude', 'SC2148,SC2034,SC2154,SC2164' }
+    end,
+    filetypes = { 'PKGBUILD', 'sh' },
+  }),
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
