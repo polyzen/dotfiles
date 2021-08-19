@@ -229,6 +229,7 @@ return require('packer').startup(function()
         ]])
       end,
     },
+    'simrat39/symbols-outline.nvim',
     {
       'liuchengxu/vista.vim',
       config = "vim.g.vista_default_executive = 'nvim_lsp'",
