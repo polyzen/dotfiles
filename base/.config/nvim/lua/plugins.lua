@@ -98,8 +98,8 @@ return require('packer').startup(function()
   use({
     'nvim-telescope/telescope.nvim',
     requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-lua/popup.nvim' },
+      'nvim-lua/plenary.nvim',
+      'nvim-lua/popup.nvim',
       { 'nvim-treesitter/nvim-treesitter', opt = true },
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
@@ -155,46 +155,72 @@ return require('packer').startup(function()
 
   -- Completions
   use({
-    {
-      'hrsh7th/nvim-compe',
-      config = function()
-        require('compe').setup({
-          enabled = true,
-          source = {
-            path = true,
-            buffer = true,
-            tags = true,
-            nvim_lsp = true,
-            vsnip = true,
-          },
-        })
-        vim.cmd([[
-          inoremap <silent><expr> <C-Space> compe#complete()
-          inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-          inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-          inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-          inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-        ]])
-        vim.opt.completeopt = 'menuone,noselect'
-      end,
-    },
     'rafamadriz/friendly-snippets',
     {
-      'hrsh7th/vim-vsnip',
+      'L3MON4D3/LuaSnip',
       config = function()
-        vim.cmd([[
-          imap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
-          smap <expr> <C-j>   vsnip#expandable() ? '<Plug>(vsnip-expand)'         : '<C-j>'
-          imap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-          smap <expr> <C-l>   vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-          imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-          smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-          imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-          smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        ]])
+        require('luasnip/loaders/from_vscode').lazy_load()
       end,
     },
-    'hrsh7th/vim-vsnip-integ',
+    {
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-buffer',
+        'saadparwaiz1/cmp_luasnip',
+        {
+          'hrsh7th/cmp-nvim-lsp',
+          config = "require('cmp_nvim_lsp').setup()",
+        },
+        'hrsh7th/cmp-path',
+      },
+      config = function()
+        local cmp = require('cmp')
+        local luasnip = require('luasnip')
+        cmp.setup({
+          mapping = {
+            ['<C-p>'] = cmp.mapping.prev_item(),
+            ['<C-n>'] = cmp.mapping.next_item(),
+            ['<C-d>'] = cmp.mapping.scroll(-4),
+            ['<C-f>'] = cmp.mapping.scroll(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+            }),
+            ['<Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+              if vim.fn.pumvisible() == 1 then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+              elseif luasnip.expand_or_jumpable() then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+              else
+                fallback()
+              end
+            end),
+            ['<S-Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+              if vim.fn.pumvisible() == 1 then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+              elseif luasnip.jumpable(-1) then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+              else
+                fallback()
+              end
+            end),
+          },
+          snippet = {
+            expand = function(args)
+              luasnip.lsp_expand(args.body)
+            end,
+          },
+          sources = {
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+            { name = 'path' },
+            { name = 'buffer' },
+          },
+        })
+      end,
+    },
   })
 
   -- Git
