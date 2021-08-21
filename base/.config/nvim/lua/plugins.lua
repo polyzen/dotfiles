@@ -71,10 +71,6 @@ return require('packer').startup(function()
     use('wfxr/minimap.vim')
   end
   use('markwu/vim-mrufiles')
-  use({
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
-  })
   use('ojroques/vim-oscyank')
   use('blueyed/vim-qf_resize')
   use('itchyny/vim-qfedit')
@@ -255,6 +251,10 @@ return require('packer').startup(function()
         ]])
       end,
     },
+    {
+      'jose-elias-alvarez/null-ls.nvim',
+      requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
+    },
     'simrat39/symbols-outline.nvim',
     {
       'liuchengxu/vista.vim',
@@ -262,7 +262,13 @@ return require('packer').startup(function()
     },
   })
   if vim.fn.executable('ccls') == 1 then
-    use({ 'm-pilia/vim-ccls', 'jackguo380/vim-lsp-cxx-highlight' })
+    use({
+      {
+        'm-pilia/vim-ccls',
+        requires = { 'neovim/nvim-lspconfig' },
+      },
+      'jackguo380/vim-lsp-cxx-highlight',
+    })
   end
   if vim.fn.executable('rust-analyzer') == 1 then
     use({
@@ -274,7 +280,11 @@ return require('packer').startup(function()
   if vim.fn.executable('typescript-language-server') == 1 then
     use({
       'jose-elias-alvarez/nvim-lsp-ts-utils',
-      requires = { 'nvim-lua/plenary.nvim' },
+      requires = {
+        'neovim/nvim-lspconfig',
+        { 'jose-elias-alvarez/null-ls.nvim', opt = true },
+        'nvim-lua/plenary.nvim',
+      },
     })
   end
   require('lsp')
