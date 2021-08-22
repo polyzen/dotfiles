@@ -163,10 +163,7 @@ return require('packer').startup(function()
       requires = {
         'hrsh7th/cmp-buffer',
         'saadparwaiz1/cmp_luasnip',
-        {
-          'hrsh7th/cmp-nvim-lsp',
-          config = "require('cmp_nvim_lsp').setup()",
-        },
+        'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
       },
       config = function()
