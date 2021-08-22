@@ -1,3 +1,13 @@
+scriptencoding utf-8
+
+function! MyLSPStatusline() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
+
 function! MyVCSStatusline() abort
   if &modifiable
     let l:head = ''
@@ -21,9 +31,9 @@ function! MyVCSStatusline() abort
     let l:out .= l:vcs !=# '' ? ' ' . l:vcs : ''
 
     return ' ' . l:out
-  else
-    return ''
   endif
+
+  return ''
 endfunction
 
 function! StatusLine(current, width)
@@ -43,6 +53,9 @@ function! StatusLine(current, width)
   endif
   let l:s .= '%='
   if a:current
+    if a:width > 80
+      let l:s .= MyLSPStatusline()
+    endif
     let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
     let l:s .= crystalline#left_mode_sep('')
   endif

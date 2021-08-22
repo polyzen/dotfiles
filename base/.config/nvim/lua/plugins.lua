@@ -251,6 +251,7 @@ return require('packer').startup(function()
         ]])
       end,
     },
+    'nvim-lua/lsp-status.nvim',
     {
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
