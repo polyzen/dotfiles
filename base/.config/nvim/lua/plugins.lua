@@ -248,6 +248,7 @@ return require('packer').startup(function()
         ]])
       end,
     },
+    'ray-x/lsp_signature.nvim',
     'nvim-lua/lsp-status.nvim',
     {
       'jose-elias-alvarez/null-ls.nvim',
