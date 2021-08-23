@@ -32,3 +32,4 @@ vim.cmd([[
 ]])
 
 require('plugins')
+require('lsp')

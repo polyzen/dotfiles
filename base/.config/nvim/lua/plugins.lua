@@ -285,5 +285,4 @@ return require('packer').startup(function()
       },
     })
   end
-  require('lsp')
 end)
