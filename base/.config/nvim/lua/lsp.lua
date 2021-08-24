@@ -89,10 +89,20 @@ local sources = {
 }
 null_ls.config({ sources = sources })
 
-local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'tsserver', 'yamlls' }
+local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end
+
+nvim_lsp.tsserver.setup({
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    local ts_utils = require('nvim-lsp-ts-utils')
+    ts_utils.setup({})
+    -- Required to fix code action ranges and filter diagnostics
+    ts_utils.setup_client(client)
+  end,
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
