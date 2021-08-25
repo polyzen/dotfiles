@@ -96,9 +96,15 @@ end
 
 nvim_lsp.tsserver.setup({
   on_attach = function(client, bufnr)
+    -- Disable tsserver formatting if you plan on formatting via null-ls
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
     on_attach(client, bufnr)
     local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({})
+    ts_utils.setup({
+      enable_formatting = true,
+      formatter = 'eslint',
+    })
     -- Required to fix code action ranges and filter diagnostics
     ts_utils.setup_client(client)
   end,
