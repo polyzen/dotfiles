@@ -72,6 +72,7 @@ end
 
 local null_ls = require('null-ls')
 local sources = {
+  null_ls.builtins.diagnostics.eslint,
   null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.shellcheck.with({
     extra_args = function(params)
@@ -83,6 +84,7 @@ local sources = {
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
   null_ls.builtins.formatting.json_tool,
+  null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.rustfmt,
   null_ls.builtins.formatting.shfmt,
   null_ls.builtins.formatting.stylua,
@@ -96,15 +98,12 @@ end
 
 nvim_lsp.tsserver.setup({
   on_attach = function(client, bufnr)
-    -- Disable tsserver formatting if you plan on formatting via null-ls
+    -- Defer formatting to prettier via null-ls
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
     on_attach(client, bufnr)
     local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({
-      enable_formatting = true,
-      formatter = 'eslint',
-    })
+    ts_utils.setup({})
     -- Required to fix code action ranges and filter diagnostics
     ts_utils.setup_client(client)
   end,
