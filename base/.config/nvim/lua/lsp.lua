@@ -140,9 +140,11 @@ nvim_lsp.sumneko_lua.setup({
   },
 })
 
-require('rust-tools').setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    },
-})
+if vim.fn.executable('rust-analyzer') == 1 then
+  require('rust-tools').setup({
+    server = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      },
+  })
+end
