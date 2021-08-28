@@ -277,8 +277,11 @@ return require('packer').startup(function()
   if vim.fn.executable('rust-analyzer') == 1 then
     use({
       'simrat39/rust-tools.nvim',
-      requires = { 'nvim-lua/plenary.nvim', opt = true },
-      config = "require('rust-tools').setup()",
+      requires = {
+        'neovim/nvim-lspconfig',
+        { 'nvim-lua/plenary.nvim', opt = true },
+        { 'nvim-telescope/telescope.nvim', opt = true },
+      },
     })
   end
   if vim.fn.executable('typescript-language-server') == 1 then

@@ -112,14 +112,6 @@ nvim_lsp.tsserver.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers_with_snippets = { 'gopls', 'rust_analyzer' }
-for _, lsp in ipairs(servers_with_snippets) do
-  nvim_lsp[lsp].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
-
 nvim_lsp.ccls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -128,6 +120,11 @@ nvim_lsp.ccls.setup({
       lsRanges = true,
     },
   },
+})
+
+nvim_lsp.gopls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 nvim_lsp.sumneko_lua.setup({
@@ -141,4 +138,11 @@ nvim_lsp.sumneko_lua.setup({
       },
     },
   },
+})
+
+require('rust-tools').setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    },
 })
