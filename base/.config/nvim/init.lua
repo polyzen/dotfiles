@@ -8,8 +8,6 @@ vim.opt.showmode = false -- Do not echo the mode, status line will display it
 vim.opt.wildmode = 'longest:full,full' -- Incremental command-line completions
 
 -- Search
-vim.opt.hlsearch = true -- Highlight matches
-vim.opt.incsearch = true -- .. while typing
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.smartcase = true -- .. unless "pattern contains upper case characters"
 
