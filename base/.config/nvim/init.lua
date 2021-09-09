@@ -1,5 +1,4 @@
 vim.opt.guifont = 'Fantasque Sans Mono:h12'
-vim.opt.history = 500
 vim.opt.mouse = 'a' -- "Enables mouse support"
 vim.opt.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
 
