@@ -4,8 +4,7 @@ vim.opt.mouse = 'a' -- "Enables mouse support"
 vim.opt.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
 
 -- Lines
-vim.opt.laststatus = 2 -- Always show status line
-vim.opt.showtabline = 2 -- .. and tab pages line
+vim.opt.showtabline = 2 -- Always show tab pages line
 vim.opt.showmode = false -- Do not echo the mode, status line will display it
 vim.opt.wildmenu = true -- Enable command-line completion menu
 vim.opt.wildmode = 'longest:full,full' -- .. with incremental completions
