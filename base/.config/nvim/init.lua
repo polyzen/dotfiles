@@ -14,7 +14,6 @@ vim.opt.hlsearch = true -- Highlight matches
 vim.opt.incsearch = true -- .. while typing
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.smartcase = true -- .. unless "pattern contains upper case characters"
-vim.opt.shortmess:remove({ 'S' }) -- "Show search count message when searching"
 
 -- Two-space indentation
 vim.opt.autoindent = true
