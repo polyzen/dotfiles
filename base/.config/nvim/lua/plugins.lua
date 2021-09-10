@@ -93,6 +93,7 @@ return require('packer').startup(function()
     'mhinz/vim-signify',
     config = "vim.g.signify_skip = { vcs = { deny = { 'git' } } }",
   })
+  use('stsewd/sphinx.nvim')
   use('AndrewRadev/splitjoin.vim')
   use('lambdalisue/suda.vim')
   use('dhruvasagar/vim-table-mode')
