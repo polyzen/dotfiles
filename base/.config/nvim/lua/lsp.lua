@@ -91,7 +91,7 @@ local sources = {
 }
 null_ls.config({ sources = sources })
 
-local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'yamlls' }
+local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'taplo', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end
