@@ -80,6 +80,7 @@ local sources = {
     end,
     filetypes = { 'PKGBUILD', 'sh' },
   }),
+  null_ls.builtins.diagnostics.stylelint,
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
