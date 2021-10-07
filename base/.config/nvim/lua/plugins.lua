@@ -71,6 +71,10 @@ return require('packer').startup(function()
     use('wfxr/minimap.vim')
   end
   use('markwu/vim-mrufiles')
+  use({
+    'karb94/neoscroll.nvim',
+    config = "require('neoscroll').setup()",
+  })
   use('ojroques/vim-oscyank')
   use('blueyed/vim-qf_resize')
   use('itchyny/vim-qfedit')
