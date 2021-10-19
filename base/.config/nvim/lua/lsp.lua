@@ -153,3 +153,13 @@ if vim.fn.executable('rust-analyzer') == 1 then
       },
   })
 end
+
+nvim_lsp.volar.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  init_options = {
+    typescript = {
+      serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js',
+    },
+  },
+})
