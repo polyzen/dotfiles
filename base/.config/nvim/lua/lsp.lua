@@ -82,6 +82,7 @@ local sources = {
   }),
   null_ls.builtins.diagnostics.stylelint,
   null_ls.builtins.diagnostics.vint,
+  null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.isort,
   null_ls.builtins.formatting.json_tool,
