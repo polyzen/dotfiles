@@ -74,6 +74,14 @@ local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.diagnostics.eslint,
   null_ls.builtins.diagnostics.flake8,
+  null_ls.builtins.diagnostics.selene.with({
+    cwd = function(params)
+      local conf_file = vim.fn.findfile('selene.toml', params.root)
+      if conf_file then
+        return vim.fn.fnamemodify(conf_file, ':p:h')
+      end
+    end,
+  }),
   null_ls.builtins.diagnostics.shellcheck.with({
     extra_args = function(params)
       return params.ft == 'PKGBUILD' and { '--exclude', 'SC2148,SC2034,SC2154,SC2155,SC2164' } or {}
