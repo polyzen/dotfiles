@@ -107,6 +107,8 @@ for _, lsp in ipairs(servers) do
 end
 
 nvim_lsp.tsserver.setup({
+  -- Only needed for inlayHints
+  init_options = require('nvim-lsp-ts-utils').init_options,
   on_attach = function(client, bufnr)
     -- Defer formatting to prettier via null-ls
     client.resolved_capabilities.document_formatting = false
