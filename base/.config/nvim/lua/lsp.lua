@@ -111,11 +111,13 @@ nvim_lsp.tsserver.setup({
     -- Defer formatting to prettier via null-ls
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
-    on_attach(client, bufnr)
+
     local ts_utils = require('nvim-lsp-ts-utils')
     ts_utils.setup({})
     -- Required to fix code action ranges and filter diagnostics
     ts_utils.setup_client(client)
+
+    on_attach(client, bufnr)
   end,
 })
 
@@ -125,23 +127,22 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local servers_with_snippets = { 'cssls', 'gopls', 'html', 'jsonls' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup({
-    on_attach = on_attach,
     capabilities = capabilities,
+    on_attach = on_attach,
   })
 end
 
 nvim_lsp.ccls.setup({
-  on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
     highlight = {
       lsRanges = true,
     },
   },
+  on_attach = on_attach,
 })
 
 nvim_lsp.sumneko_lua.setup({
-  on_attach = on_attach,
   capabilities = capabilities,
   cmd = { 'lua-language-server' },
   settings = {
@@ -151,23 +152,24 @@ nvim_lsp.sumneko_lua.setup({
       },
     },
   },
+  on_attach = on_attach,
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
   require('rust-tools').setup({
     server = {
-      on_attach = on_attach,
       capabilities = capabilities,
-      },
+      on_attach = on_attach,
+    },
   })
 end
 
 nvim_lsp.volar.setup({
-  on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
     typescript = {
       serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js',
     },
   },
+  on_attach = on_attach,
 })
