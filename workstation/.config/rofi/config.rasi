@@ -5,5 +5,6 @@ configuration {
 	run-command: "bash -i -c "{cmd}"";
 	m: "-4";
 	threads: 4;
-	theme: "gruvbox-dark.rasi";
 }
+
+@theme "gruvbox-dark.rasi"
