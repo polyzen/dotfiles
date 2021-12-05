@@ -72,6 +72,10 @@ end
 
 local null_ls = require('null-ls')
 local sources = {
+  null_ls.builtins.code_actions.eslint,
+  null_ls.builtins.code_actions.shellcheck.with({
+    filetypes = { 'PKGBUILD', 'sh' },
+  }),
   null_ls.builtins.diagnostics.eslint,
   null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.selene.with({
