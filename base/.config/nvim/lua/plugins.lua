@@ -110,7 +110,6 @@ return require('packer').startup(function()
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
   })
-  use({ 'cespare/vim-toml', branch = 'main' })
   use('markonm/traces.vim')
   use('andymass/vim-tradewinds')
   use({
