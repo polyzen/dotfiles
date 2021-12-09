@@ -105,7 +105,6 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      'nvim-lua/popup.nvim',
       { 'nvim-treesitter/nvim-treesitter', opt = true },
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
