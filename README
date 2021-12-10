@@ -1,4 +1,4 @@
-base
+./base
 ├── .config
 │   ├── flake8
 │   ├── nvim
@@ -17,12 +17,13 @@ base
 │   │   └── tmux.conf
 │   └── yamllint
 │       └── config
+├── .editorconfig
 └── .zshrc
-misc
+./misc
 └── .config
     └── urlwatch
         └── hooks.py
-workstation
+./workstation
 ├── .config
 │   ├── afew
 │   │   └── config
