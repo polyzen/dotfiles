@@ -110,22 +110,24 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end
 
-nvim_lsp.tsserver.setup({
-  -- Only needed for inlayHints
-  init_options = require('nvim-lsp-ts-utils').init_options,
-  on_attach = function(client, bufnr)
-    -- Defer formatting to prettier via null-ls
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+if vim.fn.executable('typescript-language-server') == 1 then
+  nvim_lsp.tsserver.setup({
+    -- Only needed for inlayHints
+    init_options = require('nvim-lsp-ts-utils').init_options,
+    on_attach = function(client, bufnr)
+      -- Defer formatting to prettier via null-ls
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
 
-    local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({})
-    -- Required to fix code action ranges and filter diagnostics
-    ts_utils.setup_client(client)
+      local ts_utils = require('nvim-lsp-ts-utils')
+      ts_utils.setup({})
+      -- Required to fix code action ranges and filter diagnostics
+      ts_utils.setup_client(client)
 
-    on_attach(client, bufnr)
-  end,
-})
+      on_attach(client, bufnr)
+    end,
+  })
+end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
