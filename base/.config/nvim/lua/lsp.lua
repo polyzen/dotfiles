@@ -100,7 +100,9 @@ local sources = {
   null_ls.builtins.formatting.json_tool,
   null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.rustfmt,
-  null_ls.builtins.formatting.shfmt,
+  null_ls.builtins.formatting.shfmt.with({
+    filetypes = { 'PKGBUILD', 'sh' },
+  }),
   null_ls.builtins.formatting.stylua,
 }
 null_ls.config({ sources = sources })
