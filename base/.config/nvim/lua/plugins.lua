@@ -105,9 +105,20 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-treesitter/nvim-treesitter', opt = true },
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
+    config = function()
+      require('telescope').setup({
+        extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+        },
+      })
+      require('telescope').load_extension('ui-select')
+    end,
   })
   use('markonm/traces.vim')
   use('andymass/vim-tradewinds')
@@ -283,7 +294,6 @@ return require('packer').startup(function()
       requires = {
         'neovim/nvim-lspconfig',
         { 'nvim-lua/plenary.nvim', opt = true },
-        { 'nvim-telescope/telescope.nvim', opt = true },
       },
     })
   end
