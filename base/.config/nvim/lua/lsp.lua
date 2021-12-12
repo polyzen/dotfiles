@@ -105,9 +105,12 @@ local sources = {
   }),
   null_ls.builtins.formatting.stylua,
 }
-null_ls.config({ sources = sources })
+null_ls.setup({
+  sources = sources,
+  on_attach = on_attach,
+})
 
-local servers = { 'bashls', 'null-ls', 'pyright', 'tailwindcss', 'taplo', 'yamlls' }
+local servers = { 'bashls', 'pyright', 'tailwindcss', 'taplo', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end
