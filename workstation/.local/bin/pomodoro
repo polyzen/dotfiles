@@ -21,10 +21,10 @@ declare -a ARGS
 declare -i BEEP LOOP
 while :; do
   case $1 in
-    -b|--beep)
+    -b | --beep)
       BEEP=1
       ;;
-    -l|--loop)
+    -l | --loop)
       LOOP=1
       ;;
     --)
@@ -37,6 +37,7 @@ while :; do
       ;;
     *)
       break
+      ;;
   esac
 
   shift
@@ -63,11 +64,11 @@ timer() {
 pomodoro() {
   local break_msg break_time interval_msg
 
-  for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
+  for ((i = 1; i <= ${#INTERVALS[*]}; i++)); do
     # Highlight (in bold) intervals as they pass
     interval_msg="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
 
-    if (( i < ${#INTERVALS[*]} )); then
+    if ((i < ${#INTERVALS[*]})); then
       break_msg="$SHORT_BREAK_MSG"
       break_time="$SHORT_BREAK_TIME"
     else
