@@ -9,3 +9,4 @@ switch_case_indent = true
 
 [PKGBUILD]
 switch_case_indent = true
+keep_padding = true
