@@ -5,3 +5,16 @@ font:
   normal:
     family: Fantasque Sans Mono
   size: 12.0
+
+hints:
+  enabled:
+     - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+               [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+       action: Copy
+       post_processing: true
+       mouse:
+         enabled: true
+         mods: None
+       binding:
+         key: U
+         mods: Control|Shift
