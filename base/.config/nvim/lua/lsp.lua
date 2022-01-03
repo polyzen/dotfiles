@@ -150,9 +150,11 @@ nvim_lsp.ccls.setup({
 
 nvim_lsp.sumneko_lua.setup({
   capabilities = capabilities,
-  cmd = { 'lua-language-server' },
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
       diagnostics = {
         globals = { 'vim' },
       },
