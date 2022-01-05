@@ -67,7 +67,7 @@ local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.code_actions.eslint,
   null_ls.builtins.code_actions.shellcheck.with({
-    filetypes = { 'PKGBUILD', 'sh' },
+    extra_filetypes = { 'PKGBUILD' },
   }),
   null_ls.builtins.diagnostics.eslint,
   null_ls.builtins.diagnostics.flake8,
@@ -83,7 +83,7 @@ local sources = {
     extra_args = function(params)
       return params.ft == 'PKGBUILD' and { '--exclude', 'SC2148,SC2034,SC2154,SC2155,SC2164' } or {}
     end,
-    filetypes = { 'PKGBUILD', 'sh' },
+    extra_filetypes = { 'PKGBUILD' },
   }),
   null_ls.builtins.diagnostics.stylelint,
   null_ls.builtins.diagnostics.vint,
@@ -94,7 +94,7 @@ local sources = {
   null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.rustfmt,
   null_ls.builtins.formatting.shfmt.with({
-    filetypes = { 'PKGBUILD', 'sh' },
+    extra_filetypes = { 'PKGBUILD' },
   }),
   null_ls.builtins.formatting.stylua,
 }
