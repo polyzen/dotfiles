@@ -40,7 +40,6 @@ return require('packer').startup(function()
   use('Konfekt/FastFold')
   use({
     'npxbr/gruvbox.nvim',
-    requires = { 'rktjmp/lush.nvim' },
     config = function()
       vim.g.gruvbox_italic = 1
       local h = tonumber(os.date('%H'))
