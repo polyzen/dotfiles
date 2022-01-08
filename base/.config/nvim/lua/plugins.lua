@@ -95,7 +95,10 @@ return require('packer').startup(function()
   use('matthew-brett/vim-rst-sections')
   use({
     'mhinz/vim-signify',
-    config = "vim.g.signify_skip = { vcs = { deny = { 'git' } } }",
+    config = function()
+      vim.g.signify_disable_by_default = 1
+      vim.g.signify_skip = { vcs = { deny = { 'git' } } }
+    end,
   })
   use('stsewd/sphinx.nvim')
   use('AndrewRadev/splitjoin.vim')
