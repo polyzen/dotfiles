@@ -4,7 +4,7 @@ CONF_PATH=~/.config/alacritty
 THEME=gruvbox
 
 if grep -q 'light' $CONF_PATH/colors.yml; then
-  ln -sf $CONF_PATH/$THEME-dark.yml $CONF_PATH/colors.yml
+  cat $CONF_PATH/$THEME-dark.yml > $CONF_PATH/colors.yml
 else
-  ln -sf $CONF_PATH/$THEME-light.yml $CONF_PATH/colors.yml
+  cat $CONF_PATH/$THEME-light.yml > $CONF_PATH/colors.yml
 fi
