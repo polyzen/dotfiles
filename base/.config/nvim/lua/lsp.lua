@@ -130,7 +130,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers_with_snippets = { 'cssls', 'gopls', 'html', 'jsonls' }
+local servers_with_snippets = { 'cssls', 'gopls', 'jsonls' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup({
     capabilities = capabilities,
@@ -144,6 +144,14 @@ nvim_lsp.ccls.setup({
     highlight = {
       lsRanges = true,
     },
+  },
+  on_attach = on_attach,
+})
+
+nvim_lsp.html.setup({
+  capabilities = capabilities,
+  init_options = {
+    provideFormatter = false,
   },
   on_attach = on_attach,
 })
