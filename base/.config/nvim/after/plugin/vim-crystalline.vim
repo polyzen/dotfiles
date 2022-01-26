@@ -53,9 +53,6 @@ function! StatusLine(current, width)
   endif
   let l:s .= '%='
   if a:current
-    if a:width > 80
-      let l:s .= MyLSPStatusline()
-    endif
     let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
     let l:s .= crystalline#left_mode_sep('')
   endif

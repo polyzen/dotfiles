@@ -266,6 +266,10 @@ return require('packer').startup(function()
   use({
     'neovim/nvim-lspconfig',
     {
+      'j-hui/fidget.nvim',
+      config = "require('fidget').setup()",
+    },
+    {
       'kosayoda/nvim-lightbulb',
       config = function()
         vim.cmd([[
@@ -277,7 +281,6 @@ return require('packer').startup(function()
       end,
     },
     'ray-x/lsp_signature.nvim',
-    'nvim-lua/lsp-status.nvim',
     {
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
