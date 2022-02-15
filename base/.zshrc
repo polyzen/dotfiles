@@ -34,7 +34,6 @@ RPROMPT='$(gitprompt-rs zsh)'
 
 export EDITOR=nvim
 export LS_COLORS="$(vivid generate gruvbox-dark)"
-export SKIM_DEFAULT_COMMAND='fd --type f'
 
 alias cp='cp --reflink=auto'
 alias exa='exa -F'
