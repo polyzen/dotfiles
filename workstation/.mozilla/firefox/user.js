@@ -12,7 +12,6 @@ user_pref("browser.search.hiddenOneOffs", "Google,Bing,Amazon.com,DuckDuckGo,eBa
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.tabs.warnOnOpen", false);
-user_pref("browser.tabs.warnOnClose", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("dom.security.https_only_mode", true);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
