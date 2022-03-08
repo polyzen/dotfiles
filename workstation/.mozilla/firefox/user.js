@@ -25,6 +25,7 @@ user_pref("narrate.rate", 25);
 user_pref("narrate.voice", "{\"default\":\"urn:moz-tts:speechd:english-north?en-GB\",\"en\":\"urn:moz-tts:speechd:english-north?en-GB\"}");
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.http.referer.XOriginPolicy", 2);
+user_pref("privacy.partition.serviceWorkers", true);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("security.pki.sha1_enforcement_level", 1);
 user_pref("security.ssl.require_safe_negotiation", true);
