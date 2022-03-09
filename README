@@ -35,6 +35,8 @@
 │   │   └── fonts.conf
 │   ├── git
 │   │   └── config
+│   ├── himalaya
+│   │   └── config.toml
 │   ├── i3
 │   │   └── config
 │   ├── i3status
