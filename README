@@ -48,8 +48,6 @@
 │   │   └── config
 │   ├── newsboat
 │   │   └── config
-│   ├── notifymuch
-│   │   └── notifymuch.cfg
 │   ├── notmuch
 │   │   └── default
 │   │       └── config
