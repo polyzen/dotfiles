@@ -57,10 +57,22 @@ end
 local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.code_actions.eslint,
+  null_ls.builtins.code_actions.eslint.with({
+    filetypes = { 'html' },
+    condition = function(utils)
+      return utils.root_has_file({ 'node_modules' })
+    end,
+  }),
   null_ls.builtins.code_actions.shellcheck.with({
     extra_filetypes = { 'PKGBUILD' },
   }),
   null_ls.builtins.diagnostics.eslint,
+  null_ls.builtins.diagnostics.eslint.with({
+    filetypes = { 'html' },
+    condition = function(utils)
+      return utils.root_has_file({ 'node_modules' })
+    end,
+  }),
   null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene.with({
