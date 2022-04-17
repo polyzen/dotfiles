@@ -1,10 +1,3 @@
-local nvim_lsp = require('lspconfig')
-nvim_lsp.util.default_config = vim.tbl_extend('force', nvim_lsp.util.default_config, {
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -105,6 +98,7 @@ null_ls.setup({
   on_attach = on_attach,
 })
 
+local nvim_lsp = require('lspconfig')
 local servers = { 'bashls', 'pyright', 'tailwindcss', 'taplo', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
