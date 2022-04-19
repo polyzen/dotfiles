@@ -37,6 +37,7 @@ return require('packer').startup(function()
   })
   use('editorconfig/editorconfig-vim')
   use('Konfekt/FastFold')
+  use('antoinemadec/FixCursorHold.nvim')
   use({
     'npxbr/gruvbox.nvim',
     config = function()
