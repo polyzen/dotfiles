@@ -16,12 +16,12 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
-vim.cmd([[
-  augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup END
-]])
+vim.api.nvim_create_augroup('highlight_yank', {})
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = 'highlight_yank',
+  pattern = '*',
+  callback = function() vim.highlight.on_yank() end,
+})
 
 require('plugins')
 require('lsp')

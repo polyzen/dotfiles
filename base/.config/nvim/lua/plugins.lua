@@ -299,12 +299,12 @@ return require('packer').startup(function()
     {
       'kosayoda/nvim-lightbulb',
       config = function()
-        vim.cmd([[
-          augroup my_lsp_lightbulb
-            autocmd!
-            autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
-          augroup END
-        ]])
+        vim.api.nvim_create_augroup('my_lsp_lightbulb', {})
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          group = 'my_lsp_lightbulb',
+          pattern = '*',
+          callback = require('nvim-lightbulb').update_lightbulb,
+        })
       end,
     },
     'ray-x/lsp_signature.nvim',
