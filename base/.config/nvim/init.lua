@@ -17,6 +17,7 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
 vim.api.nvim_create_augroup('highlight_yank', {})
+-- stylua: ignore
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = 'highlight_yank',
   pattern = '*',
