@@ -15,7 +15,7 @@ return require('packer').startup(function()
   })
   use({
     'norcalli/nvim-colorizer.lua',
-    config = "require('colorizer').setup()",
+    config = require('colorizer').setup(),
   })
   use('romainl/vim-cool')
   use({
@@ -28,7 +28,7 @@ return require('packer').startup(function()
   use('tpope/vim-dispatch')
   use({
     'junegunn/vim-easy-align',
-    config = "vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)')",
+    config = vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)'),
   })
   use('editorconfig/editorconfig-vim')
   use('Konfekt/FastFold')
@@ -67,7 +67,7 @@ return require('packer').startup(function()
   use('markwu/vim-mrufiles')
   use({
     'karb94/neoscroll.nvim',
-    config = "require('neoscroll').setup()",
+    config = require('neoscroll').setup(),
   })
   use('ojroques/vim-oscyank')
   use('blueyed/vim-qf_resize')
@@ -80,7 +80,7 @@ return require('packer').startup(function()
   use({
     'winston0410/range-highlight.nvim',
     requires = 'winston0410/cmd-parser.nvim',
-    config = "require('range-highlight').setup()",
+    config = require('range-highlight').setup(),
   })
   use('tversteeg/registers.nvim')
   use('tpope/vim-repeat')
@@ -152,13 +152,13 @@ return require('packer').startup(function()
   })
   use({
     'folke/twilight.nvim',
-    config = "require('twilight').setup()",
+    config = require('twilight').setup(),
   })
   use('tpope/vim-unimpaired')
   use({
     'folke/zen-mode.nvim',
     requires = { 'folke/twilight.nvim', opt = true },
-    config = "require('zen-mode').setup()",
+    config = require('zen-mode').setup(),
   })
   use({
     'dhruvasagar/vim-zoom',
@@ -281,7 +281,7 @@ return require('packer').startup(function()
     'neovim/nvim-lspconfig',
     {
       'j-hui/fidget.nvim',
-      config = "require('fidget').setup()",
+      config = require('fidget').setup(),
     },
     {
       'kosayoda/nvim-lightbulb',
