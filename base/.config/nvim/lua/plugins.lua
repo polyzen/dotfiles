@@ -97,6 +97,7 @@ return require('packer').startup(function()
   use('stsewd/sphinx.nvim')
   use('AndrewRadev/splitjoin.vim')
   use('lambdalisue/suda.vim')
+  use('tpope/vim-surround')
   use('dhruvasagar/vim-table-mode')
   use({
     'nvim-telescope/telescope.nvim',
