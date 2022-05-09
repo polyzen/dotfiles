@@ -2,6 +2,7 @@ local use = require('packer').use
 
 return require('packer').startup(function()
   use('wbthomason/packer.nvim')
+  use('ntpeters/vim-better-whitespace')
   use('moll/vim-bbye')
   use({
     'jose-elias-alvarez/buftabline.nvim',

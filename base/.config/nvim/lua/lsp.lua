@@ -78,7 +78,6 @@ local sources = {
     extra_filetypes = { 'PKGBUILD' },
   }),
   null_ls.builtins.diagnostics.stylelint,
-  null_ls.builtins.diagnostics.trail_space,
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.formatting.black,
