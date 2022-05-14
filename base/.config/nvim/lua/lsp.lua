@@ -80,9 +80,6 @@ local sources = {
       end
     end,
   }),
-  null_ls.builtins.diagnostics.shellcheck.with({
-    extra_filetypes = { 'PKGBUILD' },
-  }),
   null_ls.builtins.diagnostics.stylelint,
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint,
