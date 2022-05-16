@@ -26,10 +26,17 @@ return require('packer').startup(function()
       vim.g.crystalline_theme = 'gruvbox'
     end,
   })
+  use({
+    'sindrets/diffview.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      { 'kyazdani42/nvim-web-devicons', opt = true },
+    },
+  })
   use('tpope/vim-dispatch')
   use({
     'junegunn/vim-easy-align',
-    config = vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)'),
+    config = vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)'),
   })
   use('editorconfig/editorconfig-vim')
   use('Konfekt/FastFold')
