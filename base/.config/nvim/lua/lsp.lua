@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_create_augroup('lsp_document_highlight', {
-      clear = false
+      clear = false,
     })
     vim.api.nvim_clear_autocmds({
       buffer = bufnr,
