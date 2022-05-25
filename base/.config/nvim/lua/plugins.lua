@@ -52,6 +52,7 @@ return require('packer').startup(function()
       vim.cmd('colorscheme gruvbox')
     end,
   })
+  use('lewis6991/impatient.nvim')
   use({
     'lukas-reineke/indent-blankline.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },

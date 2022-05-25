@@ -24,5 +24,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank() end,
 })
 
+require('impatient')
 require('plugins')
 require('lsp')
