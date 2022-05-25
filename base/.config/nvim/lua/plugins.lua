@@ -84,7 +84,6 @@ return require('packer').startup(function()
     'unblevable/quick-scope',
     config = 'vim.g.qs_enable = 0',
   })
-  use('AndrewRadev/quickpeek.vim')
   use({
     'winston0410/range-highlight.nvim',
     requires = 'winston0410/cmd-parser.nvim',
