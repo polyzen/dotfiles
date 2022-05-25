@@ -32,6 +32,7 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim',
       { 'kyazdani42/nvim-web-devicons', opt = true },
     },
+    config = require('diffview').setup({ enhanced_diff_hl = true }),
   })
   use('tpope/vim-dispatch')
   use({
