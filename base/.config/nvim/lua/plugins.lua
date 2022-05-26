@@ -18,6 +18,16 @@ return require('packer').startup(function()
     'norcalli/nvim-colorizer.lua',
     config = require('colorizer').setup(),
   })
+  use({
+    'terrortylor/nvim-comment',
+    config = function()
+      require('nvim_comment').setup({
+        hook = function()
+          require('ts_context_commentstring.internal').update_commentstring()
+        end,
+      })
+    end,
+  })
   use('romainl/vim-cool')
   use({
     'rbong/vim-crystalline',
@@ -148,6 +158,10 @@ return require('packer').startup(function()
         indent = {
           enable = true,
         },
+        context_commentstring = {
+          enable = true,
+          enable_autocmd = false,
+        },
         matchup = {
           enable = true,
         },
@@ -160,6 +174,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter-context',
     requires = { 'nvim-treesitter/nvim-treesitter' },
   })
+  use('JoosepAlviste/nvim-ts-context-commentstring')
   use({
     'folke/twilight.nvim',
     config = require('twilight').setup(),
