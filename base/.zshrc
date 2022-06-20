@@ -1,5 +1,4 @@
-autoload -Uz compinit colors disambiguate-keeplast
-compinit
+autoload -Uz colors disambiguate-keeplast
 colors
 
 setopt appendhistory \
@@ -19,12 +18,6 @@ SAVEHIST=10000
 bindkey -v
 bindkey $terminfo[kcbt] reverse-menu-complete
 KEYTIMEOUT=1
-
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select=5
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.*' insert-sections true
-zstyle ':completion:*:man:*' menu yes select
 
 path+=~/.local/bin
 fpath+=~/.local/fpath
@@ -52,7 +45,12 @@ function man() {
     man "$@"
 }
 
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
