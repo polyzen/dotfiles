@@ -27,23 +27,12 @@ RPROMPT='$(gitprompt-rs zsh)'
 
 export EDITOR=nvim
 export LS_COLORS="$(vivid generate gruvbox-dark)"
+export MANPAGER='nvim +Man!'
 
 alias cp='cp --reflink=auto'
 alias exa='exa -F'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --file-type'
-
-function man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[01;31m") \
-    LESS_TERMCAP_md=$(printf "\e[01;38;5;74m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[38;5;246m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[04;38;5;146m") \
-    man "$@"
-}
 
 zstyle ':autocomplete:*' fzf-completion yes
 zstyle ':autocomplete:*' widget-style menu-select
