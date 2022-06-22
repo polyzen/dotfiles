@@ -203,7 +203,6 @@ return require('packer').startup(function()
         'hrsh7th/cmp-buffer',
         'saadparwaiz1/cmp_luasnip',
         { 'hrsh7th/cmp-nvim-lsp', branch = 'main' },
-        { 'hrsh7th/cmp-nvim-lsp-signature-help', branch = 'main' },
         'hrsh7th/cmp-path',
       },
       config = function()
@@ -224,7 +223,6 @@ return require('packer').startup(function()
           }),
           sources = {
             { name = 'nvim_lsp' },
-            { name = 'nvim_lsp_signature_help' },
             { name = 'luasnip' },
             { name = 'path' },
             { name = 'buffer' },
@@ -310,6 +308,7 @@ return require('packer').startup(function()
       'kosayoda/nvim-lightbulb',
       config = require('nvim-lightbulb').setup({ autocmd = { enabled = true } }),
     },
+    'ray-x/lsp_signature.nvim',
     {
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
