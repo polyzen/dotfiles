@@ -308,7 +308,10 @@ return require('packer').startup(function()
       'kosayoda/nvim-lightbulb',
       config = require('nvim-lightbulb').setup({ autocmd = { enabled = true } }),
     },
-    'ray-x/lsp_signature.nvim',
+    {
+      'ray-x/lsp_signature.nvim',
+      config = require('lsp_signature').setup({ cursorhold_update = false }),
+    },
     {
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
