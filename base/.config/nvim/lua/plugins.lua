@@ -70,8 +70,6 @@ return require('packer').startup(function()
     config = function()
       require('indent_blankline').setup({
         char_list = { '|', '¦', '┆', '┊' },
-        filetype_exclude = { 'help' },
-        buftype_exclude = { 'terminal' },
         show_current_context = true,
         use_treesitter = true,
       })
