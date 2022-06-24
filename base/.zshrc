@@ -26,7 +26,7 @@ PROMPT='$REPLY %(!.#.>) '
 RPROMPT='$(gitprompt-rs zsh)'
 
 export EDITOR=nvim
-export LS_COLORS="$(vivid generate gruvbox-dark)"
+export LS_COLORS="$(vivid generate jellybeans)"
 export MANPAGER='nvim +Man!'
 
 alias cp='cp --reflink=auto'
