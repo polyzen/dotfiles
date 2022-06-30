@@ -36,6 +36,7 @@ alias ls='ls --color=auto --file-type'
 
 zstyle ':autocomplete:*' fzf-completion yes
 zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':completion:*:*' list-rows-first no
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 source /usr/share/fzf/completion.zsh
