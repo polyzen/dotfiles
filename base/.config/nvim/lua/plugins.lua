@@ -342,12 +342,8 @@ return require('packer').startup(function()
   end
   if vim.fn.executable('typescript-language-server') == 1 then
     use({
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
-      requires = {
-        'neovim/nvim-lspconfig',
-        { 'jose-elias-alvarez/null-ls.nvim', opt = true },
-        'nvim-lua/plenary.nvim',
-      },
+      'jose-elias-alvarez/typescript.nvim',
+      requires = { 'neovim/nvim-lspconfig' },
     })
   end
 end)
