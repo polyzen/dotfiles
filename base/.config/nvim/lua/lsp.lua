@@ -162,7 +162,13 @@ nvim_lsp.sumneko_lua.setup({
       },
     },
   },
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Defer formatting to StyLua via null-ls
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    on_attach(client, bufnr)
+  end,
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
