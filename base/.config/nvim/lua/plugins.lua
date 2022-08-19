@@ -316,7 +316,10 @@ return require('packer').startup(function()
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
     },
-    'simrat39/symbols-outline.nvim',
+    {
+      'simrat39/symbols-outline.nvim',
+      config = require("symbols-outline").setup(),
+    },
     {
       'liuchengxu/vista.vim',
       config = "vim.g.vista_default_executive = 'nvim_lsp'",
