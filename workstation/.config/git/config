@@ -4,7 +4,9 @@
 [difftool]
 	prompt = false
 [diff]
-	tool = vimdiff
+	tool = difftastic
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 [sendemail]
 	suppresscc = self
 [commit]
@@ -12,6 +14,7 @@
 [fetch]
 	writeCommitGraph = true
 [pager]
+	difftool = true
 	log  = /usr/share/git/diff-highlight/diff-highlight | less
 	show = /usr/share/git/diff-highlight/diff-highlight | less
 	diff = /usr/share/git/diff-highlight/diff-highlight | less
