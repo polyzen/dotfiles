@@ -6,7 +6,7 @@ return require('packer').startup(function()
   use('moll/vim-bbye')
   use({
     'jose-elias-alvarez/buftabline.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('buftabline').setup({
         tab_format = ' #{n}: #{b}#{f} #{i} ',
@@ -40,7 +40,7 @@ return require('packer').startup(function()
     'sindrets/diffview.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      { 'kyazdani42/nvim-web-devicons', opt = true },
+      'kyazdani42/nvim-web-devicons',
     },
     config = require('diffview').setup({ enhanced_diff_hl = true }),
   })
@@ -122,7 +122,7 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-treesitter/nvim-treesitter', opt = true },
-      { 'kyazdani42/nvim-web-devicons', opt = true },
+      'kyazdani42/nvim-web-devicons',
     },
     config = function()
       require('telescope').setup({
@@ -139,7 +139,7 @@ return require('packer').startup(function()
   use('andymass/vim-tradewinds')
   use({
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = 'kyazdani42/nvim-web-devicons',
     config = require('nvim-tree').setup(),
   })
   use({
