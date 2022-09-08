@@ -15,7 +15,7 @@ return require('packer').startup(function()
     end,
   })
   use({
-    'norcalli/nvim-colorizer.lua',
+    'NvChad/nvim-colorizer.lua',
     config = require('colorizer').setup(),
   })
   use({
@@ -319,7 +319,7 @@ return require('packer').startup(function()
     },
     {
       'simrat39/symbols-outline.nvim',
-      config = require("symbols-outline").setup(),
+      config = require('symbols-outline').setup(),
     },
     {
       'liuchengxu/vista.vim',
