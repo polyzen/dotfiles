@@ -51,7 +51,7 @@ timer() {
     tmux rename-window -t "$PANE_ID" "$1"
   fi
 
-  toastify send --id 45 "$1" "$interval_msg"
+  toastify send "$1" "$interval_msg" 45
 
   args=("${ARGS[@]}" "-T $1")
   termdown "${args[@]}" "$2"
