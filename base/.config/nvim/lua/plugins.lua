@@ -99,7 +99,10 @@ return require('packer').startup(function()
     requires = 'winston0410/cmd-parser.nvim',
     config = require('range-highlight').setup(),
   })
-  use('tversteeg/registers.nvim')
+  use({
+    'tversteeg/registers.nvim',
+    config = require('registers').setup(),
+  })
   use('tpope/vim-repeat')
   use('rhysd/reply.vim')
   use('tpope/vim-rsi')
