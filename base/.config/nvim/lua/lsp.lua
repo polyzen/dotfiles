@@ -41,7 +41,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', lsp_formatting, bufopts)
 
-  -- Set autocommands conditional on server_capabilities
+  if client.server_capabilities.colorProvider then
+    require('document-color').buf_attach(bufnr)
+  end
+
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup('lsp_document_highlight', {
       clear = false,
@@ -111,7 +114,7 @@ null_ls.setup({
 })
 
 local nvim_lsp = require('lspconfig')
-local servers = { 'bashls', 'pyright', 'tailwindcss', 'taplo', 'yamlls' }
+local servers = { 'bashls', 'pyright', 'taplo', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({ on_attach = on_attach })
 end
@@ -125,23 +128,36 @@ if vim.fn.executable('typescript-language-server') == 1 then
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities_with_color = capabilities
+capabilities_with_color.textDocument.colorProvider = {
+  dynamicRegistration = true,
+}
+local capabilities_with_snippets = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities_with_color_and_snippets = capabilities_with_snippets
+capabilities_with_color_and_snippets.textDocument.colorProvider = {
+  dynamicRegistration = true,
+}
 
-local servers_with_snippets = { 'cssls', 'gopls', 'jsonls' }
+local servers_with_snippets = { 'gopls', 'jsonls' }
 for _, lsp in ipairs(servers_with_snippets) do
   nvim_lsp[lsp].setup({
-    capabilities = capabilities,
+    capabilities = capabilities_with_snippets,
     on_attach = on_attach,
   })
 end
 
 nvim_lsp.ccls.setup({
-  capabilities = capabilities,
+  capabilities = capabilities_with_snippets,
   init_options = {
     highlight = {
       lsRanges = true,
     },
   },
+  on_attach = on_attach,
+})
+
+nvim_lsp.cssls.setup({
+  capabilities = capabilities_with_color_and_snippets,
   on_attach = on_attach,
 })
 
@@ -153,8 +169,17 @@ nvim_lsp.html.setup({
   on_attach = on_attach,
 })
 
+if vim.fn.executable('rust-analyzer') == 1 then
+  require('rust-tools').setup({
+    server = {
+      capabilities = capabilities_with_snippets,
+      on_attach = on_attach,
+    },
+  })
+end
+
 nvim_lsp.sumneko_lua.setup({
-  capabilities = capabilities,
+  capabilities = capabilities_with_snippets,
   settings = {
     Lua = {
       runtime = {
@@ -168,17 +193,13 @@ nvim_lsp.sumneko_lua.setup({
   on_attach = on_attach,
 })
 
-if vim.fn.executable('rust-analyzer') == 1 then
-  require('rust-tools').setup({
-    server = {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    },
-  })
-end
+nvim_lsp.tailwindcss.setup({
+  capabilities = capabilities_with_color,
+  on_attach = on_attach,
+})
 
 nvim_lsp.volar.setup({
-  capabilities = capabilities,
+  capabilities = capabilities_with_snippets,
   init_options = {
     typescript = {
       serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js',

@@ -16,7 +16,15 @@ return require('packer').startup(function()
   })
   use({
     'NvChad/nvim-colorizer.lua',
-    config = require('colorizer').setup(),
+    config = function()
+      require('colorizer').setup({
+        filetypes = {
+          '*',
+          '!css',
+          '!html',
+        },
+      })
+    end,
   })
   use({
     'terrortylor/nvim-comment',
@@ -45,6 +53,10 @@ return require('packer').startup(function()
     config = require('diffview').setup({ enhanced_diff_hl = true }),
   })
   use('tpope/vim-dispatch')
+  use({
+    'mrshmllow/document-color.nvim',
+    config = require('document-color').setup({ mode = 'background' }),
+  })
   use({
     'junegunn/vim-easy-align',
     config = vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)'),
