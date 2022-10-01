@@ -6,6 +6,15 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    bufnr = bufnr,
+    filter = function(client)
+      return client.name ~= 'sumneko_lua' or 'tsserver'
+    end,
+  })
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -30,10 +39,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', lsp_formatting, bufopts)
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup('lsp_document_highlight', {
       clear = false,
     })
@@ -110,13 +119,7 @@ end
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
     server = {
-      on_attach = function(client, bufnr)
-        -- Defer formatting to prettier via null-ls
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-
-        on_attach(client, bufnr)
-      end,
+      on_attach = on_attach,
     },
   })
 end
@@ -162,13 +165,7 @@ nvim_lsp.sumneko_lua.setup({
       },
     },
   },
-  on_attach = function(client, bufnr)
-    -- Defer formatting to StyLua via null-ls
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
