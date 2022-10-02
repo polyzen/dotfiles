@@ -332,6 +332,7 @@ return require('packer').startup(function()
       'jose-elias-alvarez/null-ls.nvim',
       requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
     },
+    'b0o/SchemaStore.nvim',
     {
       'simrat39/symbols-outline.nvim',
       config = require('symbols-outline').setup(),

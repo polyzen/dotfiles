@@ -138,14 +138,6 @@ capabilities_with_color_and_snippets.textDocument.colorProvider = {
   dynamicRegistration = true,
 }
 
-local servers_with_snippets = { 'gopls', 'jsonls' }
-for _, lsp in ipairs(servers_with_snippets) do
-  nvim_lsp[lsp].setup({
-    capabilities = capabilities_with_snippets,
-    on_attach = on_attach,
-  })
-end
-
 nvim_lsp.ccls.setup({
   capabilities = capabilities_with_snippets,
   init_options = {
@@ -161,10 +153,26 @@ nvim_lsp.cssls.setup({
   on_attach = on_attach,
 })
 
+nvim_lsp.gopls.setup({
+  capabilities = capabilities_with_snippets,
+  on_attach = on_attach,
+})
+
 nvim_lsp.html.setup({
   capabilities = capabilities,
   init_options = {
     provideFormatter = false,
+  },
+  on_attach = on_attach,
+})
+
+nvim_lsp.jsonls.setup({
+  capabilities = capabilities_with_snippets,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
   },
   on_attach = on_attach,
 })
