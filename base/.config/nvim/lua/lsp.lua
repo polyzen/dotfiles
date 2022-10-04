@@ -71,6 +71,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+vim.api.nvim_create_augroup('LspAttach_inlayhints', {})
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = 'LspAttach_inlayhints',
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    require('lsp-inlayhints').on_attach(client, bufnr)
+  end,
+})
+
 local null_ls = require('null-ls')
 local sources = {
   null_ls.builtins.code_actions.eslint,
@@ -122,7 +136,34 @@ for _, lsp in ipairs(servers) do
 end
 
 if vim.fn.executable('typescript-language-server') == 1 then
-  require('typescript').setup({})
+  require('typescript').setup({
+    server = {
+      settings = {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+      },
+    },
+  })
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -147,7 +188,21 @@ nvim_lsp.ccls.setup({
 
 nvim_lsp.cssls.setup({ capabilities = capabilities_with_color_and_snippets })
 
-nvim_lsp.gopls.setup({ capabilities = capabilities_with_snippets })
+nvim_lsp.gopls.setup({
+  capabilities = capabilities_with_snippets,
+  settings = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+})
 
 nvim_lsp.html.setup({
   capabilities = capabilities,
@@ -169,6 +224,11 @@ nvim_lsp.jsonls.setup({
 if vim.fn.executable('rust-analyzer') == 1 then
   require('rust-tools').setup({
     server = { capabilities = capabilities_with_snippets },
+    tools = {
+      inlay_hints = {
+        auto = false,
+      },
+    },
   })
 end
 

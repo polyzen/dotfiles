@@ -325,6 +325,10 @@ return require('packer').startup(function()
       config = require('nvim-lightbulb').setup({ autocmd = { enabled = true } }),
     },
     {
+      'lvimuser/lsp-inlayhints.nvim',
+      config = require('lsp-inlayhints').setup(),
+    },
+    {
       'ray-x/lsp_signature.nvim',
       config = require('lsp_signature').setup({ cursorhold_update = false }),
     },
