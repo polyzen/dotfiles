@@ -1,70 +1,75 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- Diagnostic mappings
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    bufnr = bufnr,
-    filter = function(client)
-      return client.name ~= 'sumneko_lua' or 'tsserver'
-    end,
-  })
-end
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local capabilities = client.server_capabilities
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  require('lsp_signature').on_attach()
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- LSP mappings
+    local lsp_formatting = function()
+      vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function()
+          return client.name ~= 'sumneko_lua' or 'tsserver'
+        end,
+      })
+    end
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', lsp_formatting, bufopts)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    if capabilities.hoverProvider then
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    end
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>f', lsp_formatting, bufopts)
 
-  if client.server_capabilities.colorProvider then
-    require('document-color').buf_attach(bufnr)
-  end
+    -- Capabilities checks
+    if capabilities.colorProvider then
+      require('document-color').buf_attach(bufnr)
+    end
 
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup('lsp_document_highlight', {
-      clear = false,
-    })
-    vim.api.nvim_clear_autocmds({
-      buffer = bufnr,
-      group = 'lsp_document_highlight',
-    })
-    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-      group = 'lsp_document_highlight',
-      buffer = bufnr,
-      callback = vim.lsp.buf.document_highlight,
-    })
-    vim.api.nvim_create_autocmd('CursorMoved', {
-      group = 'lsp_document_highlight',
-      buffer = bufnr,
-      callback = vim.lsp.buf.clear_references,
-    })
-  end
-end
+    if capabilities.documentHighlightProvider then
+      vim.api.nvim_create_augroup('lsp_document_highlight', {
+        clear = false,
+      })
+      vim.api.nvim_clear_autocmds({
+        buffer = bufnr,
+        group = 'lsp_document_highlight',
+      })
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        group = 'lsp_document_highlight',
+        buffer = bufnr,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd('CursorMoved', {
+        group = 'lsp_document_highlight',
+        buffer = bufnr,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+
+    if capabilities.signatureHelpProvider then
+      require('lsp_signature').on_attach()
+    end
+  end,
+})
 
 local null_ls = require('null-ls')
 local sources = {
@@ -108,23 +113,16 @@ local sources = {
   }),
   null_ls.builtins.formatting.stylua,
 }
-null_ls.setup({
-  sources = sources,
-  on_attach = on_attach,
-})
+null_ls.setup({ sources = sources })
 
 local nvim_lsp = require('lspconfig')
 local servers = { 'bashls', 'pyright', 'taplo', 'yamlls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({ on_attach = on_attach })
+  nvim_lsp[lsp].setup({})
 end
 
 if vim.fn.executable('typescript-language-server') == 1 then
-  require('typescript').setup({
-    server = {
-      on_attach = on_attach,
-    },
-  })
+  require('typescript').setup({})
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -145,25 +143,17 @@ nvim_lsp.ccls.setup({
       lsRanges = true,
     },
   },
-  on_attach = on_attach,
 })
 
-nvim_lsp.cssls.setup({
-  capabilities = capabilities_with_color_and_snippets,
-  on_attach = on_attach,
-})
+nvim_lsp.cssls.setup({ capabilities = capabilities_with_color_and_snippets })
 
-nvim_lsp.gopls.setup({
-  capabilities = capabilities_with_snippets,
-  on_attach = on_attach,
-})
+nvim_lsp.gopls.setup({ capabilities = capabilities_with_snippets })
 
 nvim_lsp.html.setup({
   capabilities = capabilities,
   init_options = {
     provideFormatter = false,
   },
-  on_attach = on_attach,
 })
 
 nvim_lsp.jsonls.setup({
@@ -174,15 +164,11 @@ nvim_lsp.jsonls.setup({
       validate = { enable = true },
     },
   },
-  on_attach = on_attach,
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
   require('rust-tools').setup({
-    server = {
-      capabilities = capabilities_with_snippets,
-      on_attach = on_attach,
-    },
+    server = { capabilities = capabilities_with_snippets },
   })
 end
 
@@ -198,13 +184,9 @@ nvim_lsp.sumneko_lua.setup({
       },
     },
   },
-  on_attach = on_attach,
 })
 
-nvim_lsp.tailwindcss.setup({
-  capabilities = capabilities_with_color,
-  on_attach = on_attach,
-})
+nvim_lsp.tailwindcss.setup({ capabilities = capabilities_with_color })
 
 nvim_lsp.volar.setup({
   capabilities = capabilities_with_snippets,
@@ -213,5 +195,4 @@ nvim_lsp.volar.setup({
       serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js',
     },
   },
-  on_attach = on_attach,
 })
