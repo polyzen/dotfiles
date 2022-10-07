@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    if capabilities.hoverProvider then
+    if capabilities.hoverProvider and client.name ~= 'null-ls' then
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     end
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
