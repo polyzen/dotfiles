@@ -252,7 +252,7 @@ nvim_lsp.volar.setup({
   capabilities = capabilities_with_snippets,
   init_options = {
     typescript = {
-      serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js',
+      tsdk = '/usr/lib/node_modules/typescript/lib',
     },
   },
 })
