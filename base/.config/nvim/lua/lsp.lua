@@ -130,10 +130,79 @@ local sources = {
 null_ls.setup({ sources = sources })
 
 local nvim_lsp = require('lspconfig')
-local servers = { 'bashls', 'pyright', 'taplo', 'yamlls' }
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local servers = { 'bashls', 'pyright', 'taplo', 'tailwindcss', 'yamlls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({})
 end
+
+nvim_lsp.ccls.setup({
+  capabilities = cmp_capabilities,
+  init_options = {
+    highlight = {
+      lsRanges = true,
+    },
+  },
+})
+
+nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
+
+nvim_lsp.gopls.setup({
+  capabilities = cmp_capabilities,
+  settings = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+})
+
+nvim_lsp.html.setup({
+  init_options = {
+    provideFormatter = false,
+  },
+})
+
+nvim_lsp.jsonls.setup({
+  capabilities = cmp_capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+})
+
+if vim.fn.executable('rust-analyzer') == 1 then
+  require('rust-tools').setup({
+    server = { capabilities = cmp_capabilities },
+    tools = {
+      inlay_hints = {
+        auto = false,
+      },
+    },
+  })
+end
+
+nvim_lsp.sumneko_lua.setup({
+  capabilities = cmp_capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
+})
 
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
@@ -166,89 +235,8 @@ if vim.fn.executable('typescript-language-server') == 1 then
   })
 end
 
-local color_capabilities = {
-  textDocument = {
-    colorProvider = {
-      dynamicRegistration = true,
-    },
-  },
-}
-local snippet_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-nvim_lsp.ccls.setup({
-  capabilities = snippet_capabilities,
-  init_options = {
-    highlight = {
-      lsRanges = true,
-    },
-  },
-})
-
-nvim_lsp.cssls.setup({
-  capabilities = vim.tbl_deep_extend('error', color_capabilities, snippet_capabilities),
-})
-
-nvim_lsp.gopls.setup({
-  capabilities = snippet_capabilities,
-  settings = {
-    gopls = {
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-    },
-  },
-})
-
-nvim_lsp.html.setup({
-  init_options = {
-    provideFormatter = false,
-  },
-})
-
-nvim_lsp.jsonls.setup({
-  capabilities = snippet_capabilities,
-  settings = {
-    json = {
-      schemas = require('schemastore').json.schemas(),
-      validate = { enable = true },
-    },
-  },
-})
-
-if vim.fn.executable('rust-analyzer') == 1 then
-  require('rust-tools').setup({
-    server = { capabilities = snippet_capabilities },
-    tools = {
-      inlay_hints = {
-        auto = false,
-      },
-    },
-  })
-end
-
-nvim_lsp.sumneko_lua.setup({
-  capabilities = snippet_capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-    },
-  },
-})
-
-nvim_lsp.tailwindcss.setup({ capabilities = color_capabilities })
-
 nvim_lsp.volar.setup({
-  capabilities = snippet_capabilities,
+  capabilities = cmp_capabilities,
   init_options = {
     typescript = {
       tsdk = '/usr/lib/node_modules/typescript/lib',
