@@ -166,19 +166,17 @@ if vim.fn.executable('typescript-language-server') == 1 then
   })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities_with_color = capabilities
-capabilities_with_color.textDocument.colorProvider = {
-  dynamicRegistration = true,
+local color_capabilities = {
+  textDocument = {
+    colorProvider = {
+      dynamicRegistration = true,
+    },
+  },
 }
-local capabilities_with_snippets = require('cmp_nvim_lsp').update_capabilities(capabilities)
-local capabilities_with_color_and_snippets = capabilities_with_snippets
-capabilities_with_color_and_snippets.textDocument.colorProvider = {
-  dynamicRegistration = true,
-}
+local snippet_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 nvim_lsp.ccls.setup({
-  capabilities = capabilities_with_snippets,
+  capabilities = snippet_capabilities,
   init_options = {
     highlight = {
       lsRanges = true,
@@ -186,10 +184,12 @@ nvim_lsp.ccls.setup({
   },
 })
 
-nvim_lsp.cssls.setup({ capabilities = capabilities_with_color_and_snippets })
+nvim_lsp.cssls.setup({
+  capabilities = vim.tbl_deep_extend('error', color_capabilities, snippet_capabilities),
+})
 
 nvim_lsp.gopls.setup({
-  capabilities = capabilities_with_snippets,
+  capabilities = snippet_capabilities,
   settings = {
     gopls = {
       hints = {
@@ -205,14 +205,13 @@ nvim_lsp.gopls.setup({
 })
 
 nvim_lsp.html.setup({
-  capabilities = capabilities,
   init_options = {
     provideFormatter = false,
   },
 })
 
 nvim_lsp.jsonls.setup({
-  capabilities = capabilities_with_snippets,
+  capabilities = snippet_capabilities,
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -223,7 +222,7 @@ nvim_lsp.jsonls.setup({
 
 if vim.fn.executable('rust-analyzer') == 1 then
   require('rust-tools').setup({
-    server = { capabilities = capabilities_with_snippets },
+    server = { capabilities = snippet_capabilities },
     tools = {
       inlay_hints = {
         auto = false,
@@ -233,7 +232,7 @@ if vim.fn.executable('rust-analyzer') == 1 then
 end
 
 nvim_lsp.sumneko_lua.setup({
-  capabilities = capabilities_with_snippets,
+  capabilities = snippet_capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -246,10 +245,10 @@ nvim_lsp.sumneko_lua.setup({
   },
 })
 
-nvim_lsp.tailwindcss.setup({ capabilities = capabilities_with_color })
+nvim_lsp.tailwindcss.setup({ capabilities = color_capabilities })
 
 nvim_lsp.volar.setup({
-  capabilities = capabilities_with_snippets,
+  capabilities = snippet_capabilities,
   init_options = {
     typescript = {
       tsdk = '/usr/lib/node_modules/typescript/lib',
