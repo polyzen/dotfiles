@@ -136,14 +136,14 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({})
 end
 
-nvim_lsp.ccls.setup({
-  capabilities = cmp_capabilities,
-  init_options = {
-    highlight = {
-      lsRanges = true,
+if vim.fn.executable('clangd') == 1 then
+  require('clangd_extensions').setup({
+    server = { capabilities = cmp_capabilities },
+    extensions = {
+      autoSetHints = false,
     },
-  },
-})
+  })
+end
 
 nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
 

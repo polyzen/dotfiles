@@ -345,13 +345,10 @@ return require('packer').startup(function()
       config = "vim.g.vista_default_executive = 'nvim_lsp'",
     },
   })
-  if vim.fn.executable('ccls') == 1 then
+  if vim.fn.executable('clangd') == 1 then
     use({
-      {
-        'm-pilia/vim-ccls',
-        requires = { 'neovim/nvim-lspconfig' },
-      },
-      'jackguo380/vim-lsp-cxx-highlight',
+      'p00f/clangd_extensions.nvim',
+      requires = { 'neovim/nvim-lspconfig' },
     })
   end
   if vim.fn.executable('rust-analyzer') == 1 then
