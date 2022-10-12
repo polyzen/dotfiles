@@ -179,6 +179,7 @@ return require('packer').startup(function()
           enable = true,
         },
       })
+      require('nvim-treesitter.install').prefer_git = true
       vim.o.foldmethod = 'expr'
       vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
     end,
