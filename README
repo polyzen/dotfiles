@@ -3,6 +3,8 @@
 │   ├── flake8
 │   ├── nvim
 │   │   ├── after
+│   │   │   ├── ftplugin
+│   │   │   │   └── PKGBUILD.lua
 │   │   │   └── plugin
 │   │   │       └── vim-crystalline.vim
 │   │   ├── init.lua
