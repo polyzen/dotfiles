@@ -69,7 +69,7 @@ return require('packer').startup(function()
       vim.g.gruvbox_italic = 1
       local h = tonumber(os.date('%H'))
       if 6 <= h and h < 20 then
-        vim.opt.background = 'light'
+        vim.o.background = 'light'
       end
       vim.cmd('colorscheme gruvbox')
     end,
@@ -179,8 +179,8 @@ return require('packer').startup(function()
           enable = true,
         },
       })
-      vim.opt.foldmethod = 'expr'
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.o.foldmethod = 'expr'
+      vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
     end,
   })
   use({

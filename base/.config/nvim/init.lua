@@ -1,19 +1,18 @@
-vim.opt.guifont = 'Fantasque Sans Mono:h12'
-vim.opt.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
+vim.o.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
 
 -- Lines
-vim.opt.showtabline = 2 -- Always show tab pages line
-vim.opt.showmode = false -- Do not echo the mode, status line will display it
-vim.opt.wildmode = 'longest:full,full' -- Incremental command-line completions
+vim.o.showtabline = 2 -- Always show tab pages line
+vim.o.showmode = false -- Do not echo the mode, status line will display it
+vim.opt.wildmode:prepend { 'longest:full' } -- Incremental command-line completions
 
 -- Search
-vim.opt.ignorecase = true -- Ignore case
-vim.opt.smartcase = true -- .. unless "pattern contains upper case characters"
+vim.o.ignorecase = true -- Ignore case
+vim.o.smartcase = true -- .. unless "pattern contains upper case characters"
 
 -- Two-space indentation
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 
 vim.api.nvim_create_augroup('highlight_yank', {})
 -- stylua: ignore
