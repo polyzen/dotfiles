@@ -11,6 +11,7 @@ user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.search.hiddenOneOffs", "Google,Bing,Amazon.com,DuckDuckGo,eBay,Twitter,Wikipedia (en)");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.tabs.tabmanager.enabled", false);
 user_pref("browser.tabs.warnOnOpen", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("dom.security.https_only_mode", true);
