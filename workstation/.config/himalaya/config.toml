@@ -1,4 +1,4 @@
-name = "Daniel M. Capella"
+display-name = "Daniel M. Capella"
 downloads-dir = "~/download"
 signature = """
 Best,
@@ -11,12 +11,14 @@ email = "polyzen@archlinux.org"
 pgp-encrypt-cmd = "gpg -o - -eqar"
 pgp-decrypt-cmd = "gpg -dq"
 
+sender = "smtp"
 smtp-host = "mail.archlinux.org"
 smtp-port = 465
 smtp-login = "polyzen"
 smtp-passwd-cmd = "pass services/email/polyzen@archlinux.org"
 
-notmuch-database-dir = "~/.mail"
+backend = "maildir"
+maildir-root-dir = "~/.mail/arch"
 
-[arch-local.mailboxes]
-inbox = "tag:inbox"
+[arch-local.folder-aliases]
+inbox = "~/.mail/arch/INBOX"
