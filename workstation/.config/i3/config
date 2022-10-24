@@ -17,9 +17,6 @@ set $right l
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
-# https://github.com/i3/i3/issues/5155#issuecomment-1266104651
-bindsym button1 focus
-
 # kill focused window
 bindsym Mod4+Shift+q kill
 
