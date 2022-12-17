@@ -147,6 +147,14 @@ end
 
 nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
 
+nvim_lsp.esbonio.setup({
+  init_options = {
+    sphinx = {
+      silent = 1,
+    },
+  },
+})
+
 nvim_lsp.gopls.setup({
   capabilities = cmp_capabilities,
   settings = {

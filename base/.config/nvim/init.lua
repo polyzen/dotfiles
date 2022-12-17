@@ -3,7 +3,7 @@ vim.o.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
 -- Lines
 vim.o.showtabline = 2 -- Always show tab pages line
 vim.o.showmode = false -- Do not echo the mode, status line will display it
-vim.opt.wildmode:prepend { 'longest:full' } -- Incremental command-line completions
+vim.opt.wildmode:prepend({ 'longest:full' }) -- Incremental command-line completions
 
 -- Search
 vim.o.ignorecase = true -- Ignore case
