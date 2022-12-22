@@ -122,7 +122,7 @@ end
 
 local nvim_lsp = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'pyright', 'taplo', 'tailwindcss' }
+local servers = { 'bashls', 'taplo', 'tailwindcss' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({})
 end
@@ -169,6 +169,13 @@ nvim_lsp.html.setup({
   },
 })
 
+nvim_lsp.jedi_language_server.setup({
+  capabilities = cmp_capabilities,
+  on_attach = function(client)
+    client.server_capabilities.signatureHelpProvider = false
+  end,
+})
+
 nvim_lsp.jsonls.setup({
   init_options = {
     provideFormatter = false,
@@ -180,6 +187,13 @@ nvim_lsp.jsonls.setup({
       validate = { enable = true },
     },
   },
+})
+
+nvim_lsp.pyright.setup({
+  on_attach = function(client)
+    client.server_capabilities.completionProvider = false
+    client.server_capabilities.hoverProvider = false
+  end,
 })
 
 nvim_lsp.ruff_lsp.setup({
