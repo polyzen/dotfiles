@@ -3,6 +3,7 @@ slang=eng
 profile=gpu-hq
 ytdl-format=bestvideo[height<=1080]+bestaudio/best[height<=1080]
 volume=100
+audio-display=no
 fullscreen
 demuxer-max-back-bytes=150MiB
 screenshot-directory=/tmp
