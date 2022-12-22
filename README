@@ -1,6 +1,5 @@
-./base
+base
 ├── .config
-│   ├── flake8
 │   ├── nvim
 │   │   ├── after
 │   │   │   ├── ftplugin
@@ -20,11 +19,11 @@
 │       └── config
 ├── .editorconfig
 └── .zshrc
-./misc
+misc
 └── .config
     └── urlwatch
         └── hooks.py
-./workstation
+workstation
 ├── .config
 │   ├── afew
 │   │   └── config

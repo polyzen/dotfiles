@@ -104,8 +104,8 @@ local sources = {
       return utils.root_has_file({ 'node_modules' })
     end,
   }),
-  null_ls.builtins.diagnostics.flake8,
   null_ls.builtins.diagnostics.rstcheck,
+  null_ls.builtins.diagnostics.ruff,
   null_ls.builtins.diagnostics.selene.with({
     cwd = function(params)
       local conf_file = vim.fn.findfile('selene.toml', params.root)
@@ -118,7 +118,6 @@ local sources = {
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.isort,
   null_ls.builtins.formatting.jq,
   null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.rustfmt,
