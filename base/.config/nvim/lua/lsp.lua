@@ -105,7 +105,6 @@ local sources = {
     end,
   }),
   null_ls.builtins.diagnostics.rstcheck,
-  null_ls.builtins.diagnostics.ruff,
   null_ls.builtins.diagnostics.selene.with({
     cwd = function(params)
       local conf_file = vim.fn.findfile('selene.toml', params.root)
@@ -184,6 +183,15 @@ nvim_lsp.jsonls.setup({
       validate = { enable = true },
     },
   },
+})
+
+nvim_lsp.ruff_lsp.setup({
+  init_options = {
+    settings = {
+      organizeImports = false,
+      fixAll = false,
+    }
+  }
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
