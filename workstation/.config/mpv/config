@@ -7,3 +7,4 @@ audio-display=no
 fullscreen
 demuxer-max-back-bytes=150MiB
 screenshot-directory=/tmp
+gpu-api=vulkan
