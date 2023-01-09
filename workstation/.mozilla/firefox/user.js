@@ -4,8 +4,6 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.newtabpage.enabled", false);
-user_pref("browser.region.network.url", "");
-user_pref("browser.region.update.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.search.hiddenOneOffs", "Google,Bing,Amazon.com,DuckDuckGo,eBay,Twitter,Wikipedia (en)");
