@@ -127,6 +127,10 @@ local sources = {
 }
 null_ls.setup({ sources = sources })
 
+if vim.fn.executable('lua-language-server') == 1 then
+  require('neodev').setup()
+end
+
 local nvim_lsp = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = { 'bashls', 'pyright', 'taplo', 'tailwindcss', 'yamlls' }
@@ -205,19 +209,7 @@ if vim.fn.executable('rust-analyzer') == 1 then
   })
 end
 
-nvim_lsp.sumneko_lua.setup({
-  capabilities = cmp_capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-    },
-  },
-})
+nvim_lsp.sumneko_lua.setup({ capabilities = cmp_capabilities })
 
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({

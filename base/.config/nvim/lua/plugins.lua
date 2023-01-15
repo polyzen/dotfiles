@@ -352,6 +352,9 @@ return require('packer').startup(function()
       requires = { 'neovim/nvim-lspconfig' },
     })
   end
+  if vim.fn.executable('lua-language-server') == 1 then
+    use('folke/neodev.nvim')
+  end
   if vim.fn.executable('rust-analyzer') == 1 then
     use({
       'simrat39/rust-tools.nvim',
