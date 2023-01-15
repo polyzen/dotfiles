@@ -211,6 +211,8 @@ end
 
 nvim_lsp.sumneko_lua.setup({ capabilities = cmp_capabilities })
 
+nvim_lsp.svelte.setup({ capabilities = cmp_capabilities })
+
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
     server = {
