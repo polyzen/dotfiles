@@ -15,13 +15,22 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 
 vim.api.nvim_create_augroup('highlight_yank', {})
--- stylua: ignore
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = 'highlight_yank',
   pattern = '*',
-  callback = function() vim.highlight.on_yank() end,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
-require('impatient')
+vim.api.nvim_create_augroup('pkgbuild_unfold', {})
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = 'pkgbuild_unfold',
+  pattern = 'PKGBUILD',
+  callback = function()
+    vim.o.foldenable = false
+  end,
+})
+
 require('plugins')
 require('lsp')

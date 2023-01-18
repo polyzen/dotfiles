@@ -2,8 +2,6 @@ base
 ├── .config
 │   ├── nvim
 │   │   ├── after
-│   │   │   ├── ftplugin
-│   │   │   │   └── PKGBUILD.lua
 │   │   │   └── plugin
 │   │   │       └── vim-crystalline.vim
 │   │   ├── init.lua
