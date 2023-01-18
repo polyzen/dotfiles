@@ -196,7 +196,6 @@ require('lazy').setup({
       require('nvim-treesitter.configs').setup({
         highlight = {
           enable = true,
-          disable = { 'c', 'cpp' },
         },
         incremental_selection = {
           enable = true,
