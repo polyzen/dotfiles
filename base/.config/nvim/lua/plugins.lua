@@ -16,7 +16,7 @@ require('lazy').setup({
   'moll/vim-bbye',
   {
     'jose-elias-alvarez/buftabline.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
       tab_format = ' #{n}: #{b}#{f} #{i} ',
       buffer_id_index = true,
@@ -55,7 +55,7 @@ require('lazy').setup({
     'sindrets/diffview.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     },
     opts = {
       enhanced_diff_hl = true,
@@ -160,7 +160,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-treesitter/nvim-treesitter', lazy = true },
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     },
     config = function()
       require('telescope').setup({
@@ -176,8 +176,8 @@ require('lazy').setup({
   'markonm/traces.vim',
   'andymass/vim-tradewinds',
   {
-    'kyazdani42/nvim-tree.lua',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-tree.lua',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     config = true,
   },
   {
