@@ -17,33 +17,30 @@ require('lazy').setup({
   {
     'jose-elias-alvarez/buftabline.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('buftabline').setup({
-        tab_format = ' #{n}: #{b}#{f} #{i} ',
-        buffer_id_index = true,
-      })
-    end,
+    opts = {
+      tab_format = ' #{n}: #{b}#{f} #{i} ',
+      buffer_id_index = true,
+    },
   },
   {
     'NvChad/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup({
-        filetypes = {
-          '*',
-          '!css',
-          '!html',
-        },
-      })
-    end,
+    opts = {
+      filetypes = {
+        '*',
+        '!css',
+        '!html',
+      },
+    },
   },
   {
     'terrortylor/nvim-comment',
-    config = function()
-      require('nvim_comment').setup({
-        hook = function()
-          require('ts_context_commentstring.internal').update_commentstring()
-        end,
-      })
+    opts = {
+      hook = function()
+        require('ts_context_commentstring.internal').update_commentstring()
+      end,
+    },
+    config = function(_, opts)
+      require('nvim_comment').setup(opts)
     end,
   },
   'romainl/vim-cool',
@@ -60,16 +57,16 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
     },
-    config = function()
-      require('diffview').setup({ enhanced_diff_hl = true })
-    end,
+    opts = {
+      enhanced_diff_hl = true,
+    },
   },
   'tpope/vim-dispatch',
   {
     'mrshmllow/document-color.nvim',
-    config = function()
-      require('document-color').setup({ mode = 'background' })
-    end,
+    opts = {
+      mode = 'background',
+    },
   },
   {
     'junegunn/vim-easy-align',
@@ -96,12 +93,13 @@ require('lazy').setup({
   {
     'lukas-reineke/indent-blankline.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('indent_blankline').setup({
-        char_list = { '|', '¦', '┆', '┊' },
-        show_current_context = true,
-        use_treesitter = true,
-      })
+    opts = {
+      char_list = { '|', '¦', '┆', '┊' },
+      show_current_context = true,
+      use_treesitter = true,
+    },
+    config = function(_, opts)
+      require('indent_blankline').setup(opts)
     end,
   },
   {
@@ -120,9 +118,7 @@ require('lazy').setup({
   'markwu/vim-mrufiles',
   {
     'karb94/neoscroll.nvim',
-    config = function()
-      require('neoscroll').setup()
-    end,
+    config = true,
   },
   'ojroques/vim-oscyank',
   'blueyed/vim-qf_resize',
@@ -136,15 +132,11 @@ require('lazy').setup({
   {
     'winston0410/range-highlight.nvim',
     dependencies = 'winston0410/cmd-parser.nvim',
-    config = function()
-      require('range-highlight').setup()
-    end,
+    config = true,
   },
   {
     'tversteeg/registers.nvim',
-    config = function()
-      require('registers').setup()
-    end,
+    config = true,
   },
   'tpope/vim-repeat',
   'rhysd/reply.vim',
@@ -186,36 +178,35 @@ require('lazy').setup({
   {
     'kyazdani42/nvim-tree.lua',
     dependencies = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('nvim-tree').setup()
-    end,
+    config = true,
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        highlight = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-        },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
-        matchup = {
-          enable = true,
-        },
-      })
+    opts = {
+      highlight = {
+        enable = true,
+      },
+      incremental_selection = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
+      matchup = {
+        enable = true,
+      },
+    },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
       require('nvim-treesitter.install').prefer_git = true
       vim.o.foldmethod = 'expr'
       vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
     end,
+    build = ':TSUpdate',
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
@@ -224,17 +215,13 @@ require('lazy').setup({
   'JoosepAlviste/nvim-ts-context-commentstring',
   {
     'folke/twilight.nvim',
-    config = function()
-      require('twilight').setup()
-    end,
+    config = true,
   },
   'tpope/vim-unimpaired',
   {
     'folke/zen-mode.nvim',
     dependencies = { 'folke/twilight.nvim', lazy = true },
-    config = function()
-      require('zen-mode').setup()
-    end,
+    config = true,
   },
   {
     'dhruvasagar/vim-zoom',
@@ -259,10 +246,10 @@ require('lazy').setup({
       { 'hrsh7th/cmp-nvim-lsp', branch = 'main' },
       'hrsh7th/cmp-path',
     },
-    config = function()
+    opts = function()
       local cmp = require('cmp')
 
-      cmp.setup({
+      return {
         snippet = {
           expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -281,7 +268,7 @@ require('lazy').setup({
           { name = 'path' },
           { name = 'buffer' },
         },
-      })
+      }
     end,
   },
 
@@ -296,81 +283,75 @@ require('lazy').setup({
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('gitsigns').setup({
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
+    opts = {
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
 
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
 
-          -- Navigation
-          map('n', ']c', function()
-            -- stylua: ignore start
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function() gs.next_hunk() end)
-            -- stylua: ignore end
-            return '<Ignore>'
-          end, { expr = true })
+        -- Navigation
+        map('n', ']c', function()
+          -- stylua: ignore start
+          if vim.wo.diff then return ']c' end
+          vim.schedule(function() gs.next_hunk() end)
+          -- stylua: ignore end
+          return '<Ignore>'
+        end, { expr = true })
 
-          map('n', '[c', function()
-            -- stylua: ignore start
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function() gs.prev_hunk() end)
-            -- stylua: ignore end
-            return '<Ignore>'
-          end, { expr = true })
+        map('n', '[c', function()
+          -- stylua: ignore start
+          if vim.wo.diff then return '[c' end
+          vim.schedule(function() gs.prev_hunk() end)
+          -- stylua: ignore end
+          return '<Ignore>'
+        end, { expr = true })
 
-          -- Actions
-          map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-          map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-          map('n', '<leader>hS', gs.stage_buffer)
-          map('n', '<leader>hu', gs.undo_stage_hunk)
-          map('n', '<leader>hR', gs.reset_buffer)
-          map('n', '<leader>hp', gs.preview_hunk)
-          -- stylua: ignore
-          map('n', '<leader>hb', function() gs.blame_line({ full = true }) end)
-          map('n', '<leader>tb', gs.toggle_current_line_blame)
-          map('n', '<leader>hd', gs.diffthis)
-          -- stylua: ignore
-          map('n', '<leader>hD', function() gs.diffthis('~') end)
-          map('n', '<leader>td', gs.toggle_deleted)
+        -- Actions
+        map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+        map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+        map('n', '<leader>hS', gs.stage_buffer)
+        map('n', '<leader>hu', gs.undo_stage_hunk)
+        map('n', '<leader>hR', gs.reset_buffer)
+        map('n', '<leader>hp', gs.preview_hunk)
+        -- stylua: ignore
+        map('n', '<leader>hb', function() gs.blame_line({ full = true }) end)
+        map('n', '<leader>tb', gs.toggle_current_line_blame)
+        map('n', '<leader>hd', gs.diffthis)
+        -- stylua: ignore
+        map('n', '<leader>hD', function() gs.diffthis('~') end)
+        map('n', '<leader>td', gs.toggle_deleted)
 
-          -- Text object
-          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-        end,
-      })
-    end,
+        -- Text object
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+      end,
+    },
   },
 
   -- LSP
   'neovim/nvim-lspconfig',
   {
     'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup()
-    end,
+    config = true,
   },
   {
     'kosayoda/nvim-lightbulb',
-    config = function()
-      require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
-    end,
+    opts = {
+      autocmd = { enabled = true },
+    },
   },
   {
     'lvimuser/lsp-inlayhints.nvim',
-    config = function()
-      require('lsp-inlayhints').setup()
-    end,
+    config = true,
   },
   {
     'ray-x/lsp_signature.nvim',
-    config = function()
-      require('lsp_signature').setup({ cursorhold_update = false })
-    end,
+    opts = {
+      cursorhold_update = false,
+    },
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
@@ -379,9 +360,7 @@ require('lazy').setup({
   'b0o/SchemaStore.nvim',
   {
     'simrat39/symbols-outline.nvim',
-    config = function()
-      require('symbols-outline').setup()
-    end,
+    config = true,
   },
   {
     'liuchengxu/vista.vim',
