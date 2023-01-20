@@ -349,9 +349,7 @@ require('lazy').setup({
   },
   {
     'ray-x/lsp_signature.nvim',
-    opts = {
-      cursorhold_update = false,
-    },
+    config = true,
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
