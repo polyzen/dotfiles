@@ -87,9 +87,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local null_ls = require('null-ls')
 local sources = {
-  null_ls.builtins.code_actions.eslint,
+  null_ls.builtins.code_actions.eslint.with({
+    prefer_local = 'node_modules/.bin',
+  }),
   null_ls.builtins.code_actions.eslint.with({
     filetypes = { 'html' },
+    prefer_local = 'node_modules/.bin',
     condition = function(utils)
       return utils.root_has_file({ 'node_modules' })
     end,
@@ -97,9 +100,12 @@ local sources = {
   null_ls.builtins.code_actions.shellcheck.with({
     extra_filetypes = { 'PKGBUILD' },
   }),
-  null_ls.builtins.diagnostics.eslint,
+  null_ls.builtins.diagnostics.eslint.with({
+    prefer_local = 'node_modules/.bin',
+  }),
   null_ls.builtins.diagnostics.eslint.with({
     filetypes = { 'html' },
+    prefer_local = 'node_modules/.bin',
     condition = function(utils)
       return utils.root_has_file({ 'node_modules' })
     end,
@@ -113,12 +119,16 @@ local sources = {
       end
     end,
   }),
-  null_ls.builtins.diagnostics.stylelint,
+  null_ls.builtins.diagnostics.stylelint.with({
+    prefer_local = 'node_modules/.bin',
+  }),
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.jq,
-  null_ls.builtins.formatting.prettier,
+  null_ls.builtins.formatting.prettier.with({
+    prefer_local = 'node_modules/.bin',
+  }),
   null_ls.builtins.formatting.rustfmt,
   null_ls.builtins.formatting.shfmt.with({
     extra_filetypes = { 'PKGBUILD' },
@@ -194,8 +204,8 @@ nvim_lsp.ruff_lsp.setup({
     settings = {
       organizeImports = false,
       fixAll = false,
-    }
-  }
+    },
+  },
 })
 
 if vim.fn.executable('rust-analyzer') == 1 then
