@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format({
         bufnr = bufnr,
         filter = function()
-          return client.name ~= 'sumneko_lua' or 'tsserver'
+          return client.name ~= 'lua_ls' or 'tsserver'
         end,
       })
     end
@@ -219,7 +219,7 @@ if vim.fn.executable('rust-analyzer') == 1 then
   })
 end
 
-nvim_lsp.sumneko_lua.setup({ capabilities = cmp_capabilities })
+nvim_lsp.lua_ls.setup({ capabilities = cmp_capabilities })
 
 nvim_lsp.svelte.setup({ capabilities = cmp_capabilities })
 
