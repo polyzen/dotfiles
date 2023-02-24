@@ -87,7 +87,7 @@ require('lazy').setup({
       end
     end,
     config = function()
-      vim.cmd('colorscheme gruvbox')
+      vim.cmd.colorscheme('gruvbox')
     end,
   },
   {
