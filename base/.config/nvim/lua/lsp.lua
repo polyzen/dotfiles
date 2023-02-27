@@ -91,11 +91,8 @@ local sources = {
     prefer_local = 'node_modules/.bin',
   }),
   null_ls.builtins.code_actions.eslint.with({
-    filetypes = { 'html' },
-    prefer_local = 'node_modules/.bin',
-    condition = function(utils)
-      return utils.root_has_file({ 'node_modules' })
-    end,
+    filetypes = { 'html', 'svelte' },
+    only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.code_actions.shellcheck.with({
     extra_filetypes = { 'PKGBUILD' },
@@ -104,11 +101,8 @@ local sources = {
     prefer_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.eslint.with({
-    filetypes = { 'html' },
-    prefer_local = 'node_modules/.bin',
-    condition = function(utils)
-      return utils.root_has_file({ 'node_modules' })
-    end,
+    filetypes = { 'html', 'svelte' },
+    only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene.with({
