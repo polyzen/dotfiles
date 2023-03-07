@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- LSP mappings
     local lsp_formatting = function()
       vim.lsp.buf.format({
+        timeout_ms = 2000,
         bufnr = bufnr,
         filter = function()
           return client.name ~= 'lua_ls' or 'tsserver'
