@@ -120,7 +120,6 @@ local sources = {
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint,
   null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.jq,
   null_ls.builtins.formatting.prettier.with({
     prefer_local = 'node_modules/.bin',
   }),
