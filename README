@@ -10,7 +10,6 @@ base
 │   │   │   └── plugins.lua
 │   │   ├── selene.toml
 │   │   └── vim.yml
-│   ├── stylua.toml
 │   ├── tmux
 │   │   └── tmux.conf
 │   └── yamllint
