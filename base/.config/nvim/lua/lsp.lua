@@ -263,6 +263,9 @@ nvim_lsp.volar.setup({
 nvim_lsp.yamlls.setup({
   settings = {
     redhat = { telemetry = { enabled = false } },
-    yaml = { format = { enable = false } },
+    yaml = {
+      format = { enable = false },
+      schemas = require('schemastore').yaml.schemas(),
+    },
   },
 })
