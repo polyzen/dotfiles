@@ -137,7 +137,7 @@ end
 
 local nvim_lsp = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'pyright', 'taplo', 'tailwindcss', 'yamlls' }
+local servers = { 'bashls', 'pyright', 'taplo', 'tailwindcss' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({})
 end
@@ -184,6 +184,9 @@ nvim_lsp.html.setup({
 })
 
 nvim_lsp.jsonls.setup({
+  init_options = {
+    provideFormatter = false,
+  },
   capabilities = cmp_capabilities,
   settings = {
     json = {
@@ -254,5 +257,12 @@ nvim_lsp.volar.setup({
     typescript = {
       tsdk = '/usr/lib/node_modules/typescript/lib',
     },
+  },
+})
+
+nvim_lsp.yamlls.setup({
+  settings = {
+    redhat = { telemetry = { enabled = false } },
+    yaml = { format = { enable = false } },
   },
 })
