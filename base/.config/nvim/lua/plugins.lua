@@ -112,7 +112,9 @@ require('lazy').setup({
   {
     'wfxr/minimap.vim',
     cond = function()
-      if vim.fn.executable('code-minimap') == 0 then
+      if vim.fn.executable('code-minimap') == 1 then
+        return true
+      else
         return false
       end
     end,
@@ -383,7 +385,9 @@ require('lazy').setup({
   {
     'p00f/clangd_extensions.nvim',
     cond = function()
-      if vim.fn.executable('clangd') == 0 then
+      if vim.fn.executable('clangd') == 1 then
+        return true
+      else
         return false
       end
     end,
@@ -392,7 +396,9 @@ require('lazy').setup({
   {
     'folke/neodev.nvim',
     cond = function()
-      if vim.fn.executable('lua-language-server') == 0 then
+      if vim.fn.executable('lua-language-server') == 1 then
+        return true
+      else
         return false
       end
     end,
@@ -400,7 +406,9 @@ require('lazy').setup({
   {
     'simrat39/rust-tools.nvim',
     cond = function()
-      if vim.fn.executable('rust-analyzer') == 0 then
+      if vim.fn.executable('rust-analyzer') == 1 then
+        return true
+      else
         return false
       end
     end,
@@ -412,7 +420,9 @@ require('lazy').setup({
   {
     'jose-elias-alvarez/typescript.nvim',
     cond = function()
-      if vim.fn.executable('typescript-language-server') == 0 then
+      if vim.fn.executable('typescript-language-server') == 1 then
+        return true
+      else
         return false
       end
     end,
