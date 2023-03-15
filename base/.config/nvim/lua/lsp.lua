@@ -118,7 +118,15 @@ local sources = {
     prefer_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.vint,
-  null_ls.builtins.diagnostics.yamllint,
+  null_ls.builtins.diagnostics.yamllint.with({
+    condition = function(utils)
+      if utils.root_has_file({ 'node_modules/.bin' }) then
+        return false
+      else
+        return true
+      end
+    end,
+  }),
   null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.prettier.with({
     prefer_local = 'node_modules/.bin',
