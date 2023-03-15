@@ -92,7 +92,7 @@ local sources = {
     prefer_local = 'node_modules/.bin',
   }),
   null_ls.builtins.code_actions.eslint.with({
-    filetypes = { 'html', 'svelte' },
+    filetypes = { 'html', 'svelte', 'yaml' },
     only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.code_actions.shellcheck.with({
@@ -102,7 +102,7 @@ local sources = {
     prefer_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.eslint.with({
-    filetypes = { 'html', 'svelte' },
+    filetypes = { 'html', 'svelte', 'yaml' },
     only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.rstcheck,
