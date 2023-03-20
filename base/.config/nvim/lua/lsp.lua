@@ -231,6 +231,10 @@ nvim_lsp.svelte.setup({ capabilities = cmp_capabilities })
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
     server = {
+      init_options = {
+        hostInfo = 'neovim',
+        plugins = { { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' } },
+      },
       settings = {
         typescript = {
           inlayHints = {
