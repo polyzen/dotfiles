@@ -224,7 +224,16 @@ if vim.fn.executable('rust-analyzer') == 1 then
   })
 end
 
-nvim_lsp.lua_ls.setup({ capabilities = cmp_capabilities })
+nvim_lsp.lua_ls.setup({
+  capabilities = cmp_capabilities,
+  settings = {
+    Lua = {
+      workspace = {
+        checkThirdParty = false,
+      },
+    },
+  },
+})
 
 nvim_lsp.svelte.setup({ capabilities = cmp_capabilities })
 
