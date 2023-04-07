@@ -74,7 +74,6 @@ require('lazy').setup({
       vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
     end,
   },
-  'editorconfig/editorconfig-vim',
   'Konfekt/FastFold',
   {
     'npxbr/gruvbox.nvim',
