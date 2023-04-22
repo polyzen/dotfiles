@@ -106,14 +106,7 @@ local sources = {
     only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.rstcheck,
-  null_ls.builtins.diagnostics.selene.with({
-    cwd = function(params)
-      local conf_file = vim.fn.findfile('selene.toml', params.root)
-      if conf_file then
-        return vim.fn.fnamemodify(conf_file, ':p:h')
-      end
-    end,
-  }),
+  null_ls.builtins.diagnostics.selene,
   null_ls.builtins.diagnostics.stylelint.with({
     prefer_local = 'node_modules/.bin',
   }),
