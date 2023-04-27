@@ -88,22 +88,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local null_ls = require('null-ls')
 local sources = {
-  null_ls.builtins.code_actions.eslint.with({
-    prefer_local = 'node_modules/.bin',
-  }),
-  null_ls.builtins.code_actions.eslint.with({
-    filetypes = { 'html', 'svelte', 'yaml' },
-    only_local = 'node_modules/.bin',
-  }),
   null_ls.builtins.code_actions.shellcheck.with({
     extra_filetypes = { 'PKGBUILD' },
-  }),
-  null_ls.builtins.diagnostics.eslint.with({
-    prefer_local = 'node_modules/.bin',
-  }),
-  null_ls.builtins.diagnostics.eslint.with({
-    filetypes = { 'html', 'svelte', 'yaml' },
-    only_local = 'node_modules/.bin',
   }),
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene,
@@ -153,6 +139,13 @@ if vim.fn.executable('clangd') == 1 then
 end
 
 nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
+
+nvim_lsp.eslint.setup({
+  filetypes = vim.list_extend(
+    require('lspconfig.server_configurations.eslint').default_config.filetypes,
+    { 'html', 'yaml' }
+  ),
+})
 
 nvim_lsp.esbonio.setup({
   init_options = {
