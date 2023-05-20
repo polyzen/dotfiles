@@ -145,13 +145,6 @@ require('lazy').setup({
   'rhysd/reply.vim',
   'tpope/vim-rsi',
   'matthew-brett/vim-rst-sections',
-  {
-    'mhinz/vim-signify',
-    init = function()
-      vim.g.signify_disable_by_default = 1
-      vim.g.signify_skip = { vcs = { deny = { 'git' } } }
-    end,
-  },
   'stsewd/sphinx.nvim',
   'AndrewRadev/splitjoin.vim',
   'lambdalisue/suda.vim',
