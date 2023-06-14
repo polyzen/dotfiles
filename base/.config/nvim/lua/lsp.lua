@@ -145,6 +145,7 @@ nvim_lsp.eslint.setup({
     require('lspconfig.server_configurations.eslint').default_config.filetypes,
     { 'html', 'yaml' }
   ),
+  settings = { run = 'onSave' },
 })
 
 nvim_lsp.esbonio.setup({
