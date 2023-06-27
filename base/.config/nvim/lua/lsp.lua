@@ -209,6 +209,7 @@ nvim_lsp.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {
     Lua = {
+      format = { enable = false },
       workspace = {
         checkThirdParty = false,
       },
