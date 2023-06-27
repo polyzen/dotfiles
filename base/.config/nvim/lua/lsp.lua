@@ -135,10 +135,10 @@ end
 nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
 
 nvim_lsp.eslint.setup({
-  filetypes = vim.list_extend(
+  filetypes = vim.tbl_flatten({
     require('lspconfig.server_configurations.eslint').default_config.filetypes,
-    { 'html', 'yaml' }
-  ),
+    { 'html', 'yaml' },
+  }),
   settings = { run = 'onSave' },
 })
 
