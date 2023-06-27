@@ -13,7 +13,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Buffer local mappings
     local lsp_formatting = function()
-      vim.lsp.buf.format({ timeout_ms = 2000 })
+      local opts = { timeout_ms = 2000, bufnr = bufnr }
+      local tsserver_filetypes = require('lspconfig.server_configurations.tsserver').default_config.filetypes
+      -- Override tsserver formatter
+      if vim.fn.index(tsserver_filetypes, vim.o.filetype) ~= -1 then
+        vim.lsp.buf.format(vim.tbl_flatten({ name = 'null-ls', opts }))
+      else
+        vim.lsp.buf.format(opts)
+      end
     end
 
     local opts = { buffer = bufnr }
