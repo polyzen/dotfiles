@@ -1,7 +1,7 @@
 user_pref("browser.contentblocking.category", "strict");
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 user_pref("browser.download.useDownloadDir", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
@@ -24,9 +24,7 @@ user_pref("narrate.rate", 25);
 user_pref("narrate.voice", "{\"default\":\"urn:moz-tts:speechd:english-north?en-GB\",\"en\":\"urn:moz-tts:speechd:english-north?en-GB\"}");
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.http.referer.XOriginPolicy", 2);
-user_pref("privacy.partition.serviceWorkers", true);
 user_pref("privacy.resistFingerprinting", true);
-user_pref("security.pki.sha1_enforcement_level", 1);
 user_pref("security.ssl.require_safe_negotiation", true);
 user_pref("signon.rememberSignons", false);
 user_pref("toolkit.coverage.endpoint.base", "");
