@@ -15,7 +15,8 @@ sender = "smtp"
 smtp-host = "mail.archlinux.org"
 smtp-port = 465
 smtp-login = "polyzen"
-smtp-passwd-cmd = "pass services/email/polyzen@archlinux.org"
+smtp-auth = "passwd"
+smtp-passwd = { cmd = "pass services/email/polyzen@archlinux.org" }
 
 backend = "maildir"
 maildir-root-dir = "~/.mail/arch"
