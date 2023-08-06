@@ -92,6 +92,7 @@ local sources = {
   null_ls.builtins.code_actions.shellcheck.with({
     extra_filetypes = { 'PKGBUILD' },
   }),
+  null_ls.builtins.diagnostics.markdownlint_cli2,
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene,
   null_ls.builtins.diagnostics.stylelint.with({
@@ -108,6 +109,7 @@ local sources = {
     end,
   }),
   null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.mdformat,
   null_ls.builtins.formatting.prettier.with({
     prefer_local = 'node_modules/.bin',
   }),
