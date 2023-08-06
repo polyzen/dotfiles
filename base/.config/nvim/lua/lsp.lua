@@ -89,9 +89,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local null_ls = require('null-ls')
 local sources = {
-  null_ls.builtins.code_actions.shellcheck.with({
-    extra_filetypes = { 'PKGBUILD' },
-  }),
   null_ls.builtins.diagnostics.markdownlint_cli2,
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene,
