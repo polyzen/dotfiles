@@ -11,7 +11,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'wbthomason/packer.nvim',
   'ntpeters/vim-better-whitespace',
   'moll/vim-bbye',
   {
