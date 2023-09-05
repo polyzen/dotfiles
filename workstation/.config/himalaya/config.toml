@@ -18,8 +18,8 @@ smtp-login = "polyzen"
 smtp-auth = "passwd"
 smtp-passwd = { cmd = "pass services/email/polyzen@archlinux.org" }
 
-backend = "maildir"
-maildir-root-dir = "~/.mail/arch"
+backend = "notmuch"
+notmuch-db-path = "~/.mail"
 
 [arch-local.folder-aliases]
-inbox = "~/.mail/arch/INBOX"
+inbox = "tag:inbox"
