@@ -1,31 +1,23 @@
 scriptencoding utf-8
 
-function! MyVCSStatusline() abort
-  if &modifiable
+function! MyGitStatusline() abort
+  if &modifiable && !empty(FugitiveGitDir())
     let l:head = ''
     let l:out = ''
     let l:status = ''
-    let l:vcs = ''
 
-    if !empty(FugitiveGitDir())
-      let l:status = get(b:,'gitsigns_status','')
-      let l:head = get(b:,'gitsigns_head','')
-    elseif !empty(get(b:, 'sy')) && !empty(get(b:sy, 'vcs'))
-      let l:status = sy#repo#get_stats_decorated()
-      let l:vcs = get(b:sy, 'vcs')[0]
-    else
-      return ''
-    endif
+    let l:status = get(b:,'gitsigns_status','')
+    let l:head = get(b:,'gitsigns_head','')
 
     let l:out .= l:status !=# '' ? l:status . ' ' : ''
     let l:out .= '🌳'
     let l:out .= l:head !=# '' ? ' ' . l:head : ''
-    let l:out .= l:vcs !=# '' ? ' ' . l:vcs : ''
 
     return ' ' . l:out
-  endif
+  else
 
-  return ''
+    return ''
+  endif
 endfunction
 
 function! StatusLine(current, width)
@@ -40,9 +32,10 @@ function! StatusLine(current, width)
   if a:current
     let l:s .= zoom#statusline() . crystalline#right_sep('', 'Fill')
     if a:width > 80
-      let l:s .= MyVCSStatusline()
+      let l:s .= MyGitStatusline()
     endif
   endif
+
   let l:s .= '%='
   if a:current
     let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
@@ -51,7 +44,6 @@ function! StatusLine(current, width)
   if a:width > 80
     let l:s .= ' %{strlen(&filetype) ? &filetype : ""}'
     let l:s .= '[%{&fenc!=#""?&fenc:&enc}][%{&ff}]'
-  else
   endif
   let l:s .= ' %l/%L %c%V %P '
 
