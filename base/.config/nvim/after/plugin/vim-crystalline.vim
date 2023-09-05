@@ -1,13 +1,5 @@
 scriptencoding utf-8
 
-function! MyLSPStatusline() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
-endfunction
-
 function! MyVCSStatusline() abort
   if &modifiable
     let l:head = ''
