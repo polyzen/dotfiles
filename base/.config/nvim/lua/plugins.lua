@@ -46,8 +46,60 @@ require('lazy').setup({
   {
     'rbong/vim-crystalline',
     init = function()
-      vim.g.crystalline_statusline_fn = 'StatusLine'
+      vim.g.crystalline_separators = {
+        { ch = '', alt_ch = '|', dir = '>' },
+        { ch = '', alt_ch = '|', dir = '<' },
+      }
       vim.g.crystalline_theme = 'gruvbox'
+
+      local function MyGitStatusline()
+        if vim.bo.modifiable and vim.fn.FugitiveGitDir() ~= '' then
+          local bufnr = vim.fn.bufnr()
+          local head = vim.fn.getbufvar(bufnr, 'gitsigns_head')
+          local out = ''
+          local status = vim.fn.getbufvar(bufnr, 'gitsigns_status')
+
+          out = status ~= '' and out .. status .. ' ' or out
+          out = out .. '🌳'
+          out = head ~= '' and out .. ' ' .. head or out
+
+          return ' ' .. out
+        else
+          return ''
+        end
+      end
+
+      function vim.g.CrystallineStatuslineFn(winnr)
+        local cl = require('crystalline')
+        local curr = winnr == vim.fn.winnr()
+        local s = ''
+
+        if curr then
+          s = s .. cl.ModeSection(0, 'A', 'B')
+        else
+          s = s .. cl.HiItem('Fill')
+        end
+        s = s .. ' %t%h%w%m%r '
+        if curr then
+          s = s .. vim.fn['zoom#statusline']() .. cl.Sep(0, 'B', 'Fill')
+          if vim.fn.winwidth(winnr) >= 80 then
+            s = s .. MyGitStatusline()
+          end
+        end
+
+        s = s .. '%='
+        if curr then
+          s = s .. cl.Sep(1, 'Fill', 'B') .. ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+          s = s .. cl.Sep(1, 'B', 'A')
+        end
+        if vim.fn.winwidth(winnr) >= 80 then
+          s = s .. ' %{strlen(&filetype) ? &filetype : ""}'
+          s = s .. '[%{&fenc!=#""?&fenc:&enc}][%{&ff}]'
+        end
+        s = s .. ' %l/%L %c%V %P '
+
+        return s
+      end
     end,
   },
   {

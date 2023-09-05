@@ -1,9 +1,6 @@
 base
 ├── .config
 │   ├── nvim
-│   │   ├── after
-│   │   │   └── plugin
-│   │   │       └── vim-crystalline.vim
 │   │   ├── init.lua
 │   │   ├── lua
 │   │   │   ├── lsp.lua
