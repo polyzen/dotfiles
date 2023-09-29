@@ -38,9 +38,7 @@ require('lazy').setup({
         require('ts_context_commentstring.internal').update_commentstring()
       end,
     },
-    config = function(_, opts)
-      require('nvim_comment').setup(opts)
-    end,
+    main = 'nvim_comment',
   },
   'romainl/vim-cool',
   {
@@ -144,13 +142,9 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {
-      char_list = { '|', '¦', '┆', '┊' },
-      show_current_context = true,
-      use_treesitter = true,
+      indent = { char = { '|', '¦', '┆', '┊' } },
     },
-    config = function(_, opts)
-      require('indent_blankline').setup(opts)
-    end,
+    main = 'ibl',
   },
   {
     'andymass/vim-matchup',
