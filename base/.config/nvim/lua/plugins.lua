@@ -125,10 +125,9 @@ require('lazy').setup({
   },
   'Konfekt/FastFold',
   {
-    'npxbr/gruvbox.nvim',
+    'ellisonleao/gruvbox.nvim',
     priority = 1000,
     init = function()
-      vim.g.gruvbox_italic = 1
       local h = tonumber(os.date('%H'))
       if 6 <= h and h < 20 then
         vim.o.background = 'light'
