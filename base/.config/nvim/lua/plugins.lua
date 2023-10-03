@@ -127,12 +127,6 @@ require('lazy').setup({
   {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
-    init = function()
-      local h = tonumber(os.date('%H'))
-      if 6 <= h and h < 20 then
-        vim.o.background = 'light'
-      end
-    end,
     config = function()
       vim.cmd.colorscheme('gruvbox')
     end,
@@ -144,6 +138,10 @@ require('lazy').setup({
       indent = { char = { '|', '¦', '┆', '┊' } },
     },
     main = 'ibl',
+  },
+  {
+    'vimpostor/vim-lumen',
+    priority = 1001,
   },
   {
     'andymass/vim-matchup',
