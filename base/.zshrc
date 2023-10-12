@@ -30,7 +30,6 @@ export LS_COLORS="$(vivid generate jellybeans)"
 export MANPAGER='nvim +Man!'
 
 alias cp='cp --reflink=auto'
-alias exa='exa -F'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --file-type'
 
