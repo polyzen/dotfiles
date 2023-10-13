@@ -11,7 +11,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'ntpeters/vim-better-whitespace',
   'moll/vim-bbye',
   {
     'jose-elias-alvarez/buftabline.nvim',
@@ -185,6 +184,12 @@ require('lazy').setup({
   },
   'tpope/vim-repeat',
   'rhysd/reply.vim',
+  {
+    'kaplanz/retrail.nvim',
+    opts = {
+      trim = { auto = false },
+    },
+  },
   'tpope/vim-rsi',
   'matthew-brett/vim-rst-sections',
   'stsewd/sphinx.nvim',
