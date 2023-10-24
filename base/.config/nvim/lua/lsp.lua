@@ -105,7 +105,6 @@ local sources = {
       end
     end,
   }),
-  null_ls.builtins.formatting.black,
   null_ls.builtins.formatting.mdformat,
   null_ls.builtins.formatting.prettier.with({
     prefer_local = 'node_modules/.bin',
