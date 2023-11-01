@@ -59,7 +59,6 @@ workstation
 ├── .local
 │   └── bin
 │       ├── geturls.py
-│       ├── lightdark
 │       ├── pomodoro
 │       ├── shot
 │       └── shuffiles
