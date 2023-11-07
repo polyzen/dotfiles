@@ -208,7 +208,7 @@ nvim_lsp.lua_ls.setup({
     Lua = {
       format = { enable = false },
       workspace = {
-        checkThirdParty = false,
+        checkThirdParty = 'Disable',
       },
     },
   },
