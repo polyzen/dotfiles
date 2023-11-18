@@ -247,7 +247,6 @@ require('lazy').setup({
         enable = true,
       },
       context_commentstring = {
-        enable = true,
         enable_autocmd = false,
       },
       matchup = {
