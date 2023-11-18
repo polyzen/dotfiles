@@ -132,7 +132,6 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {
       indent = { char = { '|', '¦', '┆', '┊' } },
     },
