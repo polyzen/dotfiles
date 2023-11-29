@@ -92,9 +92,6 @@ local sources = {
   null_ls.builtins.diagnostics.markdownlint_cli2,
   null_ls.builtins.diagnostics.rstcheck,
   null_ls.builtins.diagnostics.selene,
-  null_ls.builtins.diagnostics.stylelint.with({
-    prefer_local = 'node_modules/.bin',
-  }),
   null_ls.builtins.diagnostics.vint,
   null_ls.builtins.diagnostics.yamllint.with({
     condition = function(utils)
@@ -122,7 +119,7 @@ end
 
 local nvim_lsp = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'taplo', 'tailwindcss' }
+local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({})
 end
