@@ -13,11 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'moll/vim-bbye',
   {
-    'jose-elias-alvarez/buftabline.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {
-      tab_format = ' #{n}: #{b}#{f} #{i} ',
-      buffer_id_index = true,
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim',
+      'nvim-tree/nvim-web-devicons',
     },
   },
   {
