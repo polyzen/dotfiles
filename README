@@ -25,9 +25,9 @@ workstation
 │   ├── afew
 │   │   └── config
 │   ├── alacritty
-│   │   ├── alacritty.yml
-│   │   ├── gruvbox-dark.yml
-│   │   └── gruvbox-light.yml
+│   │   ├── alacritty.toml
+│   │   ├── gruvbox_dark.toml
+│   │   └── gruvbox_light.toml
 │   ├── fontconfig
 │   │   └── fonts.conf
 │   ├── git
