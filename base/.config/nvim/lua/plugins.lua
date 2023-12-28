@@ -162,7 +162,6 @@ require('lazy').setup({
     'karb94/neoscroll.nvim',
     config = true,
   },
-  'ojroques/vim-oscyank',
   'blueyed/vim-qf_resize',
   'itchyny/vim-qfedit',
   {
