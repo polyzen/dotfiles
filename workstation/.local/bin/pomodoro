@@ -51,24 +51,30 @@ timer() {
     tmux rename-window -t "$PANE_ID" "$1"
   fi
 
-  toastify send "$1" "$interval_msg" 45
+  if [[ -z $WSLENV ]]; then
+    toastify send "$1" "$interval_msg" 45
+  fi
 
   args=("${ARGS[@]}" "-T $1")
   termdown "${args[@]}" "$2"
 
-  if [[ $BEEP -eq 1 ]]; then
-    beep -f 5000 -l 50 -r 2
+  if (( BEEP )); then
+    if [[ -n $WSLENV ]]; then
+      powershell.exe '[console]::beep(5000,50) + [console]::beep(5000,50)'
+    else
+      beep -f 5000 -l 50 -r 2
+    fi
   fi
 }
 
 pomodoro() {
   local break_msg break_time interval_msg
 
-  for ((i = 1; i <= ${#INTERVALS[*]}; i++)); do
+  for (( i = 1; i <= ${#INTERVALS[*]}; i++ )); do
     # Highlight (in bold) intervals as they pass
     interval_msg="<b>${INTERVALS[*]:0:i}</b> ${INTERVALS[*]:i}"
 
-    if ((i < ${#INTERVALS[*]})); then
+    if (( i < ${#INTERVALS[*]} )); then
       break_msg="$SHORT_BREAK_MSG"
       break_time="$SHORT_BREAK_TIME"
     else
@@ -81,7 +87,7 @@ pomodoro() {
   done
 }
 
-if [[ $LOOP -eq 1 ]]; then
+if (( LOOP )); then
   while true; do
     pomodoro
   done
