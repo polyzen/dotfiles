@@ -1,6 +1,6 @@
 alang=jpn,eng
 slang=eng
-profile=gpu-hq
+vo=gpu-next
 volume=100
 audio-display=no
 fullscreen
