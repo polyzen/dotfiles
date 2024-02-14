@@ -20,7 +20,7 @@ order += "volume master"
 order += "disk /"
 order += "disk /home"
 order += "disk /var"
-order += "disk /mnt/chroot"
+#order += "disk /mnt/fastdata"
 order += "disk /mnt/data"
 order += "load"
 order += "memory"
@@ -50,7 +50,7 @@ disk "/var" {
         threshold_type = percentage_avail
 }
 
-disk "/mnt/chroot" {
+disk "/mnt/fastdata" {
         format = "🚀 %avail"
         low_threshold = 25
         threshold_type = percentage_avail
