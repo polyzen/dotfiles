@@ -53,9 +53,7 @@ workstation
 │   ├── rofimoji.rc
 │   ├── sxhkd
 │   │   └── sxhkdrc
-│   ├── user-dirs.dirs
-│   └── youtube-dl
-│       └── config
+│   └── user-dirs.dirs
 ├── .local
 │   └── bin
 │       ├── geturls.py
