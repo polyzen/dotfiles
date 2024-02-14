@@ -22,3 +22,5 @@
 	diff-highlight = /usr/share/git/diff-highlight/diff-highlight
 [tag]
 	gpgsign = true
+[rerere]
+  enabled = true
