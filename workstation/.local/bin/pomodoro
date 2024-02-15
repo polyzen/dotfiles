@@ -54,6 +54,10 @@ timer() {
   if [[ -z $WSLENV ]]; then
     if type -p toastify >/dev/null; then
       toastify send "$1" "$interval_msg" 45
+    elif type -p dunstify >/dev/null; then
+      dunstify -h string:x-dunst-stack-tag:pomodoro "$1" "$interval_msg"
+    elif type -p notify-send >/dev/null; then
+      notify-send "$1" "$interval_msg"
     fi
   fi
 
