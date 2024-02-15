@@ -1,5 +1,7 @@
 base
 ├── .config
+│   ├── git
+│   │   └── config
 │   ├── nvim
 │   │   ├── init.lua
 │   │   ├── lua
@@ -30,8 +32,6 @@ workstation
 │   │   └── gruvbox_light.toml
 │   ├── fontconfig
 │   │   └── fonts.conf
-│   ├── git
-│   │   └── config
 │   ├── himalaya
 │   │   └── config.toml
 │   ├── i3
