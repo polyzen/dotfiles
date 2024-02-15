@@ -52,7 +52,9 @@ timer() {
   fi
 
   if [[ -z $WSLENV ]]; then
-    toastify send "$1" "$interval_msg" 45
+    if type -p toastify >/dev/null; then
+      toastify send "$1" "$interval_msg" 45
+    fi
   fi
 
   args=("${ARGS[@]}" "-T $1")
