@@ -18,22 +18,35 @@ base
 │   └── fpath
 │       └── disambiguate-keeplast
 └── .zshrc
+mail
+├── .config
+│   ├── afew
+│   │   └── config
+│   ├── himalaya
+│   │   └── config.toml
+│   ├── msmtp
+│   │   └── config
+│   └── notmuch
+│       └── default
+│           └── config
+├── .mail
+│   └── .notmuch
+│       └── hooks
+│           ├── post-new
+│           └── pre-new
+└── .mbsyncrc
 misc
 └── .config
     └── urlwatch
         └── hooks.py
 workstation
 ├── .config
-│   ├── afew
-│   │   └── config
 │   ├── alacritty
 │   │   ├── alacritty.toml
 │   │   ├── gruvbox_dark.toml
 │   │   └── gruvbox_light.toml
 │   ├── fontconfig
 │   │   └── fonts.conf
-│   ├── himalaya
-│   │   └── config.toml
 │   ├── i3
 │   │   └── config
 │   ├── i3status
@@ -41,13 +54,8 @@ workstation
 │   ├── mpv
 │   │   ├── config
 │   │   └── input.conf
-│   ├── msmtp
-│   │   └── config
 │   ├── newsboat
 │   │   └── config
-│   ├── notmuch
-│   │   └── default
-│   │       └── config
 │   ├── rofi
 │   │   └── config.rasi
 │   ├── rofimoji.rc
@@ -60,12 +68,6 @@ workstation
 │       ├── pomodoro
 │       ├── shot
 │       └── shuffiles
-├── .mail
-│   └── .notmuch
-│       └── hooks
-│           ├── post-new
-│           └── pre-new
-├── .mbsyncrc
 ├── .mozilla
 │   └── firefox
 │       ├── userChrome.css
