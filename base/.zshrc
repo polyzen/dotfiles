@@ -29,6 +29,10 @@ export EDITOR=nvim
 export LS_COLORS="$(vivid generate jellybeans)"
 export MANPAGER='nvim +Man!'
 
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 alias cp='cp --reflink=auto'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --file-type'
