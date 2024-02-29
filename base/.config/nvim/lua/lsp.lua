@@ -117,18 +117,18 @@ if vim.fn.executable('lua-language-server') == 1 then
   require('neodev').setup()
 end
 
-local nvim_lsp = require('lspconfig')
+local lspconfig = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({})
+  lspconfig[lsp].setup({})
 end
 
-nvim_lsp.clangd.setup({ capabilities = cmp_capabilities })
+lspconfig.clangd.setup({ capabilities = cmp_capabilities })
 
-nvim_lsp.cssls.setup({ capabilities = cmp_capabilities })
+lspconfig.cssls.setup({ capabilities = cmp_capabilities })
 
-nvim_lsp.eslint.setup({
+lspconfig.eslint.setup({
   filetypes = vim.tbl_flatten({
     require('lspconfig.server_configurations.eslint').default_config.filetypes,
     { 'html', 'yaml' },
@@ -136,7 +136,7 @@ nvim_lsp.eslint.setup({
   settings = { run = 'onSave' },
 })
 
-nvim_lsp.esbonio.setup({
+lspconfig.esbonio.setup({
   init_options = {
     sphinx = {
       silent = 1,
@@ -144,7 +144,7 @@ nvim_lsp.esbonio.setup({
   },
 })
 
-nvim_lsp.gopls.setup({
+lspconfig.gopls.setup({
   capabilities = cmp_capabilities,
   settings = {
     gopls = {
@@ -160,20 +160,20 @@ nvim_lsp.gopls.setup({
   },
 })
 
-nvim_lsp.html.setup({
+lspconfig.html.setup({
   init_options = {
     provideFormatter = false,
   },
 })
 
-nvim_lsp.jedi_language_server.setup({
+lspconfig.jedi_language_server.setup({
   capabilities = cmp_capabilities,
   on_attach = function(client)
     client.server_capabilities.signatureHelpProvider = false
   end,
 })
 
-nvim_lsp.jsonls.setup({
+lspconfig.jsonls.setup({
   init_options = {
     provideFormatter = false,
   },
@@ -186,14 +186,14 @@ nvim_lsp.jsonls.setup({
   },
 })
 
-nvim_lsp.pyright.setup({
+lspconfig.pyright.setup({
   on_attach = function(client)
     client.server_capabilities.completionProvider = false
     client.server_capabilities.hoverProvider = false
   end,
 })
 
-nvim_lsp.ruff_lsp.setup({
+lspconfig.ruff_lsp.setup({
   init_options = {
     settings = {
       organizeImports = false,
@@ -213,7 +213,7 @@ if vim.fn.executable('rust-analyzer') == 1 then
   })
 end
 
-nvim_lsp.lua_ls.setup({
+lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {
     Lua = {
@@ -225,7 +225,7 @@ nvim_lsp.lua_ls.setup({
   },
 })
 
-nvim_lsp.svelte.setup({ capabilities = cmp_capabilities })
+lspconfig.svelte.setup({ capabilities = cmp_capabilities })
 
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
@@ -264,7 +264,7 @@ if vim.fn.executable('typescript-language-server') == 1 then
   })
 end
 
-nvim_lsp.volar.setup({
+lspconfig.volar.setup({
   capabilities = cmp_capabilities,
   init_options = {
     typescript = {
@@ -273,7 +273,7 @@ nvim_lsp.volar.setup({
   },
 })
 
-nvim_lsp.yamlls.setup({
+lspconfig.yamlls.setup({
   settings = {
     redhat = { telemetry = { enabled = false } },
     yaml = {
