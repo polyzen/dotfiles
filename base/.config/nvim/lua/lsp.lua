@@ -120,13 +120,13 @@ end
 local lspconfig = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss' }
+local servers_with_completions = { 'clangd', 'cssls', 'mesonlsp', 'svelte' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({})
 end
-
-lspconfig.clangd.setup({ capabilities = cmp_capabilities })
-
-lspconfig.cssls.setup({ capabilities = cmp_capabilities })
+for _, lsp in ipairs(servers_with_completions) do
+  lspconfig[lsp].setup({ capabilities = cmp_capabilities })
+end
 
 lspconfig.eslint.setup({
   filetypes = vim.tbl_flatten({
@@ -224,8 +224,6 @@ lspconfig.lua_ls.setup({
     },
   },
 })
-
-lspconfig.svelte.setup({ capabilities = cmp_capabilities })
 
 if vim.fn.executable('typescript-language-server') == 1 then
   require('typescript').setup({
