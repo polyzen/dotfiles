@@ -227,9 +227,20 @@ lspconfig.lua_ls.setup({
 
 if vim.fn.executable('typescript-language-server') == 1 then
   lspconfig.tsserver.setup({
+  filetypes = vim.tbl_flatten({
+    require('lspconfig.server_configurations.tsserver').default_config.filetypes,
+    { 'vue' },
+  }),
     init_options = {
       hostInfo = 'neovim',
-      plugins = { { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' } },
+      plugins = {
+        { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' },
+        {
+          name = '@vue/typescript-plugin',
+          location = '/usr/lib/node_modules/@vue/typescript-plugin',
+          languages = { 'javascript', 'typescript', 'vue' },
+        },
+      },
     },
     settings = {
       typescript = {
