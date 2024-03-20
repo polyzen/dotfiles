@@ -464,15 +464,4 @@ require('lazy').setup({
       { 'nvim-lua/plenary.nvim', lazy = true },
     },
   },
-  {
-    'jose-elias-alvarez/typescript.nvim',
-    cond = function()
-      if vim.fn.executable('typescript-language-server') == 1 then
-        return true
-      else
-        return false
-      end
-    end,
-    dependencies = { 'neovim/nvim-lspconfig' },
-  },
 })

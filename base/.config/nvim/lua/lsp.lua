@@ -226,36 +226,34 @@ lspconfig.lua_ls.setup({
 })
 
 if vim.fn.executable('typescript-language-server') == 1 then
-  require('typescript').setup({
-    server = {
-      init_options = {
-        hostInfo = 'neovim',
-        plugins = { { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' } },
-      },
-      settings = {
-        typescript = {
-          inlayHints = {
-            includeInlayParameterNameHints = 'all',
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
+  lspconfig.tsserver.setup({
+    init_options = {
+      hostInfo = 'neovim',
+      plugins = { { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' } },
+    },
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
         },
-        javascript = {
-          inlayHints = {
-            includeInlayParameterNameHints = 'all',
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
         },
       },
     },
