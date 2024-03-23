@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Warn if the README might need to be updated to match repo structure
+
+# Redirect output to stderr.
+exec 1>&2
+
+if [[ $(git status -s | cut -f1 -d\ ) =~ [ADRC] ]] &&
+  ! git diff --compact-summary --staged | grep -q README
+then
+  cat << EOF
+Warn: Staged changes to repo structure, but none for README.
+
+Run `(cd ~/.config/dotfiles; tree -a --noreport -o README -n -- $(fd -d 1 -t d | rg '/$' -r ''); git add README)`
+EOF
+  exit 1
+fi
+
+# vim: ft=bash
