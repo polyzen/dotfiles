@@ -44,7 +44,9 @@ class AmoRegexMatchUrlFilter(filters.RegexMatchFilter):
             version["version"],
             file["created"],
             file["hash"],
-            version["release_notes"]["en-US"],
+            version["release_notes"]["en-US"]
+            if version["release_notes"] is not None
+            else "",
         ]
         release = "\n".join(content).strip()
         return release
