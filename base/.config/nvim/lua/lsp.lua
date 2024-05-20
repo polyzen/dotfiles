@@ -1,7 +1,4 @@
 -- Global mappings
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -26,9 +23,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    if capabilities.hoverProvider and client.name ~= 'null-ls' then
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    end
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -73,19 +67,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.api.nvim_create_augroup('LspAttach_inlayhints', {})
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = 'LspAttach_inlayhints',
-  callback = function(args)
-    if not (args.data and args.data.client_id) then
-      return
-    end
-
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require('lsp-inlayhints').on_attach(client, bufnr)
-  end,
-})
+vim.lsp.inlay_hint.enable()
 
 local null_ls = require('null-ls')
 local sources = {
