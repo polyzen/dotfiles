@@ -1,5 +1,3 @@
-vim.o.termguicolors = true -- "Enables 24-bit RGB color in the TUI"
-
 -- Lines
 vim.o.showtabline = 2 -- Always show tab pages line
 vim.o.showmode = false -- Do not echo the mode, status line will display it

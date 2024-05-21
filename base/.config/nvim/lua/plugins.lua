@@ -19,16 +19,6 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons',
     },
   },
-  {
-    'NvChad/nvim-colorizer.lua',
-    opts = {
-      filetypes = {
-        '*',
-        '!css',
-        '!html',
-      },
-    },
-  },
   'romainl/vim-cool',
   {
     'rbong/vim-crystalline',
@@ -101,12 +91,6 @@ require('lazy').setup({
   },
   'tpope/vim-dispatch',
   {
-    'mrshmllow/document-color.nvim',
-    opts = {
-      mode = 'background',
-    },
-  },
-  {
     'junegunn/vim-easy-align',
     init = function()
       vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
@@ -119,6 +103,13 @@ require('lazy').setup({
     config = function()
       vim.cmd.colorscheme('gruvbox')
     end,
+  },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {
+      render = 'virtual',
+      enable_tailwind = true,
+    },
   },
   {
     'lukas-reineke/indent-blankline.nvim',

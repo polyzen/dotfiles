@@ -37,10 +37,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>f', lsp_formatting, opts)
 
     -- Capabilities checks
-    if capabilities.colorProvider then
-      require('document-color').buf_attach(bufnr)
-    end
-
     if capabilities.documentHighlightProvider then
       vim.api.nvim_create_augroup('lsp_document_highlight', {
         clear = false,
