@@ -29,15 +29,6 @@ require('lazy').setup({
       },
     },
   },
-  {
-    'numToStr/Comment.nvim',
-    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-    opts = {
-      pre_hook = function ()
-        require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
-      end,
-    },
-  },
   'romainl/vim-cool',
   {
     'rbong/vim-crystalline',
@@ -244,9 +235,6 @@ require('lazy').setup({
       indent = {
         enable = true,
       },
-      context_commentstring = {
-        enable_autocmd = false,
-      },
       matchup = {
         enable = true,
       },
@@ -263,7 +251,22 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
-  'JoosepAlviste/nvim-ts-context-commentstring',
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    opts = {
+      enable_autocmd = false,
+    },
+    init = function()
+      vim.g.skip_ts_context_commentstring_module = true
+      vim.schedule(function()
+        local get_option = vim.filetype.get_option
+        vim.filetype.get_option = function(filetype, option)
+          return option == 'commentstring' and require('ts_context_commentstring.internal').calculate_commentstring()
+            or get_option(filetype, option)
+        end
+      end)
+    end,
+  },
   {
     'folke/twilight.nvim',
     config = true,
