@@ -197,6 +197,7 @@ lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       format = { enable = false },
+      hint = { enable = true },
       workspace = {
         checkThirdParty = 'Disable',
       },
