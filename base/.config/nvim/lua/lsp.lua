@@ -177,17 +177,6 @@ lspconfig.ruff_lsp.setup({
   },
 })
 
-if vim.fn.executable('rust-analyzer') == 1 then
-  require('rust-tools').setup({
-    server = { capabilities = cmp_capabilities },
-    tools = {
-      inlay_hints = {
-        auto = false,
-      },
-    },
-  })
-end
-
 lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {

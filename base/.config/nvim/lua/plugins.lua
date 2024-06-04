@@ -445,7 +445,8 @@ require('lazy').setup({
     end,
   },
   {
-    'simrat39/rust-tools.nvim',
+    'mrcjkb/rustaceanvim',
+    ft = { 'rust' },
     cond = function()
       if vim.fn.executable('rust-analyzer') == 1 then
         return true
@@ -453,9 +454,5 @@ require('lazy').setup({
         return false
       end
     end,
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      { 'nvim-lua/plenary.nvim', lazy = true },
-    },
   },
 })
