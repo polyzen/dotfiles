@@ -170,8 +170,14 @@ require('lazy').setup({
     },
   },
   'tpope/vim-rsi',
-  'matthew-brett/vim-rst-sections',
-  'stsewd/sphinx.nvim',
+  {
+    'matthew-brett/vim-rst-sections',
+    ft = { 'rst' }
+  },
+  {
+    'stsewd/sphinx.nvim',
+    ft = { 'rst' }
+  },
   'AndrewRadev/splitjoin.vim',
   'lambdalisue/suda.vim',
   {
@@ -179,7 +185,10 @@ require('lazy').setup({
     config = true,
     event = 'VeryLazy',
   },
-  'dhruvasagar/vim-table-mode',
+  {
+    'dhruvasagar/vim-table-mode',
+    ft = { 'markdown', 'rst' }
+  },
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -425,6 +434,7 @@ require('lazy').setup({
   },
   {
     'p00f/clangd_extensions.nvim',
+    ft = { 'c', 'cpp' },
     cond = function()
       if vim.fn.executable('clangd') == 1 then
         return true
