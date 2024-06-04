@@ -88,10 +88,6 @@ local sources = {
 }
 null_ls.setup({ sources = sources })
 
-if vim.fn.executable('lua-language-server') == 1 then
-  require('neodev').setup()
-end
-
 local lspconfig = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss' }

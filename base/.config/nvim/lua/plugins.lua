@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -435,7 +435,8 @@ require('lazy').setup({
     dependencies = { 'neovim/nvim-lspconfig' },
   },
   {
-    'folke/neodev.nvim',
+    'folke/lazydev.nvim',
+    ft = { 'lua' },
     cond = function()
       if vim.fn.executable('lua-language-server') == 1 then
         return true
@@ -443,6 +444,7 @@ require('lazy').setup({
         return false
       end
     end,
+    config = true,
   },
   {
     'mrcjkb/rustaceanvim',
