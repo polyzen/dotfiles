@@ -84,9 +84,6 @@ local sources = {
   null_ls.builtins.formatting.prettier.with({
     prefer_local = 'node_modules/.bin',
   }),
-  null_ls.builtins.formatting.shfmt.with({
-    extra_filetypes = { 'PKGBUILD' },
-  }),
   null_ls.builtins.formatting.stylua,
 }
 null_ls.setup({ sources = sources })
