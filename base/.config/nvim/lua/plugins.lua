@@ -174,7 +174,11 @@ require('lazy').setup({
   'stsewd/sphinx.nvim',
   'AndrewRadev/splitjoin.vim',
   'lambdalisue/suda.vim',
-  'tpope/vim-surround',
+  {
+    'kylechui/nvim-surround',
+    config = true,
+    event = 'VeryLazy',
+  },
   'dhruvasagar/vim-table-mode',
   {
     'nvim-telescope/telescope.nvim',
