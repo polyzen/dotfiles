@@ -6,7 +6,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local capabilities = client.server_capabilities
 
     -- Buffer local mappings
     local lsp_formatting = function()
@@ -14,30 +13,49 @@ vim.api.nvim_create_autocmd('LspAttach', {
       local tsserver_filetypes = require('lspconfig.server_configurations.tsserver').default_config.filetypes
       -- Override tsserver formatter
       if vim.fn.index(tsserver_filetypes, vim.o.filetype) ~= -1 then
-        vim.lsp.buf.format(vim.tbl_flatten({ name = 'null-ls', opts }))
+        vim.lsp.buf.format(vim.iter({ name = 'null-ls', opts }):flatten():totable())
       else
         vim.lsp.buf.format(opts)
       end
     end
 
     local opts = { buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', lsp_formatting, opts)
+    if client.supports_method('textDocument/declaration') then
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    end
+    if client.supports_method('textDocument/implementation') then
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    end
+    if client.supports_method('textDocument/signatureHelp') then
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    end
+    if client.supports_method('workspace/didChangeWorkspaceFolders') then
+      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    end
+    if client.supports_method('workspace/workspaceFolders') then
+      vim.keymap.set('n', '<space>wl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end, opts)
+    end
+    if client.supports_method('textDocument/typeDefinition') then
+      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    end
+    if client.supports_method('textDocument/rename') then
+      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    end
+    if client.supports_method('textDocument/codeAction') then
+      vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    end
+    if client.supports_method('textDocument/references') then
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    end
+    if client.supports_method('textDocument/formatting') then
+      vim.keymap.set('n', '<space>f', lsp_formatting, opts)
+    end
 
-    -- Capabilities checks
-    if capabilities.documentHighlightProvider then
+    -- Buffer-local features
+    if client.supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_augroup('lsp_document_highlight', {
         clear = false,
       })
@@ -57,13 +75,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    if capabilities.signatureHelpProvider then
+    if client.supports_method('textDocument/inlayHint') then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    if client.supports_method('textDocument/signatureHelp') then
       require('lsp_signature').on_attach()
     end
   end,
 })
-
-vim.lsp.inlay_hint.enable()
 
 local null_ls = require('null-ls')
 local sources = {
@@ -100,10 +120,13 @@ for _, lsp in ipairs(servers_with_completions) do
 end
 
 lspconfig.eslint.setup({
-  filetypes = vim.tbl_flatten({
-    require('lspconfig.server_configurations.eslint').default_config.filetypes,
-    { 'html', 'yaml' },
-  }),
+  filetypes = vim
+    .iter({
+      require('lspconfig.server_configurations.eslint').default_config.filetypes,
+      { 'html', 'yaml' },
+    })
+    :flatten()
+    :totable(),
   settings = { run = 'onSave' },
 })
 
@@ -187,10 +210,13 @@ lspconfig.lua_ls.setup({
 
 if vim.fn.executable('typescript-language-server') == 1 then
   lspconfig.tsserver.setup({
-  filetypes = vim.tbl_flatten({
-    require('lspconfig.server_configurations.tsserver').default_config.filetypes,
-    { 'vue' },
-  }),
+    filetypes = vim
+      .iter({
+        require('lspconfig.server_configurations.tsserver').default_config.filetypes,
+        { 'vue' },
+      })
+      :flatten()
+      :totable(),
     init_options = {
       hostInfo = 'neovim',
       plugins = {
