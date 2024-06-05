@@ -414,11 +414,6 @@ require('lazy').setup({
     },
   },
   {
-    'ray-x/lsp_signature.nvim',
-    event = 'VeryLazy',
-    config = true,
-  },
-  {
     'jose-elias-alvarez/null-ls.nvim',
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
   },
