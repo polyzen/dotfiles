@@ -78,10 +78,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.supports_method('textDocument/inlayHint') then
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
-
-    if client.supports_method('textDocument/signatureHelp') then
-      require('lsp_signature').on_attach()
-    end
   end,
 })
 

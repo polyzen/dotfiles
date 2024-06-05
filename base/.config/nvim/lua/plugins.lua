@@ -182,8 +182,8 @@ require('lazy').setup({
   'lambdalisue/suda.vim',
   {
     'kylechui/nvim-surround',
-    config = true,
     event = 'VeryLazy',
+    config = true,
   },
   {
     'dhruvasagar/vim-table-mode',
@@ -415,6 +415,7 @@ require('lazy').setup({
   },
   {
     'ray-x/lsp_signature.nvim',
+    event = 'VeryLazy',
     config = true,
   },
   {
