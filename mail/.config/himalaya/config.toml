@@ -16,7 +16,7 @@ smtp-host = "mail.archlinux.org"
 smtp-port = 465
 smtp-login = "polyzen"
 smtp-auth = "passwd"
-smtp-passwd = { cmd = "pass services/email/polyzen@archlinux.org" }
+smtp-passwd = { cmd = "rbw get --folder services/email polyzen" }
 
 backend = "notmuch"
 notmuch-db-path = "~/.mail"

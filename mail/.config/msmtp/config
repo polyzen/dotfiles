@@ -15,7 +15,7 @@ from polyzen@archlinux.org
 # Authentication
 auth on
 user polyzen
-passwordeval pass services/email/polyzen@archlinux.org
+passwordeval rbw get --folder services/email polyzen
 
 
 # Set a default account

@@ -9,7 +9,7 @@ Inbox ~/.mail/arch/INBOX
 IMAPStore arch-remote
 Host mail.archlinux.org
 User polyzen
-PassCmd "pass services/email/polyzen@archlinux.org"
+PassCmd "rbw get --folder services/email polyzen"
 SSLType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
