@@ -11,7 +11,7 @@ then
   cat << EOF
 Warn: Staged changes to repo structure, but none for README.
 
-Run `(cd ~/.config/dotfiles; tree -a --noreport -o README -n -- $(fd -d 1 -t d | rg '/$' -r ''); git add README)`
+Run \`(cd ~/.config/dotfiles; tree -a --noreport -o README -n -- \$(fd -d 1 -t d | rg '/$' -r ''); git add README)\`
 EOF
   exit 1
 fi
