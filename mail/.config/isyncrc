@@ -10,7 +10,7 @@ IMAPStore arch-remote
 Host mail.archlinux.org
 User polyzen
 PassCmd "rbw get --folder services/email polyzen"
-SSLType IMAPS
+TLSType IMAPS
 #CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 Channel arch

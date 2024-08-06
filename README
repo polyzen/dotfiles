@@ -24,17 +24,17 @@ mail
 │   │   └── config
 │   ├── himalaya
 │   │   └── config.toml
+│   ├── isyncrc
 │   ├── msmtp
 │   │   └── config
 │   └── notmuch
 │       └── default
 │           └── config
-├── .mail
-│   └── .notmuch
-│       └── hooks
-│           ├── post-new
-│           └── pre-new
-└── .mbsyncrc
+└── .mail
+    └── .notmuch
+        └── hooks
+            ├── post-new
+            └── pre-new
 misc
 └── .config
     └── urlwatch
