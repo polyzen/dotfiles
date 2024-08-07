@@ -5,6 +5,7 @@ SyncState *
 MaildirStore arch-local
 Path ~/.mail/arch/
 Inbox ~/.mail/arch/INBOX
+SubFolders Verbatim
 
 IMAPStore arch-remote
 Host mail.archlinux.org
