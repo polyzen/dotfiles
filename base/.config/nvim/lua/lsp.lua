@@ -10,9 +10,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings
     local lsp_formatting = function()
       local opts = { timeout_ms = 2000, bufnr = bufnr }
-      local tsserver_filetypes = require('lspconfig.server_configurations.tsserver').default_config.filetypes
-      -- Override tsserver formatter
-      if vim.fn.index(tsserver_filetypes, vim.o.filetype) ~= -1 then
+      local ts_ls_filetypes = require('lspconfig.server_configurations.ts_ls').default_config.filetypes
+      -- Override ts_ls formatter
+      if vim.fn.index(ts_ls_filetypes, vim.o.filetype) ~= -1 then
         vim.lsp.buf.format(vim.iter({ name = 'null-ls', opts }):flatten():totable())
       else
         vim.lsp.buf.format(opts)
@@ -206,10 +206,10 @@ lspconfig.lua_ls.setup({
 })
 
 if vim.fn.executable('typescript-language-server') == 1 then
-  lspconfig.tsserver.setup({
+  lspconfig.ts_ls.setup({
     filetypes = vim
       .iter({
-        require('lspconfig.server_configurations.tsserver').default_config.filetypes,
+        require('lspconfig.server_configurations.ts_ls').default_config.filetypes,
         { 'vue' },
       })
       :flatten()
