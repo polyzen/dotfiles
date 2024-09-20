@@ -183,7 +183,7 @@ lspconfig.pyright.setup({
   end,
 })
 
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff.setup({
   init_options = {
     settings = {
       organizeImports = false,
