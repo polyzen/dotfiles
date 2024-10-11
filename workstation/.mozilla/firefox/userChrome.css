@@ -27,7 +27,7 @@
 
 /* Hide tab bar */
 #alltabs-button {
-    display: none !important;
+  display: none !important;
 }
 
 #tabbrowser-tabs {
