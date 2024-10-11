@@ -28,6 +28,10 @@
 }
 
 /* Hide tab bar */
+#alltabs-button {
+    display: none !important;
+}
+
 #tabbrowser-tabs {
   visibility: collapse !important;
 }
