@@ -38,11 +38,12 @@ alias cp='cp --reflink=auto'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --file-type'
 
-zstyle ':completion:*:*' list-rows-first no
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
+zstyle ':completion:*' list-rows-first no
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
