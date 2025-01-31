@@ -119,7 +119,7 @@ lspconfig.eslint.setup({
   filetypes = vim
     .iter({
       require('lspconfig.configs.eslint').default_config.filetypes,
-      { 'html', 'json' , 'yaml' },
+      { 'html', 'json', 'yaml' },
     })
     :flatten()
     :totable(),

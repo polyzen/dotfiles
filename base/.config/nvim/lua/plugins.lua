@@ -172,11 +172,11 @@ require('lazy').setup({
   'tpope/vim-rsi',
   {
     'matthew-brett/vim-rst-sections',
-    ft = { 'rst' }
+    ft = { 'rst' },
   },
   {
     'stsewd/sphinx.nvim',
-    ft = { 'rst' }
+    ft = { 'rst' },
   },
   'AndrewRadev/splitjoin.vim',
   'lambdalisue/suda.vim',
@@ -187,7 +187,7 @@ require('lazy').setup({
   },
   {
     'dhruvasagar/vim-table-mode',
-    ft = { 'markdown', 'rst' }
+    ft = { 'markdown', 'rst' },
   },
   {
     'nvim-telescope/telescope.nvim',
