@@ -47,3 +47,15 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
 zstyle ':completion:*' list-rows-first no
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+() {
+   local -a prefix=( '\e'{\[,O} )
+   local -a up=( ${^prefix}A ) down=( ${^prefix}B )
+   local key=
+   for key in $up[@]; do
+      bindkey "$key" up-line-or-history
+   done
+   for key in $down[@]; do
+      bindkey "$key" down-line-or-history
+   done
+}
