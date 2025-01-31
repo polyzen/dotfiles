@@ -16,7 +16,6 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 bindkey -v
-bindkey $terminfo[kcbt] reverse-menu-complete
 KEYTIMEOUT=1
 
 path+=~/.local/bin
@@ -59,3 +58,8 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
       bindkey "$key" down-line-or-history
    done
 }
+
+bindkey '^I' menu-select
+bindkey $terminfo[kcbt] reverse-menu-select
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect $terminfo[kcbt] reverse-menu-complete
