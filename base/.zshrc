@@ -60,6 +60,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 }
 
 bindkey '^I' menu-select
-bindkey $terminfo[kcbt] reverse-menu-select
+bindkey $terminfo[kcbt] menu-select
 bindkey -M menuselect '^I' menu-complete
 bindkey -M menuselect $terminfo[kcbt] reverse-menu-complete
