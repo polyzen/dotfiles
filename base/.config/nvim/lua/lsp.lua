@@ -267,6 +267,7 @@ lspconfig.yamlls.setup({
   settings = {
     redhat = { telemetry = { enabled = false } },
     yaml = {
+      customTags = { '!reference sequence' },
       format = { enable = false },
       schemas = require('schemastore').yaml.schemas(),
       schemaStore = {
