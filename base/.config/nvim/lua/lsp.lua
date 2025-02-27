@@ -106,7 +106,7 @@ null_ls.setup({ sources = sources })
 
 local lspconfig = require('lspconfig')
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss' }
+local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss', 'typos_lsp' }
 local servers_with_completions = { 'clangd', 'cssls', 'mesonlsp', 'svelte' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({})
