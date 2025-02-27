@@ -277,6 +277,10 @@ require('lazy').setup({
   },
   'tpope/vim-unimpaired',
   {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+  },
+  {
     'folke/zen-mode.nvim',
     dependencies = { 'folke/twilight.nvim', lazy = true },
     config = true,
