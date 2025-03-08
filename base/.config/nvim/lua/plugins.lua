@@ -293,13 +293,20 @@ require('lazy').setup({
   },
 
   -- Completions
+  'rafamadriz/friendly-snippets',
+  {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('luasnip/loaders/from_vscode').lazy_load()
+    end,
+  },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-buffer',
+      'saadparwaiz1/cmp_luasnip',
       { 'hrsh7th/cmp-nvim-lsp', branch = 'main' },
       'hrsh7th/cmp-path',
-      'garymjr/nvim-snippets',
     },
     opts = function()
       local cmp = require('cmp')
@@ -307,6 +314,11 @@ require('lazy').setup({
       return {
         formatting = {
           format = require('nvim-highlight-colors').format,
+        },
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -317,67 +329,13 @@ require('lazy').setup({
         }),
         sources = {
           { name = 'nvim_lsp' },
-          { name = 'snippets' },
+          { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
         },
       }
     end,
   },
-  {
-    'garymjr/nvim-snippets',
-    dependencies = {
-      'hrsh7th/nvim-cmp',
-      'rafamadriz/friendly-snippets',
-    },
-    opts = {
-      friendly_snippets = true,
-    },
-    keys = {
-      {
-        '<Tab>',
-        function()
-          if vim.snippet.active({ direction = 1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(1)
-            end)
-            return
-          end
-          return '<Tab>'
-        end,
-        expr = true,
-        silent = true,
-        mode = 'i',
-      },
-      {
-        '<Tab>',
-        function()
-          vim.schedule(function()
-            vim.snippet.jump(1)
-          end)
-        end,
-        expr = true,
-        silent = true,
-        mode = 's',
-      },
-      {
-        '<S-Tab>',
-        function()
-          if vim.snippet.active({ direction = -1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(-1)
-            end)
-            return
-          end
-          return '<S-Tab>'
-        end,
-        expr = true,
-        silent = true,
-        mode = { 'i', 's' },
-      },
-    },
-  },
-  'rafamadriz/friendly-snippets',
 
   -- Git
   'hotwatermorning/auto-git-diff',
