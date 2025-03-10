@@ -433,7 +433,6 @@ require('lazy').setup({
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
   },
   'b0o/SchemaStore.nvim',
-  { 'simrat39/symbols-outline.nvim', opts = {} },
   {
     'liuchengxu/vista.vim',
     init = function()
