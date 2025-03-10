@@ -140,10 +140,7 @@ require('lazy').setup({
     end,
   },
   'markwu/vim-mrufiles',
-  {
-    'karb94/neoscroll.nvim',
-    config = true,
-  },
+  { 'karb94/neoscroll.nvim', opts = {} },
   'blueyed/vim-qf_resize',
   'itchyny/vim-qfedit',
   {
@@ -155,12 +152,9 @@ require('lazy').setup({
   {
     'winston0410/range-highlight.nvim',
     dependencies = 'winston0410/cmd-parser.nvim',
-    config = true,
+    opts = {},
   },
-  {
-    'tversteeg/registers.nvim',
-    config = true,
-  },
+  { 'tversteeg/registers.nvim', opts = {} },
   'tpope/vim-repeat',
   'rhysd/reply.vim',
   {
@@ -183,7 +177,7 @@ require('lazy').setup({
   {
     'kylechui/nvim-surround',
     event = 'VeryLazy',
-    config = true,
+    opts = {},
   },
   {
     'dhruvasagar/vim-table-mode',
@@ -271,10 +265,7 @@ require('lazy').setup({
       end)
     end,
   },
-  {
-    'folke/twilight.nvim',
-    config = true,
-  },
+  { 'folke/twilight.nvim', opts = {} },
   'tpope/vim-unimpaired',
   {
     'folke/which-key.nvim',
@@ -283,7 +274,7 @@ require('lazy').setup({
   {
     'folke/zen-mode.nvim',
     dependencies = { 'folke/twilight.nvim', lazy = true },
-    config = true,
+    opts = {},
   },
   {
     'dhruvasagar/vim-zoom',
@@ -461,10 +452,7 @@ require('lazy').setup({
 
   -- LSP
   'neovim/nvim-lspconfig',
-  {
-    'j-hui/fidget.nvim',
-    config = true,
-  },
+  { 'j-hui/fidget.nvim', opts = {} },
   {
     'kosayoda/nvim-lightbulb',
     opts = {
@@ -476,10 +464,7 @@ require('lazy').setup({
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
   },
   'b0o/SchemaStore.nvim',
-  {
-    'simrat39/symbols-outline.nvim',
-    config = true,
-  },
+  { 'simrat39/symbols-outline.nvim', opts = {} },
   {
     'liuchengxu/vista.vim',
     init = function()
