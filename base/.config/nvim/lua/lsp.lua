@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    ---@cast client -nil
 
     -- Buffer local mappings
     local lsp_formatting = function()
