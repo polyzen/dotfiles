@@ -508,7 +508,11 @@ require('lazy').setup({
         return false
       end
     end,
-    config = true,
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
   },
   {
     'mrcjkb/rustaceanvim',
