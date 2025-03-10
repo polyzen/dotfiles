@@ -11,7 +11,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'moll/vim-bbye',
   {
     'romgrk/barbar.nvim',
     dependencies = {
