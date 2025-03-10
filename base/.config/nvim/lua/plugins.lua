@@ -211,21 +211,12 @@ require('lazy').setup({
   'markonm/traces.vim',
   'andymass/vim-tradewinds',
   {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('nvim-tree').setup()
-      local function open_nvim_tree(data)
-        local directory = vim.fn.isdirectory(data.file) == 1
-        if not directory then
-          return
-        end
-        vim.cmd.cd(data.file)
-        require('nvim-tree.api').tree.open()
-      end
-
-      vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
-    end,
+    'nvim-neo-tree/neo-tree.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter',
