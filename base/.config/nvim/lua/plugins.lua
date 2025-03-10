@@ -247,7 +247,7 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    dependencies = 'nvim-treesitter/nvim-treesitter',
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
@@ -285,87 +285,47 @@ require('lazy').setup({
 
   -- Completions
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      { 'hrsh7th/cmp-nvim-lsp', branch = 'main' },
-      'hrsh7th/cmp-path',
-      'garymjr/nvim-snippets',
-    },
-    opts = function()
-      local cmp = require('cmp')
-
-      return {
-        formatting = {
-          format = require('nvim-highlight-colors').format,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        }),
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'snippets' },
-          { name = 'path' },
-          { name = 'buffer' },
-        },
-      }
-    end,
-  },
-  {
-    'garymjr/nvim-snippets',
-    dependencies = {
-      'hrsh7th/nvim-cmp',
-      'rafamadriz/friendly-snippets',
-    },
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
     opts = {
-      friendly_snippets = true,
-    },
-    keys = {
-      {
-        '<Tab>',
-        function()
-          if vim.snippet.active({ direction = 1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(1)
-            end)
-            return
-          end
-          return '<Tab>'
-        end,
-        expr = true,
-        silent = true,
-        mode = 'i',
+      appearance = {
+        use_nvim_cmp_as_default = false,
       },
-      {
-        '<Tab>',
-        function()
-          vim.schedule(function()
-            vim.snippet.jump(1)
-          end)
-        end,
-        expr = true,
-        silent = true,
-        mode = 's',
+      completion = {
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local icon = ctx.kind_icon
+                  if ctx.item.source_name == 'LSP' then
+                    local color_item =
+                      require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                    if color_item and color_item.abbr then
+                      icon = color_item.abbr
+                    end
+                  end
+                  return icon .. ctx.icon_gap
+                end,
+                highlight = function(ctx)
+                  local highlight = 'BlinkCmpKind' .. ctx.kind
+                  if ctx.item.source_name == 'LSP' then
+                    local color_item =
+                      require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                    if color_item and color_item.abbr_hl_group then
+                      highlight = color_item.abbr_hl_group
+                    end
+                  end
+                  return highlight
+                end,
+              },
+            },
+          },
+        },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
-      {
-        '<S-Tab>',
-        function()
-          if vim.snippet.active({ direction = -1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(-1)
-            end)
-            return
-          end
-          return '<S-Tab>'
-        end,
-        expr = true,
-        silent = true,
-        mode = { 'i', 's' },
-      },
+      fuzzy = { implementation = 'lua' },
+      signature = { enabled = true },
     },
   },
   'rafamadriz/friendly-snippets',
@@ -380,7 +340,7 @@ require('lazy').setup({
   'rhysd/git-messenger.vim',
   {
     'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = 'nvim-lua/plenary.nvim',
     opts = {
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
@@ -451,7 +411,10 @@ require('lazy').setup({
   },
 
   -- LSP
-  'neovim/nvim-lspconfig',
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = 'saghen/blink.cmp',
+  },
   { 'j-hui/fidget.nvim', opts = {} },
   {
     'kosayoda/nvim-lightbulb',
@@ -481,7 +444,7 @@ require('lazy').setup({
         return false
       end
     end,
-    dependencies = { 'neovim/nvim-lspconfig' },
+    dependencies = 'neovim/nvim-lspconfig',
   },
   {
     'folke/lazydev.nvim',
