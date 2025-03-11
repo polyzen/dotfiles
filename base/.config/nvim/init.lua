@@ -16,6 +16,7 @@ vim.api.nvim_create_augroup('highlight_yank', {})
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = 'highlight_yank',
   pattern = '*',
+  desc = 'Highlight yanked text',
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -25,6 +26,7 @@ vim.api.nvim_create_augroup('pkgbuild_unfold', {})
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = 'pkgbuild_unfold',
   pattern = 'PKGBUILD',
+  desc = 'Start editing PKGBUILD files with folds open',
   callback = function()
     vim.o.foldenable = false
   end,
