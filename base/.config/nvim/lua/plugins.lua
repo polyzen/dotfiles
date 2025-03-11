@@ -91,9 +91,9 @@ require('lazy').setup({
   'tpope/vim-dispatch',
   {
     'junegunn/vim-easy-align',
-    init = function()
-      vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
-    end,
+    keys = {
+      { 'ga', '<Plug>(EasyAlign)', mode = { 'n', 'x' }, desc = 'Start interactive EasyAlign' },
+    },
   },
   'Konfekt/FastFold',
   {
