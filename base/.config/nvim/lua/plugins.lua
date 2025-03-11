@@ -10,6 +10,8 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+---@module 'lazy'
+---@type LazySpec
 require('lazy').setup({
   {
     'romgrk/barbar.nvim',
@@ -284,6 +286,8 @@ require('lazy').setup({
   {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       appearance = {
         use_nvim_cmp_as_default = false,
@@ -322,6 +326,16 @@ require('lazy').setup({
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
       fuzzy = { implementation = 'lua' },
+      sources = {
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            score_offset = 100,
+          },
+        },
+      },
       signature = { enabled = true },
     },
   },
