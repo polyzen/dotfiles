@@ -175,16 +175,9 @@ require('lazy').setup({
       end
     end,
   },
-  'markwu/vim-mrufiles',
   { 'karb94/neoscroll.nvim', opts = {} },
   'blueyed/vim-qf_resize',
   'itchyny/vim-qfedit',
-  {
-    'unblevable/quick-scope',
-    init = function()
-      vim.g.qs_enable = 0
-    end,
-  },
   {
     'winston0410/range-highlight.nvim',
     dependencies = 'winston0410/cmd-parser.nvim',
@@ -192,7 +185,6 @@ require('lazy').setup({
   },
   { 'tversteeg/registers.nvim', opts = {} },
   'tpope/vim-repeat',
-  'rhysd/reply.vim',
   {
     'kaplanz/retrail.nvim',
     opts = {
@@ -424,10 +416,8 @@ require('lazy').setup({
   'hotwatermorning/auto-git-diff',
   'rhysd/committia.vim',
   'tpope/vim-fugitive',
-  'junegunn/gv.vim',
   'shumphrey/fugitive-gitlab.vim',
   'tpope/vim-rhubarb',
-  'rhysd/git-messenger.vim',
   {
     'lewis6991/gitsigns.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
@@ -533,12 +523,6 @@ require('lazy').setup({
         }),
       }
       null_ls.setup({ sources = sources })
-    end,
-  },
-  {
-    'liuchengxu/vista.vim',
-    init = function()
-      vim.g.vista_default_executive = 'nvim_lsp'
     end,
   },
 
