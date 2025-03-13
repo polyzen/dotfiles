@@ -514,7 +514,26 @@ require('lazy').setup({
   },
   {
     'nvimtools/none-ls.nvim',
-    dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      local null_ls = require('null-ls')
+      local sources = {
+        null_ls.builtins.diagnostics.markdownlint_cli2,
+        null_ls.builtins.diagnostics.rstcheck,
+        null_ls.builtins.diagnostics.selene,
+        null_ls.builtins.diagnostics.vint,
+        null_ls.builtins.diagnostics.yamllint.with({
+          condition = function(utils)
+            if utils.root_has_file({ 'node_modules/.bin' }) then
+              return false
+            else
+              return true
+            end
+          end,
+        }),
+      }
+      null_ls.setup({ sources = sources })
+    end,
   },
   'b0o/SchemaStore.nvim',
   {
