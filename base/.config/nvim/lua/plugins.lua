@@ -513,7 +513,7 @@ require('lazy').setup({
     },
   },
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim' },
   },
   'b0o/SchemaStore.nvim',
