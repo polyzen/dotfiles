@@ -8,18 +8,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     ---@cast client -nil
 
-    -- Buffer local mappings
-    local lsp_formatting = function()
-      local opts = { timeout_ms = 2000, bufnr = bufnr }
-      local ts_ls_filetypes = require('lspconfig.configs.ts_ls').default_config.filetypes
-      -- Override ts_ls formatter
-      if vim.fn.index(ts_ls_filetypes, vim.o.filetype) ~= -1 then
-        vim.lsp.buf.format(vim.iter({ name = 'null-ls', opts }):flatten():totable())
-      else
-        vim.lsp.buf.format(opts)
-      end
-    end
-
+    -- Buffer-local mappings
     local opts = { buffer = bufnr }
     if client.supports_method('textDocument/declaration') then
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -50,9 +39,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     if client.supports_method('textDocument/references') then
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    end
-    if client.supports_method('textDocument/formatting') then
-      vim.keymap.set('n', '<space>f', lsp_formatting, opts)
     end
 
     -- Buffer-local features
@@ -97,11 +83,6 @@ local sources = {
       end
     end,
   }),
-  null_ls.builtins.formatting.mdformat,
-  null_ls.builtins.formatting.prettier.with({
-    prefer_local = 'node_modules/.bin',
-  }),
-  null_ls.builtins.formatting.stylua,
 }
 null_ls.setup({ sources = sources })
 

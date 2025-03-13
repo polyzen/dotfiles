@@ -20,6 +20,40 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons',
     },
   },
+  {
+    'stevearc/conform.nvim',
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<space>f',
+        function()
+          require('conform').format({ async = true })
+        end,
+        mode = '',
+        desc = 'Format buffer',
+      },
+    },
+    ---@module "conform"
+    ---@type conform.setupOpts
+    opts = {
+      formatters_by_ft = {
+        css = { 'prettier' },
+        html = { 'prettier' },
+        javascript = { 'prettier' },
+        json = { 'prettier' },
+        lua = { 'stylua' },
+        markdown = { 'mdformat' },
+        svelte = { 'prettier' },
+        typescript = { 'prettier' },
+        vue = { 'prettier' },
+        yaml = { 'prettier' },
+        ['_'] = { 'trim_whitespace' },
+      },
+      default_format_opts = {
+        lsp_format = 'fallback',
+      },
+    },
+  },
   'romainl/vim-cool',
   {
     'rbong/vim-crystalline',
