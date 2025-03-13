@@ -552,7 +552,6 @@ require('lazy').setup({
         return false
       end
     end,
-    dependencies = 'neovim/nvim-lspconfig',
   },
   {
     'folke/lazydev.nvim',
