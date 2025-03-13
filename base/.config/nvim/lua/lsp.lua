@@ -69,14 +69,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local lspconfig = require('lspconfig')
-local blink_capabilities = require('blink.cmp').get_lsp_capabilities()
+local completion_capabilities = require('blink.cmp').get_lsp_capabilities()
 local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss', 'typos_lsp' }
 local servers_with_completions = { 'clangd', 'cssls', 'mesonlsp', 'svelte' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({})
 end
 for _, lsp in ipairs(servers_with_completions) do
-  lspconfig[lsp].setup({ capabilities = blink_capabilities })
+  lspconfig[lsp].setup({ capabilities = completion_capabilities })
 end
 
 lspconfig.eslint.setup({
@@ -99,7 +99,7 @@ lspconfig.esbonio.setup({
 })
 
 lspconfig.gopls.setup({
-  capabilities = blink_capabilities,
+  capabilities = completion_capabilities,
   settings = {
     gopls = {
       hints = {
@@ -121,7 +121,7 @@ lspconfig.html.setup({
 })
 
 lspconfig.jedi_language_server.setup({
-  capabilities = blink_capabilities,
+  capabilities = completion_capabilities,
   on_attach = function(client)
     client.server_capabilities.signatureHelpProvider = false
   end,
@@ -131,7 +131,7 @@ lspconfig.jsonls.setup({
   init_options = {
     provideFormatter = false,
   },
-  capabilities = blink_capabilities,
+  capabilities = completion_capabilities,
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -157,7 +157,7 @@ lspconfig.ruff.setup({
 })
 
 lspconfig.lua_ls.setup({
-  capabilities = blink_capabilities,
+  capabilities = completion_capabilities,
   settings = {
     Lua = {
       format = { enable = false },
@@ -219,7 +219,7 @@ if vim.fn.executable('typescript-language-server') == 1 then
 end
 
 lspconfig.volar.setup({
-  capabilities = blink_capabilities,
+  capabilities = completion_capabilities,
   init_options = {
     typescript = {
       tsdk = '/usr/lib/node_modules/typescript/lib',
