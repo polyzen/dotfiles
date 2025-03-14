@@ -183,7 +183,6 @@ require('lazy').setup({
       enhanced_diff_hl = true,
     },
   },
-  'tpope/vim-dispatch',
   {
     'junegunn/vim-easy-align',
     keys = {
