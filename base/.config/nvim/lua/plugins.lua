@@ -535,13 +535,14 @@ require('lazy').setup({
       null_ls.setup({ sources = sources })
     end,
   },
-  'b0o/SchemaStore.nvim',
   {
     'liuchengxu/vista.vim',
     init = function()
       vim.g.vista_default_executive = 'nvim_lsp'
     end,
   },
+
+  -- Language server helpers
   {
     'p00f/clangd_extensions.nvim',
     ft = { 'c', 'cpp' },
@@ -574,6 +575,17 @@ require('lazy').setup({
     ft = { 'rust' },
     cond = function()
       if vim.fn.executable('rust-analyzer') == 1 then
+        return true
+      else
+        return false
+      end
+    end,
+  },
+  {
+    'b0o/SchemaStore.nvim',
+    ft = { 'json', 'yaml' },
+    cond = function()
+      if vim.fn.executable('vscode-json-languageserver') == 1 or vim.fn.executable('yaml-language-server') == 1 then
         return true
       else
         return false

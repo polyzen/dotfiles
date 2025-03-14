@@ -127,18 +127,20 @@ lspconfig.jedi_language_server.setup({
   end,
 })
 
-lspconfig.jsonls.setup({
-  init_options = {
-    provideFormatter = false,
-  },
-  capabilities = completion_capabilities,
-  settings = {
-    json = {
-      schemas = require('schemastore').json.schemas(),
-      validate = { enable = true },
+if vim.fn.executable('vscode-json-languageserver') == 1 then
+  lspconfig.jsonls.setup({
+    init_options = {
+      provideFormatter = false,
     },
-  },
-})
+    capabilities = completion_capabilities,
+    settings = {
+      json = {
+        schemas = require('schemastore').json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  })
+end
 
 lspconfig.pyright.setup({
   on_attach = function(client)
@@ -227,17 +229,19 @@ lspconfig.volar.setup({
   },
 })
 
-lspconfig.yamlls.setup({
-  settings = {
-    redhat = { telemetry = { enabled = false } },
-    yaml = {
-      customTags = { '!reference sequence' },
-      format = { enable = false },
-      schemas = require('schemastore').yaml.schemas(),
-      schemaStore = {
-        enable = false,
-        url = '',
+if vim.fn.executable('yaml-language-server') == 1 then
+  lspconfig.yamlls.setup({
+    settings = {
+      redhat = { telemetry = { enabled = false } },
+      yaml = {
+        customTags = { '!reference sequence' },
+        format = { enable = false },
+        schemas = require('schemastore').yaml.schemas(),
+        schemaStore = {
+          enable = false,
+          url = '',
+        },
       },
     },
-  },
-})
+  })
+end
