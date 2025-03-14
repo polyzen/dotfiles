@@ -171,54 +171,52 @@ lspconfig.lua_ls.setup({
   },
 })
 
-if vim.fn.executable('typescript-language-server') == 1 then
-  lspconfig.ts_ls.setup({
-    filetypes = vim
-      .iter({
-        require('lspconfig.configs.ts_ls').default_config.filetypes,
-        { 'vue' },
-      })
-      :flatten()
-      :totable(),
-    init_options = {
-      hostInfo = 'neovim',
-      plugins = {
-        { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' },
-        {
-          name = '@vue/typescript-plugin',
-          location = '/usr/lib/node_modules/@vue/typescript-plugin',
-          languages = { 'javascript', 'typescript', 'vue' },
-        },
+lspconfig.ts_ls.setup({
+  filetypes = vim
+    .iter({
+      require('lspconfig.configs.ts_ls').default_config.filetypes,
+      { 'vue' },
+    })
+    :flatten()
+    :totable(),
+  init_options = {
+    hostInfo = 'neovim',
+    plugins = {
+      { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' },
+      {
+        name = '@vue/typescript-plugin',
+        location = '/usr/lib/node_modules/@vue/typescript-plugin',
+        languages = { 'javascript', 'typescript', 'vue' },
       },
     },
-    settings = {
-      typescript = {
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
-      },
-      javascript = {
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
+  },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
       },
     },
-  })
-end
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  },
+})
 
 lspconfig.volar.setup({
   capabilities = completion_capabilities,
