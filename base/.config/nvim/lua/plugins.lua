@@ -22,6 +22,7 @@ require('lazy').setup({
   },
   {
     'saghen/blink.cmp',
+    event = 'VeryLazy',
     dependencies = {
       'rafamadriz/friendly-snippets',
       'brenoprata10/nvim-highlight-colors',
@@ -113,9 +114,10 @@ require('lazy').setup({
       },
     },
   },
-  'romainl/vim-cool',
+  { 'romainl/vim-cool', event = 'VeryLazy' },
   {
     'sindrets/diffview.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -127,10 +129,15 @@ require('lazy').setup({
   {
     'junegunn/vim-easy-align',
     keys = {
-      { 'ga', '<Plug>(EasyAlign)', mode = { 'n', 'x' }, desc = 'Start interactive EasyAlign' },
+      {
+        'ga',
+        '<Plug>(EasyAlign)',
+        mode = { 'n', 'x' },
+        desc = 'Start interactive EasyAlign',
+      },
     },
   },
-  'Konfekt/FastFold',
+  { 'Konfekt/FastFold', event = 'VeryLazy' },
   {
     'ellisonleao/gruvbox.nvim',
     lazy = false,
@@ -155,7 +162,7 @@ require('lazy').setup({
   },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
       sections = {
         lualine_c = { 'filename', "vim.fn['zoom#statusline']()" },
@@ -172,6 +179,7 @@ require('lazy').setup({
   },
   {
     'vimpostor/vim-lumen',
+    lazy = false,
     priority = 1001,
   },
   {
@@ -183,6 +191,7 @@ require('lazy').setup({
   },
   {
     'wfxr/minimap.vim',
+    event = 'VeryLazy',
     cond = function()
       if vim.fn.executable('code-minimap') == 1 then
         return true
@@ -191,48 +200,40 @@ require('lazy').setup({
       end
     end,
   },
-  { 'karb94/neoscroll.nvim', opts = {} },
-  'blueyed/vim-qf_resize',
-  'itchyny/vim-qfedit',
+  { 'karb94/neoscroll.nvim', event = 'VeryLazy', opts = {} },
+  { 'blueyed/vim-qf_resize', event = 'VeryLazy' },
+  { 'itchyny/vim-qfedit', event = 'VeryLazy' },
   {
     'winston0410/range-highlight.nvim',
+    event = 'VeryLazy',
     dependencies = 'winston0410/cmd-parser.nvim',
     opts = {},
   },
-  { 'tversteeg/registers.nvim', opts = {} },
-  'tpope/vim-repeat',
+  { 'tversteeg/registers.nvim', event = 'VeryLazy', opts = {} },
+  { 'tpope/vim-repeat', event = 'VeryLazy' },
   {
     'kaplanz/retrail.nvim',
     opts = {
       trim = { auto = false },
     },
   },
-  'tpope/vim-rsi',
-  {
-    'matthew-brett/vim-rst-sections',
-    ft = { 'rst' },
-  },
+  { 'tpope/vim-rsi', event = 'VeryLazy' },
+  { 'matthew-brett/vim-rst-sections', event = 'VeryLazy', ft = 'rst' },
   {
     'stsewd/sphinx.nvim',
-    ft = { 'rst' },
+    ft = 'rst',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
   },
-  'AndrewRadev/splitjoin.vim',
-  'lambdalisue/suda.vim',
-  {
-    'kylechui/nvim-surround',
-    event = 'VeryLazy',
-    opts = {},
-  },
-  {
-    'dhruvasagar/vim-table-mode',
-    ft = { 'markdown', 'rst' },
-  },
+  { 'AndrewRadev/splitjoin.vim', event = 'VeryLazy' },
+  { 'lambdalisue/suda.vim', event = 'VeryLazy' },
+  { 'kylechui/nvim-surround', event = 'VeryLazy', opts = {} },
+  { 'dhruvasagar/vim-table-mode', event = 'VeryLazy', ft = { 'markdown', 'rst' } },
   {
     'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-      { 'nvim-treesitter/nvim-treesitter', lazy = true },
+      'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
     init = function()
@@ -260,8 +261,13 @@ require('lazy').setup({
       require('telescope').load_extension('ui-select')
     end,
   },
-  'markonm/traces.vim',
-  'andymass/vim-tradewinds',
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+    event = 'VeryLazy',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+  },
+  { 'markonm/traces.vim', event = 'VeryLazy' },
+  { 'andymass/vim-tradewinds', event = 'VeryLazy' },
   {
     'nvim-neo-tree/neo-tree.nvim',
     dependencies = {
@@ -351,15 +357,13 @@ require('lazy').setup({
       end)
     end,
   },
-  { 'folke/twilight.nvim', opts = {} },
-  'tpope/vim-unimpaired',
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-  },
+  { 'folke/twilight.nvim', cmd = 'Twilight', opts = {} },
+  { 'tpope/vim-unimpaired', event = 'VeryLazy' },
+  { 'folke/which-key.nvim', event = 'VeryLazy' },
   {
     'folke/zen-mode.nvim',
-    dependencies = { 'folke/twilight.nvim', lazy = true },
+    cmd = 'ZenMode',
+    dependencies = 'folke/twilight.nvim',
     opts = {},
   },
   {
@@ -372,9 +376,9 @@ require('lazy').setup({
   -- Git
   'hotwatermorning/auto-git-diff',
   'rhysd/committia.vim',
-  'tpope/vim-fugitive',
-  'shumphrey/fugitive-gitlab.vim',
-  'tpope/vim-rhubarb',
+  { 'tpope/vim-fugitive', event = 'VeryLazy' },
+  { 'shumphrey/fugitive-gitlab.vim', event = 'VeryLazy' },
+  { 'tpope/vim-rhubarb', event = 'VeryLazy' },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
@@ -450,17 +454,20 @@ require('lazy').setup({
   -- LSP
   {
     'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
     dependencies = 'saghen/blink.cmp',
   },
   { 'j-hui/fidget.nvim', opts = {} },
   {
     'kosayoda/nvim-lightbulb',
+    event = 'VeryLazy',
     opts = {
       autocmd = { enabled = true },
     },
   },
   {
     'nvimtools/none-ls.nvim',
+    event = 'VeryLazy',
     dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       local null_ls = require('null-ls')
@@ -486,6 +493,7 @@ require('lazy').setup({
   -- Language server helpers
   {
     'p00f/clangd_extensions.nvim',
+    event = 'VeryLazy',
     ft = { 'c', 'cpp' },
     cond = function()
       if vim.fn.executable('clangd') == 1 then
@@ -497,6 +505,7 @@ require('lazy').setup({
   },
   {
     'folke/lazydev.nvim',
+    event = 'VeryLazy',
     ft = { 'lua' },
     cond = function()
       if vim.fn.executable('lua-language-server') == 1 then
@@ -513,6 +522,7 @@ require('lazy').setup({
   },
   {
     'mrcjkb/rustaceanvim',
+    event = 'VeryLazy',
     ft = { 'rust' },
     cond = function()
       if vim.fn.executable('rust-analyzer') == 1 then
@@ -524,6 +534,7 @@ require('lazy').setup({
   },
   {
     'b0o/SchemaStore.nvim',
+    event = 'VeryLazy',
     ft = { 'json', 'yaml' },
     cond = function()
       if vim.fn.executable('vscode-json-languageserver') == 1 or vim.fn.executable('yaml-language-server') == 1 then
