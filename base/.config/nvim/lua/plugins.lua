@@ -342,6 +342,7 @@ require('lazy').setup({
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
+    event = 'VeryLazy',
     opts = {
       enable_autocmd = false,
     },
@@ -538,7 +539,6 @@ require('lazy').setup({
   },
   {
     'b0o/SchemaStore.nvim',
-    ft = { 'json', 'yaml' },
     cond = function()
       if vim.fn.executable('vscode-json-languageserver') == 1 or vim.fn.executable('yaml-language-server') == 1 then
         return true
