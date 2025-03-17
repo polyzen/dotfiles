@@ -33,4 +33,3 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 })
 
 require('plugins')
-require('lsp')

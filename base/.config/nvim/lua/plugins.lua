@@ -218,7 +218,7 @@ require('lazy').setup({
     },
   },
   { 'tpope/vim-rsi', event = 'VeryLazy' },
-  { 'matthew-brett/vim-rst-sections', event = 'VeryLazy', ft = 'rst' },
+  { 'matthew-brett/vim-rst-sections', ft = 'rst' },
   {
     'stsewd/sphinx.nvim',
     ft = 'rst',
@@ -227,23 +227,23 @@ require('lazy').setup({
   { 'AndrewRadev/splitjoin.vim', event = 'VeryLazy' },
   { 'lambdalisue/suda.vim', event = 'VeryLazy' },
   { 'kylechui/nvim-surround', event = 'VeryLazy', opts = {} },
-  { 'dhruvasagar/vim-table-mode', event = 'VeryLazy', ft = { 'markdown', 'rst' } },
+  { 'dhruvasagar/vim-table-mode', ft = { 'markdown', 'rst' } },
   {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    init = function()
+    config = function()
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-    end,
-    config = function()
+
       local open_with_trouble = require('trouble.sources.telescope').open
       require('telescope').setup({
         defaults = {
@@ -260,11 +260,6 @@ require('lazy').setup({
       })
       require('telescope').load_extension('ui-select')
     end,
-  },
-  {
-    'nvim-telescope/telescope-ui-select.nvim',
-    event = 'VeryLazy',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
   },
   { 'markonm/traces.vim', event = 'VeryLazy' },
   { 'andymass/vim-tradewinds', event = 'VeryLazy' },
@@ -348,6 +343,8 @@ require('lazy').setup({
     },
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
+    end,
+    config = function()
       vim.schedule(function()
         local get_option = vim.filetype.get_option
         vim.filetype.get_option = function(filetype, option)
@@ -455,7 +452,13 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     event = 'VeryLazy',
-    dependencies = 'saghen/blink.cmp',
+    dependencies = {
+      'saghen/blink.cmp',
+      'b0o/SchemaStore.nvim',
+    },
+    config = function()
+      require('lsp')
+    end,
   },
   { 'j-hui/fidget.nvim', opts = {} },
   {
@@ -493,7 +496,6 @@ require('lazy').setup({
   -- Language server helpers
   {
     'p00f/clangd_extensions.nvim',
-    event = 'VeryLazy',
     ft = { 'c', 'cpp' },
     cond = function()
       if vim.fn.executable('clangd') == 1 then
@@ -505,7 +507,6 @@ require('lazy').setup({
   },
   {
     'folke/lazydev.nvim',
-    event = 'VeryLazy',
     ft = { 'lua' },
     cond = function()
       if vim.fn.executable('lua-language-server') == 1 then
@@ -522,7 +523,6 @@ require('lazy').setup({
   },
   {
     'mrcjkb/rustaceanvim',
-    event = 'VeryLazy',
     ft = { 'rust' },
     cond = function()
       if vim.fn.executable('rust-analyzer') == 1 then
@@ -534,7 +534,6 @@ require('lazy').setup({
   },
   {
     'b0o/SchemaStore.nvim',
-    event = 'VeryLazy',
     ft = { 'json', 'yaml' },
     cond = function()
       if vim.fn.executable('vscode-json-languageserver') == 1 or vim.fn.executable('yaml-language-server') == 1 then
