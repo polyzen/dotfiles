@@ -207,12 +207,7 @@ require('lazy').setup({
   { 'karb94/neoscroll.nvim', event = 'VeryLazy', opts = {} },
   { 'blueyed/vim-qf_resize', event = 'VeryLazy' },
   { 'itchyny/vim-qfedit', event = 'VeryLazy' },
-  {
-    'winston0410/range-highlight.nvim',
-    event = 'VeryLazy',
-    dependencies = 'winston0410/cmd-parser.nvim',
-    opts = {},
-  },
+  { 'winston0410/range-highlight.nvim', event = 'CmdlineEnter', opts = {} },
   { 'tversteeg/registers.nvim', event = 'VeryLazy', opts = {} },
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   {
