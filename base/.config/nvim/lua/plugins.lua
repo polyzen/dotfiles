@@ -26,7 +26,6 @@ require('lazy').setup({
   },
   {
     'saghen/blink.cmp',
-    event = 'VeryLazy',
     dependencies = {
       'rafamadriz/friendly-snippets',
       'brenoprata10/nvim-highlight-colors',
@@ -181,11 +180,7 @@ require('lazy').setup({
       },
     },
   },
-  {
-    'vimpostor/vim-lumen',
-    lazy = false,
-    priority = 1001,
-  },
+  { 'vimpostor/vim-lumen', lazy = false, priority = 1001 },
   {
     'andymass/vim-matchup',
     init = function()
@@ -451,7 +446,6 @@ require('lazy').setup({
   -- LSP
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
     dependencies = {
       'saghen/blink.cmp',
       'b0o/SchemaStore.nvim',
