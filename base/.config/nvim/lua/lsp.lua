@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local lspconfig = require('lspconfig')
 local completion_capabilities = require('blink.cmp').get_lsp_capabilities()
-local servers = { 'bashls', 'stylelint_lsp', 'taplo', 'tailwindcss', 'typos_lsp' }
+local servers = { 'bashls', 'taplo', 'tailwindcss', 'typos_lsp' }
 local servers_with_completions = { 'clangd', 'cssls', 'mesonlsp', 'svelte' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({})
