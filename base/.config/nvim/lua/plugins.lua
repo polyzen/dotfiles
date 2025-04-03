@@ -29,6 +29,7 @@ require('lazy').setup({
     dependencies = {
       'rafamadriz/friendly-snippets',
       'brenoprata10/nvim-highlight-colors',
+      'folke/lazydev.nvim',
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -501,14 +502,6 @@ require('lazy').setup({
   },
   {
     'folke/lazydev.nvim',
-    ft = { 'lua' },
-    cond = function()
-      if vim.fn.executable('lua-language-server') == 1 then
-        return true
-      else
-        return false
-      end
-    end,
     opts = {
       library = {
         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
