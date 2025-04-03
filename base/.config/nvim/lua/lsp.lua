@@ -1,4 +1,5 @@
 -- Global mappings
+vim.diagnostic.config({ virtual_lines = true })
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -10,39 +11,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Buffer-local mappings
     local opts = { buffer = bufnr }
-    if client.supports_method('textDocument/declaration') then
+    if client:supports_method('textDocument/declaration') then
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     end
-    if client.supports_method('textDocument/implementation') then
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    end
-    if client.supports_method('textDocument/signatureHelp') then
+    if client:supports_method('textDocument/signatureHelp') then
       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     end
-    if client.supports_method('workspace/didChangeWorkspaceFolders') then
+    if client:supports_method('workspace/didChangeWorkspaceFolders') then
       vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
       vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
     end
-    if client.supports_method('workspace/workspaceFolders') then
+    if client:supports_method('workspace/workspaceFolders') then
       vim.keymap.set('n', '<space>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, opts)
     end
-    if client.supports_method('textDocument/typeDefinition') then
+    if client:supports_method('textDocument/typeDefinition') then
       vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    end
-    if client.supports_method('textDocument/rename') then
-      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    end
-    if client.supports_method('textDocument/codeAction') then
-      vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    end
-    if client.supports_method('textDocument/references') then
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     end
 
     -- Buffer-local features
-    if client.supports_method('textDocument/documentHighlight') then
+    if client:supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_augroup('lsp_document_highlight', {
         clear = false,
       })
@@ -62,7 +51,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    if client.supports_method('textDocument/inlayHint') then
+    if client:supports_method('textDocument/foldingRange') then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
+
+    if client:supports_method('textDocument/inlayHint') then
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
   end,
