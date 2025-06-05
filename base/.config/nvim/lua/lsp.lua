@@ -1,4 +1,3 @@
--- Global mappings
 vim.diagnostic.config({ virtual_lines = true })
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
@@ -62,18 +61,38 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-local lspconfig = require('lspconfig')
-local completion_capabilities = require('blink.cmp').get_lsp_capabilities()
-local servers = { 'bashls', 'taplo', 'tailwindcss', 'typos_lsp' }
-local servers_with_completions = { 'clangd', 'cssls', 'mesonlsp', 'svelte' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({})
-end
-for _, lsp in ipairs(servers_with_completions) do
-  lspconfig[lsp].setup({ capabilities = completion_capabilities })
-end
+vim.lsp.enable({
+  'bashls',
+  'clangd',
+  'cssls',
+  'esbonio',
+  'eslint',
+  'gopls',
+  'html',
+  'jedi_language_server',
+  'jsonls',
+  'lua_ls',
+  'mesonlsp',
+  'pyright',
+  'ruff',
+  'svelte',
+  'tailwindcss',
+  'taplo',
+  'ts_ls',
+  'typos_lsp',
+  'vue_ls',
+  'yamlls',
+})
 
-lspconfig.eslint.setup({
+vim.lsp.config('esbonio', {
+  init_options = {
+    sphinx = {
+      silent = 1,
+    },
+  },
+})
+
+vim.lsp.config('eslint', {
   filetypes = vim
     .iter({
       require('lspconfig.configs.eslint').default_config.filetypes,
@@ -84,16 +103,7 @@ lspconfig.eslint.setup({
   settings = { run = 'onSave' },
 })
 
-lspconfig.esbonio.setup({
-  init_options = {
-    sphinx = {
-      silent = 1,
-    },
-  },
-})
-
-lspconfig.gopls.setup({
-  capabilities = completion_capabilities,
+vim.lsp.config('gopls', {
   settings = {
     gopls = {
       hints = {
@@ -108,52 +118,33 @@ lspconfig.gopls.setup({
   },
 })
 
-lspconfig.html.setup({
+vim.lsp.config('html', {
   init_options = {
     provideFormatter = false,
   },
 })
 
-lspconfig.jedi_language_server.setup({
-  capabilities = completion_capabilities,
+vim.lsp.config('jedi_language_server', {
   on_attach = function(client)
     client.server_capabilities.signatureHelpProvider = false
   end,
 })
 
-if vim.fn.executable('vscode-json-languageserver') == 1 then
-  lspconfig.jsonls.setup({
-    init_options = {
-      provideFormatter = false,
+vim.lsp.config('jsonls', {
+  init_options = {
+    provideFormatter = false,
+  },
+  settings = {
+    json = {
+      validate = { enable = true },
     },
-    capabilities = completion_capabilities,
-    settings = {
-      json = {
-        schemas = require('schemastore').json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  })
-end
-
-lspconfig.pyright.setup({
-  on_attach = function(client)
-    client.server_capabilities.completionProvider = false
-    client.server_capabilities.hoverProvider = false
+  },
+  before_init = function(_, config)
+    config.settings.json.schemas = require('schemastore').json.schemas()
   end,
 })
 
-lspconfig.ruff.setup({
-  init_options = {
-    settings = {
-      organizeImports = false,
-      fixAll = false,
-    },
-  },
-})
-
-lspconfig.lua_ls.setup({
-  capabilities = completion_capabilities,
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       format = { enable = false },
@@ -165,7 +156,23 @@ lspconfig.lua_ls.setup({
   },
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config('pyright', {
+  on_attach = function(client)
+    client.server_capabilities.completionProvider = false
+    client.server_capabilities.hoverProvider = false
+  end,
+})
+
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      organizeImports = false,
+      fixAll = false,
+    },
+  },
+})
+
+vim.lsp.config('ts_ls', {
   filetypes = vim
     .iter({
       require('lspconfig.configs.ts_ls').default_config.filetypes,
@@ -212,8 +219,7 @@ lspconfig.ts_ls.setup({
   },
 })
 
-lspconfig.volar.setup({
-  capabilities = completion_capabilities,
+vim.lsp.config('vue_ls', {
   init_options = {
     typescript = {
       tsdk = '/usr/lib/node_modules/typescript/lib',
@@ -221,19 +227,19 @@ lspconfig.volar.setup({
   },
 })
 
-if vim.fn.executable('yaml-language-server') == 1 then
-  lspconfig.yamlls.setup({
-    settings = {
-      redhat = { telemetry = { enabled = false } },
-      yaml = {
-        customTags = { '!reference sequence' },
-        format = { enable = false },
-        schemas = require('schemastore').yaml.schemas(),
-        schemaStore = {
-          enable = false,
-          url = '',
-        },
+vim.lsp.config('yamlls', {
+  settings = {
+    redhat = { telemetry = { enabled = false } },
+    yaml = {
+      customTags = { '!reference sequence' },
+      format = { enable = false },
+      schemaStore = {
+        enable = false,
+        url = '',
       },
     },
-  })
-end
+  },
+  before_init = function(_, config)
+    config.settings.yaml.schemas = require('schemastore').yaml.schemas()
+  end,
+})
