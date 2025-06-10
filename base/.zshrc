@@ -24,7 +24,6 @@ precmd() { disambiguate-keeplast }
 PROMPT='$REPLY %(!.#.>) '
 RPROMPT='$(gitprompt-rs zsh)'
 
-export DIFFPROG='nvim -d'
 export EDITOR=nvim
 export LS_COLORS="$(vivid generate jellybeans)"
 export MANPAGER='nvim +Man!'
