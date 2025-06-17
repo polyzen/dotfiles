@@ -67,6 +67,7 @@ vim.lsp.enable({
   'cssls',
   'esbonio',
   'eslint',
+  'gitlab_ci_ls',
   'gopls',
   'html',
   'jedi_language_server',
