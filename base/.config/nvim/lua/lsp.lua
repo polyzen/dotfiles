@@ -78,7 +78,7 @@ vim.lsp.enable({
   'ruff',
   'svelte',
   'tailwindcss',
-  'taplo',
+  'tombi',
   'ts_ls',
   'typos_lsp',
   'vue_ls',
