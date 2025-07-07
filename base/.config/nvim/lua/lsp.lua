@@ -64,6 +64,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.lsp.enable({
   'bashls',
   'clangd',
+  'codebook',
   'cssls',
   'esbonio',
   'eslint',
