@@ -25,9 +25,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, opts)
     end
-    if client:supports_method('textDocument/typeDefinition') then
-      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    end
 
     -- Buffer-local features
     if client:supports_method('textDocument/documentHighlight') then
