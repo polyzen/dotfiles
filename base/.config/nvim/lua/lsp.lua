@@ -5,8 +5,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
     local bufnr = ev.buf
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local client_id = ev.data.client_id
+    local client = vim.lsp.get_client_by_id(client_id)
     ---@cast client -nil
+
+    -- Use only underline for spellchecker diagnostics
+    if client.name == 'codebook' or client.name == 'typos_lsp' then
+      local diag_ns = vim.lsp.diagnostic.get_namespace(client_id)
+      vim.diagnostic.config({ virtual_lines = false, signs = false }, diag_ns)
+    end
 
     -- Buffer-local mappings
     local opts = { buffer = bufnr }
