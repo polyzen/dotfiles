@@ -17,9 +17,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Buffer-local mappings
     local opts = { buffer = bufnr }
-    if client:supports_method('textDocument/declaration') then
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    end
     if client:supports_method('textDocument/signatureHelp') then
       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     end
