@@ -22,4 +22,4 @@ backend = "notmuch"
 notmuch-db-path = "~/.mail"
 
 [arch-local.folder-aliases]
-inbox = "tag:inbox"
+inbox = "tag:inbox and not tag:trash"
