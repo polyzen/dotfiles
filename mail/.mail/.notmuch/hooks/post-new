@@ -1,2 +1,2 @@
 #!/bin/sh
-afew --tag --new -C ~/.config/notmuch/default/config
+afew --tag --new
