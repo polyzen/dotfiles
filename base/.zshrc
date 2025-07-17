@@ -42,7 +42,6 @@ source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
 zstyle ':completion:*' list-rows-first no
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
