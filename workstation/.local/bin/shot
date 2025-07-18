@@ -10,7 +10,7 @@ if [[ $1 == '-p' ]]; then
   PASTE=1
 fi
 
-shotgun $SEL $FILE
+shotgun "$SEL" "$FILE"
 if [[ $PASTE -eq 1 ]]; then
-  fb $FILE
+  fb "$FILE"
 fi
