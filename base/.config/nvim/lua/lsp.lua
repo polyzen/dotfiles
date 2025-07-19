@@ -72,16 +72,15 @@ vim.lsp.enable({
   'gitlab_ci_ls',
   'gopls',
   'html',
-  'jedi_language_server',
   'jsonls',
   'lua_ls',
   'mesonlsp',
-  'pyright',
   'ruff',
   'svelte',
   'tailwindcss',
   'tombi',
   'ts_ls',
+  'ty',
   'typos_lsp',
   'vue_ls',
   'yamlls',
@@ -127,12 +126,6 @@ vim.lsp.config('html', {
   },
 })
 
-vim.lsp.config('jedi_language_server', {
-  on_attach = function(client)
-    client.server_capabilities.signatureHelpProvider = false
-  end,
-})
-
 vim.lsp.config('jsonls', {
   init_options = {
     provideFormatter = false,
@@ -157,13 +150,6 @@ vim.lsp.config('lua_ls', {
       },
     },
   },
-})
-
-vim.lsp.config('pyright', {
-  on_attach = function(client)
-    client.server_capabilities.completionProvider = false
-    client.server_capabilities.hoverProvider = false
-  end,
 })
 
 vim.lsp.config('ruff', {
