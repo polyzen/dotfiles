@@ -87,9 +87,12 @@ vim.lsp.enable({
 })
 
 vim.lsp.config('esbonio', {
-  init_options = {
-    sphinx = {
-      silent = 1,
+  filetypes = { 'markdown', 'rst' },
+  settings = {
+    esbonio = {
+      sphinx = {
+        pythonCommand = { 'python' },
+      },
     },
   },
 })
