@@ -1,4 +1,4 @@
-vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({ virtual_lines = true, jump = { severity = { min = vim.diagnostic.severity.WARN } } })
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -8,12 +8,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client_id = ev.data.client_id
     local client = vim.lsp.get_client_by_id(client_id)
     ---@cast client -nil
-
-    -- Use only underline for spellchecker diagnostics
-    if client.name == 'codebook' then
-      local diag_ns = vim.lsp.diagnostic.get_namespace(client_id)
-      vim.diagnostic.config({ virtual_lines = false, signs = false }, diag_ns)
-    end
 
     -- Buffer-local mappings
     local opts = { buffer = bufnr }
@@ -58,6 +52,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client:supports_method('textDocument/inlayHint') then
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    -- Spell checking
+    if client.name == 'codebook' then
+      local diag_ns = vim.lsp.diagnostic.get_namespace(client_id)
+
+      -- Only underline
+      vim.diagnostic.config({ virtual_lines = false, signs = false }, diag_ns)
+
+      -- Move to misspelled word
+      vim.keymap.set('n', '[s', function()
+        vim.diagnostic.jump({ namespace = diag_ns, severity = vim.diagnostic.severity.INFO, count = -1 })
+      end)
+      vim.keymap.set('n', ']s', function()
+        vim.diagnostic.jump({ namespace = diag_ns, severity = vim.diagnostic.severity.INFO, count = 1 })
+      end)
     end
   end,
 })
