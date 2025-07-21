@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     ---@cast client -nil
 
     -- Use only underline for spellchecker diagnostics
-    if client.name == 'codebook' or client.name == 'typos_lsp' then
+    if client.name == 'codebook' then
       local diag_ns = vim.lsp.diagnostic.get_namespace(client_id)
       vim.diagnostic.config({ virtual_lines = false, signs = false }, diag_ns)
     end
@@ -81,7 +81,6 @@ vim.lsp.enable({
   'tombi',
   'ts_ls',
   'ty',
-  'typos_lsp',
   'vue_ls',
   'yamlls',
 })
