@@ -220,7 +220,12 @@ require('lazy').setup({
   },
   { 'AndrewRadev/splitjoin.vim', event = 'VeryLazy' },
   { 'lambdalisue/suda.vim', event = 'VeryLazy' },
-  { 'kylechui/nvim-surround', event = 'VeryLazy', opts = {} },
+  {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
+    opts = {},
+  },
   { 'dhruvasagar/vim-table-mode', ft = { 'markdown', 'rst' } },
   {
     'nvim-telescope/telescope.nvim',
@@ -267,6 +272,7 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = 'andymass/vim-matchup',
     opts = {
       highlight = {
         enable = true,
