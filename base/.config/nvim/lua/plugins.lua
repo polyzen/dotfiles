@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', lazyrepo, lazypath })
   if vim.v.shell_error ~= 0 then
@@ -179,6 +179,38 @@ require('lazy').setup({
         'trouble',
       },
     },
+  },
+  {
+    'mfussenegger/nvim-lint',
+    events = { 'VeryLazy' },
+    opts = {
+      lua = { 'selene' },
+      markdown = { 'markdownlint-cli2' },
+      rst = { 'rstcheck' },
+      vim = { 'vint' },
+    },
+    config = function(_, opts)
+      local lint = require('lint')
+      lint.linters_by_ft = opts
+
+      vim.api.nvim_create_augroup('nvim_lint', {})
+      vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
+        group = 'nvim_lint',
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+
+      vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
+        group = 'nvim_lint',
+        pattern = { '*.yaml', '*.yml' },
+        callback = function()
+          if not vim.uv.fs_stat('node_modules/.bin') then
+            lint.try_lint('yamllint')
+          end
+        end,
+      })
+    end,
   },
   { 'vimpostor/vim-lumen', lazy = false, priority = 1001 },
   {
@@ -467,30 +499,6 @@ require('lazy').setup({
     opts = {
       autocmd = { enabled = true },
     },
-  },
-  {
-    'nvimtools/none-ls.nvim',
-    event = 'VeryLazy',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      local null_ls = require('null-ls')
-      local sources = {
-        null_ls.builtins.diagnostics.markdownlint_cli2,
-        null_ls.builtins.diagnostics.rstcheck,
-        null_ls.builtins.diagnostics.selene,
-        null_ls.builtins.diagnostics.vint,
-        null_ls.builtins.diagnostics.yamllint.with({
-          condition = function(utils)
-            if utils.root_has_file({ 'node_modules/.bin' }) then
-              return false
-            else
-              return true
-            end
-          end,
-        }),
-      }
-      null_ls.setup({ sources = sources })
-    end,
   },
 
   -- Language server helpers

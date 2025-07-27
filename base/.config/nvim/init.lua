@@ -12,6 +12,12 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 
+vim.diagnostic.config({
+  virtual_lines = true,
+  jump = { severity = { min = vim.diagnostic.severity.WARN } },
+})
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
 vim.api.nvim_create_augroup('highlight_yank', {})
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = 'highlight_yank',

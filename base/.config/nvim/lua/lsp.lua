@@ -1,6 +1,3 @@
-vim.diagnostic.config({ virtual_lines = true, jump = { severity = { min = vim.diagnostic.severity.WARN } } })
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
