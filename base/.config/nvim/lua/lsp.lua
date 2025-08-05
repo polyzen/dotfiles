@@ -184,8 +184,8 @@ vim.lsp.config('ts_ls', {
       { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' },
       {
         name = '@vue/typescript-plugin',
-        location = '/usr/lib/node_modules/@vue/typescript-plugin',
-        languages = { 'javascript', 'typescript', 'vue' },
+        location = '/usr/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin',
+        languages = { 'vue' },
       },
     },
   },
@@ -213,14 +213,6 @@ vim.lsp.config('ts_ls', {
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
       },
-    },
-  },
-})
-
-vim.lsp.config('vue_ls', {
-  init_options = {
-    typescript = {
-      tsdk = '/usr/lib/node_modules/typescript/lib',
     },
   },
 })
