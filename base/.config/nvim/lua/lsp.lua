@@ -181,10 +181,10 @@ vim.lsp.config('ts_ls', {
   init_options = {
     hostInfo = 'neovim',
     plugins = {
-      { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules/typescript-svelte-plugin' },
+      { name = 'typescript-svelte-plugin', location = '/usr/lib/node_modules' },
       {
         name = '@vue/typescript-plugin',
-        location = '/usr/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin',
+        location = '/usr/lib/node_modules/@vue/language-server',
         languages = { 'vue' },
       },
     },
