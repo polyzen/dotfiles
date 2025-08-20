@@ -484,10 +484,7 @@ require('lazy').setup({
   -- LSP
   {
     'neovim/nvim-lspconfig',
-    dependencies = {
-      'saghen/blink.cmp',
-      'b0o/SchemaStore.nvim',
-    },
+    dependencies = 'saghen/blink.cmp',
     config = function()
       require('lsp')
     end,
@@ -534,6 +531,7 @@ require('lazy').setup({
   },
   {
     'b0o/SchemaStore.nvim',
+    lazy = true,
     cond = function()
       if vim.fn.executable('vscode-json-languageserver') == 1 or vim.fn.executable('yaml-language-server') == 1 then
         return true
