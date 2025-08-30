@@ -86,6 +86,7 @@ require('lazy').setup({
   },
   {
     'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
       {
@@ -111,10 +112,7 @@ require('lazy').setup({
         typescript = { 'prettier' },
         vue = { 'prettier' },
         yaml = { 'prettier' },
-        ['_'] = { 'trim_whitespace' },
-      },
-      default_format_opts = {
-        lsp_format = 'fallback',
+        ['_'] = { 'trim_whitespace', lsp_format = 'last' },
       },
     },
   },
