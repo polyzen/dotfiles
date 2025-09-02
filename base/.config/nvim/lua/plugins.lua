@@ -215,7 +215,7 @@ require('lazy').setup({
     'andymass/vim-matchup',
     init = function()
       vim.g.matchup_matchparen_offscreen = {}
-      vim.g.matchup_surround_enabled = 1
+      vim.g.matchup_surround_enabled = true
     end,
   },
   {
@@ -256,7 +256,13 @@ require('lazy').setup({
     dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
     opts = {},
   },
-  { 'dhruvasagar/vim-table-mode', ft = { 'markdown', 'rst' } },
+  {
+    'dhruvasagar/vim-table-mode',
+    ft = { 'markdown', 'rst' },
+    init = function()
+      vim.g.table_mode_syntax = false
+    end,
+  },
   {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
