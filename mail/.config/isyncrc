@@ -3,8 +3,8 @@ Expunge Both
 SyncState *
 
 MaildirStore arch-local
-Path ~/.mail/arch/
-Inbox ~/.mail/arch/INBOX
+Path ~/.local/share/mail/arch/
+Inbox ~/.local/share/mail/arch/INBOX
 SubFolders Verbatim
 
 IMAPStore arch-remote

@@ -19,7 +19,7 @@ smtp-auth = "passwd"
 smtp-passwd = { cmd = "rbw get --folder services/email polyzen" }
 
 backend = "notmuch"
-notmuch-db-path = "~/.mail"
+notmuch-db-path = "~/.local/share/mail"
 
 [arch-local.folder-aliases]
 inbox = "tag:inbox and not tag:trash"
