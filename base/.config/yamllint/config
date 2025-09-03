@@ -1,7 +1,9 @@
----
+# yaml-language-server: $schema=https://www.schemastore.org/yamllint.json
 
 extends: default
 
 rules:
   document-start: disable
   line-length: disable
+
+# vim: ft=yaml
