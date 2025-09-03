@@ -12,6 +12,8 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 
+vim.o.foldenable = false
+
 vim.diagnostic.config({
   virtual_lines = true,
   jump = { severity = { min = vim.diagnostic.severity.WARN } },
@@ -21,20 +23,9 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 vim.api.nvim_create_augroup('highlight_yank', {})
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = 'highlight_yank',
-  pattern = '*',
-  desc = 'Highlight yanked text',
+  desc = 'Briefly highlight yanked text',
   callback = function()
     vim.highlight.on_yank()
-  end,
-})
-
-vim.api.nvim_create_augroup('pkgbuild_unfold', {})
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  group = 'pkgbuild_unfold',
-  pattern = 'PKGBUILD',
-  desc = 'Start editing PKGBUILD files with folds open',
-  callback = function()
-    vim.o.foldenable = false
   end,
 })
 
