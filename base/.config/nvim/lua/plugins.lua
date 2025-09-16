@@ -242,7 +242,6 @@ require('lazy').setup({
     },
   },
   { 'tpope/vim-rsi', event = 'VeryLazy' },
-  { 'matthew-brett/vim-rst-sections', ft = 'rst' },
   {
     'stsewd/sphinx.nvim',
     ft = 'rst',
