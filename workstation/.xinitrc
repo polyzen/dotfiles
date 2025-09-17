@@ -11,11 +11,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-export AMD_VULKAN_ICD=RADV
-export QT_QPA_PLATFORMTHEME=qt5ct
-
 export BROWSER=firefox
 export TERMINAL=alacritty
+
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 xrdb .Xresources
 xset b off s off
