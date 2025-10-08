@@ -34,7 +34,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 alias cp='cp --reflink=auto'
 alias grep='grep --color=auto'
-alias ls='ls --color=auto --file-type'
+alias ls='ls --color=auto --classify=auto'
 
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
