@@ -81,7 +81,6 @@ vim.lsp.enable({
   'html',
   'jsonls',
   'lua_ls',
-  'mesonlsp',
   'ruff',
   'svelte',
   'tailwindcss',
