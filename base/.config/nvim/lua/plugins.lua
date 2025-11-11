@@ -545,4 +545,5 @@ require('lazy').setup({
     },
   },
   rocks = { enabled = false },
+  diff = { cmd = 'diffview.nvim' },
 })
