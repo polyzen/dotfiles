@@ -253,7 +253,6 @@ require('lazy').setup({
       'kylechui/nvim-surround',
       event = 'VeryLazy',
       dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
-      opts = {},
     },
     {
       'dhruvasagar/vim-table-mode',
