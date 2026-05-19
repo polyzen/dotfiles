@@ -28,6 +28,7 @@ require('lazy').setup({
     {
       'saghen/blink.cmp',
       dependencies = {
+        'saghen/blink.lib',
         'rafamadriz/friendly-snippets',
         'brenoprata10/nvim-highlight-colors',
         'folke/lazydev.nvim',
