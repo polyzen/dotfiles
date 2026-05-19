@@ -307,44 +307,10 @@ require('lazy').setup({
     {
       'nvim-treesitter/nvim-treesitter',
       branch = 'main',
+      init = function()
+        vim.g.loaded_nvim_treesitter = 1
+      end,
       config = function()
-        require('nvim-treesitter').install({
-          'bash',
-          'c',
-          'css',
-          'diff',
-          'editorconfig',
-          'git_config',
-          'git_rebase',
-          'gitcommit',
-          'gitignore',
-          'go',
-          'html',
-          'java',
-          'javascript',
-          'json',
-          'kotlin',
-          'lua',
-          'make',
-          'markdown',
-          'markdown_inline',
-          'meson',
-          'nginx',
-          'passwd',
-          'python',
-          'query',
-          'rst',
-          'rust',
-          'ssh_config',
-          'svelte',
-          'tmux',
-          'toml',
-          'typescript',
-          'vim',
-          'vimdoc',
-          'yaml',
-        })
-
         vim.api.nvim_create_autocmd('FileType', {
           callback = function(args)
             if
@@ -363,7 +329,6 @@ require('lazy').setup({
           end,
         })
       end,
-      build = ':TSUpdate',
     },
     {
       'nvim-treesitter/nvim-treesitter-context',
@@ -423,6 +388,50 @@ require('lazy').setup({
               or get_option(filetype, option)
           end
         end)
+      end,
+    },
+    {
+      'lewis6991/ts-install.nvim',
+      dependencies = 'nvim-treesitter/nvim-treesitter',
+      config = function()
+        require('ts-install').setup({
+          ensure_install = {
+            'bash',
+            'c',
+            'css',
+            'diff',
+            'editorconfig',
+            'git_config',
+            'git_rebase',
+            'gitcommit',
+            'gitignore',
+            'go',
+            'html',
+            'java',
+            'javascript',
+            'json',
+            'kotlin',
+            'lua',
+            'make',
+            'markdown',
+            'markdown_inline',
+            'meson',
+            'nginx',
+            'passwd',
+            'python',
+            'query',
+            'rst',
+            'rust',
+            'ssh_config',
+            'svelte',
+            'tmux',
+            'toml',
+            'typescript',
+            'vim',
+            'vimdoc',
+            'yaml',
+          },
+        })
       end,
     },
     { 'folke/twilight.nvim', cmd = 'Twilight', opts = {} },
