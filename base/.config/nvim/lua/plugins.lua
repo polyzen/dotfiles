@@ -252,7 +252,7 @@ require('lazy').setup({
     {
       'kylechui/nvim-surround',
       event = 'VeryLazy',
-      dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
+      dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     },
     {
       'dhruvasagar/vim-table-mode',
@@ -306,26 +306,62 @@ require('lazy').setup({
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      dependencies = 'andymass/vim-matchup',
-      opts = {
-        highlight = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-        },
-        matchup = {
-          enable = true,
-        },
-      },
-      config = function(_, opts)
-        require('nvim-treesitter.configs').setup(opts)
-        require('nvim-treesitter.install').prefer_git = true
-        vim.o.foldmethod = 'expr'
-        vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+      branch = 'main',
+      config = function()
+        require('nvim-treesitter').install({
+          'bash',
+          'c',
+          'css',
+          'diff',
+          'editorconfig',
+          'git_config',
+          'git_rebase',
+          'gitcommit',
+          'gitignore',
+          'go',
+          'html',
+          'java',
+          'javascript',
+          'json',
+          'kotlin',
+          'lua',
+          'make',
+          'markdown',
+          'markdown_inline',
+          'meson',
+          'nginx',
+          'passwd',
+          'python',
+          'query',
+          'rst',
+          'rust',
+          'ssh_config',
+          'svelte',
+          'tmux',
+          'toml',
+          'typescript',
+          'vim',
+          'vimdoc',
+          'yaml',
+        })
+
+        vim.api.nvim_create_autocmd('FileType', {
+          callback = function(args)
+            if
+              vim.list_contains(
+                require('nvim-treesitter').get_installed(),
+                vim.treesitter.language.get_lang(args.match)
+              )
+            then
+              vim.treesitter.start(args.buf)
+
+              vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+              vim.wo[0][0].foldmethod = 'expr'
+
+              vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+          end,
+        })
       end,
       build = ':TSUpdate',
     },
