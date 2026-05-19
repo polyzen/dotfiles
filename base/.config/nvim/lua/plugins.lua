@@ -233,7 +233,6 @@ require('lazy').setup({
     { 'blueyed/vim-qf_resize', event = 'VeryLazy' },
     { 'itchyny/vim-qfedit', event = 'VeryLazy' },
     { 'winston0410/range-highlight.nvim', event = 'CmdlineEnter', opts = {} },
-    { 'tversteeg/registers.nvim', event = 'VeryLazy', opts = {} },
     { 'tpope/vim-repeat', event = 'VeryLazy' },
     {
       'kaplanz/retrail.nvim',
